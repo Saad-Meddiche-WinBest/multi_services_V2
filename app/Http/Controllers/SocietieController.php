@@ -22,4 +22,8 @@ class SocietieController extends Controller
 
         return response()->json(['societie' => $societie]);
     }
+
+    public function test($column, $data)
+    {
+    }
 }

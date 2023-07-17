@@ -3,7 +3,8 @@ Vue.component('societie-list', {
     data() {
       return {
         societies: [],
-        societie:''
+        societie:'',
+        looking_for:''
       };
     },
     methods: {
@@ -31,11 +32,31 @@ Vue.component('societie-list', {
     mounted() {
       this.fetch_societies();
     },
+    computed:{
+      filtred_societies(){
+        
+        return this.societies.filter(item => {
+          const titleMatch = item.title.toLowerCase().includes(this.looking_for.toLowerCase());
+          const telephoneMatch = item.telephone.toLowerCase().includes(this.looking_for.toLowerCase());
+          const iceMatch = item.ice.toLowerCase().includes(this.looking_for.toLowerCase());
+          const adressMatch = item.adress.toLowerCase().includes(this.looking_for.toLowerCase());
+          const citieMatch = item.cities.some(citie => citie.name.toLowerCase().includes(this.looking_for.toLowerCase()));
+          const tagMatch = item.tags.some(tag => tag.name.toLowerCase().includes(this.looking_for.toLowerCase()));
+          const demiCategorieMatch =  item.demi_categorie.name.toLowerCase().includes(this.looking_for.toLowerCase());
+          const webLinkMatch =  item.web_link.toLowerCase().includes(this.looking_for.toLowerCase());
+          const descriptionMatch =  item.description.toLowerCase().includes(this.looking_for.toLowerCase());
+
+          return titleMatch || telephoneMatch || iceMatch || adressMatch || citieMatch || tagMatch ||demiCategorieMatch || webLinkMatch || descriptionMatch;
+        });      }
+    },
     template: `
     <div class="container">
     <h1 class="mt-4">Societies</h1>
+    <div class="m-4">
+      <input type="text" v-model="looking_for" placeholder="Search ...">
+    </div>
     <div class="row">
-        <div class="col-md-6 col-lg-4 mb-4" v-for="societie in societies" :key="'societie'+societie.id">
+        <div class="col-md-6 col-lg-4 mb-4" v-for="societie in filtred_societies" :key="'societie'+societie.id">
             <div class="card h-100">
                 <img v-if="societie.image" :src="societie.image" class="card-img-top" alt="Societie Image">
                 <div class="card-body">
