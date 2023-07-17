@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
+use App\Models\Citie;
 use App\Models\Societie;
 use Illuminate\Http\Request;
 
@@ -23,7 +25,15 @@ class SocietieController extends Controller
         return response()->json(['societie' => $societie]);
     }
 
-    public function test($column, $data)
+    public function fetchSocietiesByCitie(Citie $citie)
     {
+
+        $societies = $citie->societies;
+    }
+
+    public function fetchSocietiesByCategorie(Categorie $categorie)
+    {
+        $societies = $categorie->societies;
+        return response()->json(['societies' => $societies]);
     }
 }

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SocietieController;
+use GuzzleHttp\Psr7\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,14 @@ use App\Http\Controllers\SocietieController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/societies/{id}/show', function () {
-    return view('home');
-})->name('societies.show');
+// Route::get('/societies/{id}/show', function () {
+//     return view('home');
+// })->name('societies.show');
+
+// Route::get('/societies', function (Request $request) {
+//     return view('societies.index');
+// })->name('societies.index');
+
 
 Route::get('/societies', function () {
     return view('societies.index');

@@ -4,6 +4,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
+
+                {{-- Cities --}}
                 <div class="card mb-5">
                     <div class="card-header">{{ __('Cities') }}</div>
                     <div class="card-body">
@@ -34,6 +36,8 @@
                         </section>
                     </div>
                 </div>
+
+                {{-- Categories --}}
                 <div class="card mb-5">
                     <div class="card-header">{{ __('Categories') }}</div>
                     <div class="card-body">
@@ -68,6 +72,8 @@
                         </section>
                     </div>
                 </div>
+
+                {{-- Societies --}}
                 <div class="card">
                     <div class="card-header">{{ __('Societies') }}</div>
                     <div class="card-body">
