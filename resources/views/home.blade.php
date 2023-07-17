@@ -9,74 +9,93 @@
                     <div class="card-body">
                         <section class="section bg-light">
                             <div class="container">
-                                <div class="row align-items-stretch retro-layout">
-                                    <div class="col-md-4">
-                                        <a href="single.html" class="h-entry mb-30 v-height gradient">
+                                <div class="row align-items-stretch retro-layout justify-content-center">
+                                    @foreach ($topCities as $citie)
+                                        <div class="col-md-4 mb-4">
+                                            <a class="card text-decoration-none text-dark h-100">
 
-                                            <div class="featured-img"
-                                                style="background-image: url('images/img_2_horizontal.jpg');"></div>
+                                                <img src="{{ $citie->image }}" alt=""
+                                                    class="card-img-top img-fluid">
 
-                                            <div class="text">
-                                                <span class="date">Apr. 14th, 2022</span>
-                                                <h2>AI can now kill those annoying cookie pop-ups</h2>
-                                            </div>
-                                        </a>
-                                        <a href="single.html" class="h-entry v-height gradient">
+                                                <div class="card-body d-flex flex-column">
+                                                    <h2 class="card-title">{{ $citie->name }}</h2>
 
-                                            <div class="featured-img"
-                                                style="background-image: url('images/img_5_horizontal.jpg');"></div>
-
-                                            <div class="text">
-                                                <span class="date">Apr. 14th, 2022</span>
-                                                <h2>Don’t assume your user data in the cloud is safe</h2>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a href="single.html" class="h-entry img-5 h-100 gradient">
-
-                                            <div class="featured-img"
-                                                style="background-image: url('images/img_1_vertical.jpg');"></div>
-
-                                            <div class="text">
-                                                <span class="date">Apr. 14th, 2022</span>
-                                                <h2>Why is my internet so slow?</h2>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <a href="single.html" class="h-entry mb-30 v-height gradient">
-
-                                            <div class="featured-img"
-                                                style="background-image: url('images/img_3_horizontal.jpg');"></div>
-
-                                            <div class="text">
-                                                <span class="date">Apr. 14th, 2022</span>
-                                                <h2>Startup vs corporate: What job suits you best?</h2>
-                                            </div>
-                                        </a>
-                                        <a href="single.html" class="h-entry v-height gradient">
-
-                                            <div class="featured-img"
-                                                style="background-image: url('images/img_4_horizontal.jpg');"></div>
-
-                                            <div class="text">
-                                                <span class="date">Apr. 14th, 2022</span>
-                                                <h2>Thought you loved Python? Wait until you meet Rust</h2>
-                                            </div>
-                                        </a>
-                                    </div>
+                                                    <div class="card-text mt-auto">
+                                                        With More Than: {{ $citie->societies_count }} Societies
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    @endforeach
                                 </div>
+
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <div class="card mb-5">
+                    <div class="card-header">{{ __('Categories') }}</div>
+                    <div class="card-body">
+                        <section class="section bg-light">
+                            <div class="container">
+                                <div class="row align-items-stretch retro-layout justify-content-center">
+                                    @foreach ($categories as $categorie)
+                                        <div class="col-md-4 mb-4">
+                                            <a class="card text-decoration-none text-dark h-100">
+
+                                                <img src="{{ $categorie->image }}" alt=""
+                                                    class="card-img-top img-fluid">
+
+                                                <div class="card-body d-flex flex-column">
+                                                    <h2 class="card-title">{{ $categorie->name }}</h2>
+
+                                                    <div class="card-text mt-auto">
+                                                        {{ $categorie->demi_categories_count }}
+                                                        Demi-Categories
+                                                        <br>
+                                                        &&
+                                                        <br>
+                                                        {{ $categorie->societies_count }} Societies
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                </div>
+
                             </div>
                         </section>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header">{{ __('Categories') }}</div>
+                    <div class="card-header">{{ __('Societies') }}</div>
                     <div class="card-body">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, ab. Deleniti a voluptates beatae
-                        expedita doloribus dolorem temporibus, ipsum necessitatibus enim ipsam omnis ea, esse totam est sint
-                        pariatur vitae!
+                        <section class="section bg-light">
+                            <div class="container">
+                                <div class="row align-items-stretch retro-layout justify-content-center">
+                                    @foreach ($societies as $societie)
+                                        <div class="card col-md-6 col-lg-4 m-4" style="width: 18rem;">
+                                            <img src="{{ $societie->image }}" class="card-img-top pt-3" alt="...">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ $societie->title }}</h5>
+                                                {{-- <p class="card-text">{{ $societie->description }}</p> --}}
+                                            </div>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item"><b>Link :</b> <a
+                                                        href="{{ $societie->web_link }}">{{ $societie->web_link }}</a>
+                                                </li>
+                                                <li class="list-group-item"><b>Adress :</b> {{ $societie->adress }}</li>
+                                                <li class="list-group-item"><b>Phone :</b> {{ $societie->telephone }}</li>
+                                            </ul>
+                                            <div class="card-body">
+                                                <a href="#" class="card-link"><button>Details</button></a>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </section>
                     </div>
                 </div>
             </div>

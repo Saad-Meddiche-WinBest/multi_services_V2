@@ -41,6 +41,10 @@ class DemiCategorie extends Model
         return $this->belongsTo(Categorie::class, 'categorie_id');
     }
 
+    public function societies()
+    {
+        return $this->hasMany(Societie::class);
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

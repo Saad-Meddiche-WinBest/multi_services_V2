@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
+use App\Models\Societie;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -23,6 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $topCities = CitieController::topCitiesBySocieties(6);
+
+        $categories = CategorieController::allWithExtraInformations();
+
+        $societies = Societie::limit(5)->get();
+
+        return view('home', compact('topCities', 'categories', 'societies'));
     }
 }
