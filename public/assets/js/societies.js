@@ -36,18 +36,28 @@ Vue.component('societie-list', {
       filtred_societies(){
         
         return this.societies.filter(item => {
-          const titleMatch = item.title.toLowerCase().includes(this.looking_for.toLowerCase());
-          const telephoneMatch = item.telephone.toLowerCase().includes(this.looking_for.toLowerCase());
-          const iceMatch = item.ice.toLowerCase().includes(this.looking_for.toLowerCase());
-          const adressMatch = item.adress.toLowerCase().includes(this.looking_for.toLowerCase());
-          const citieMatch = item.cities.some(citie => citie.name.toLowerCase().includes(this.looking_for.toLowerCase()));
-          const tagMatch = item.tags.some(tag => tag.name.toLowerCase().includes(this.looking_for.toLowerCase()));
-          const demiCategorieMatch =  item.demi_categorie.name.toLowerCase().includes(this.looking_for.toLowerCase());
-          const webLinkMatch =  item.web_link.toLowerCase().includes(this.looking_for.toLowerCase());
-          const descriptionMatch =  item.description.toLowerCase().includes(this.looking_for.toLowerCase());
+          const searchValue = this.looking_for.toLowerCase();
 
-          return titleMatch || telephoneMatch || iceMatch || adressMatch || citieMatch || tagMatch ||demiCategorieMatch || webLinkMatch || descriptionMatch;
-        });      }
+          const matches = [
+            item.title.toLowerCase().includes(searchValue),
+            item.telephone.toLowerCase().includes(searchValue),
+            item.ice.toLowerCase().includes(searchValue),
+            item.adress.toLowerCase().includes(searchValue),
+            item.cities.some(city => city.name.toLowerCase().includes(searchValue)),
+            item.tags.some(tag => tag.name.toLowerCase().includes(searchValue)),
+            item.demi_categorie.name.toLowerCase().includes(searchValue),
+            item.web_link.toLowerCase().includes(searchValue),
+            item.description.toLowerCase().includes(searchValue)
+          ];
+          
+          if (item.fax != null) {
+            matches.push(item.fax.toLowerCase().includes(searchValue));
+          }
+          
+          return matches.some(match => match);
+          
+        });      
+      }
     },
     template: `
     <div class="container">
