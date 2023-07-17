@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SocietieController;
 
@@ -15,8 +16,13 @@ use App\Http\Controllers\SocietieController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home');
 
-Route::get('/societies', [SocietieController::class, 'index'])->name('societies.index');
-Route::get('/societie/{societie}/show', [SocietieController::class, 'show'])->name('societies.show');
+Route::get('/societies/{id}/show', function () {
+    return view('home');
+})->name('societies.show');
+
+Route::get('/societies', function () {
+    return view('societies.index');
+})->name('societies.index');
