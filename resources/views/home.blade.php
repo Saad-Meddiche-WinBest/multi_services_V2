@@ -47,7 +47,8 @@
                                 <div class="row align-items-stretch retro-layout justify-content-center">
                                     @foreach ($categories as $categorie)
                                         <div class="col-md-4 mb-4">
-                                            <a class="card text-decoration-none text-dark h-100">
+                                            <a class="card text-decoration-none text-dark h-100"
+                                                href="{{ route('societiesByCategory.index', $categorie->id) }}">
 
                                                 <img src="{{ $categorie->image }}" alt=""
                                                     class="card-img-top img-fluid">

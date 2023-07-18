@@ -36,9 +36,9 @@ class SocietieController extends Controller
 
     public function fetchSocietiesByCategorie(Categorie $categorie)
     {
-        $societies = $categorie->societies;
-
-        $societies->load('tags', 'cities', 'demiCategorie');
+        $societies = $categorie->demiCategories->flatMap(function ($demiCategorie) {
+            return $demiCategorie->societies->load('tags', 'cities', 'demiCategorie');
+        });
 
         return response()->json(['societies' => $societies]);
     }
