@@ -29,6 +29,11 @@ class CitieCrudController extends CrudController
         CRUD::setModel(\App\Models\Citie::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/citie');
         CRUD::setEntityNameStrings('citie', 'cities');
+
+        $user = backpack_user();
+        if (!$user->hasRole('Super Admin')) {
+            $this->crud->denyAccess('delete');
+        }
     }
 
     /**
@@ -79,9 +84,6 @@ class CitieCrudController extends CrudController
             })
             ->sanitize(false);
         CRUD::column('societies');
-
-
-       
     }
 
     /**

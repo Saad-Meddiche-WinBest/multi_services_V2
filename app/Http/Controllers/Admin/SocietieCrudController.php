@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\SocietieRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -29,6 +30,11 @@ class SocietieCrudController extends CrudController
         CRUD::setModel(\App\Models\Societie::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/societie');
         CRUD::setEntityNameStrings('societie', 'societies');
+
+        $user = backpack_user();
+        if (!$user->hasRole('Super Admin')) {
+            $this->crud->denyAccess('delete');
+        }
     }
 
     /**
@@ -40,8 +46,6 @@ class SocietieCrudController extends CrudController
     protected function setupListOperation()
     {
 
-        // Displaying an image column
-
         CRUD::column('title');
         CRUD::column('image')
             ->type('image')
@@ -66,15 +70,9 @@ class SocietieCrudController extends CrudController
         CRUD::column('tags');
         CRUD::column('description');
         CRUD::column('fax');
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
     }
     protected function setupShowOperation()
     {
-        // Displaying an image column
 
         CRUD::column('title');
         CRUD::column('tags');
@@ -100,8 +98,6 @@ class SocietieCrudController extends CrudController
         CRUD::column('telephone');
         CRUD::column('fax');
         CRUD::column('web_link');
-
-        // ...
     }
 
 
@@ -113,7 +109,6 @@ class SocietieCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        // CRUD::setValidation(SocietieRequest::class);
 
 
         CRUD::field('title');
@@ -140,10 +135,10 @@ class SocietieCrudController extends CrudController
         $this->crud->addField([
             'label' => 'cities',
             'type' => 'select_multiple',
-            'name' => 'cities', // The relationship method name
-            'entity' => 'cities', // The Eloquent model name
-            'attribute' => 'name', // The column to display for the select options
-            'model' => "App\Models\Citie", // The model to use for the select options
+            'name' => 'cities',
+            'entity' => 'cities',
+            'attribute' => 'name',
+            'model' => "App\Models\Citie",
         ]);
 
         $this->crud->addField([
@@ -154,11 +149,6 @@ class SocietieCrudController extends CrudController
             'attribute' => 'name',
             'model' => "App\Models\Tag",
         ]);
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
     }
 
     /**
@@ -175,7 +165,7 @@ class SocietieCrudController extends CrudController
         CRUD::field('description');
 
 
-        CRUD::field([   // Upload
+        CRUD::field([
             'name'      => 'image',
             'label'     => 'Image',
             'type'      => 'upload',
@@ -196,19 +186,29 @@ class SocietieCrudController extends CrudController
         $this->crud->addField([
             'label' => 'cities',
             'type' => 'select_multiple',
-            'name' => 'cities', // The relationship method name
-            'entity' => 'cities', // The Eloquent model name
-            'attribute' => 'name', // The column to display for the select options
-            'model' => "App\Models\Citie", // The model to use for the select options
+            'name' => 'cities',
+            'entity' => 'cities',
+            'attribute' => 'name',
+            'model' => "App\Models\Citie",
         ]);
 
         $this->crud->addField([
             'label' => 'Tags',
             'type' => 'select_multiple',
-            'name' => 'tags', // The relationship method name
-            'entity' => 'tags', // The Eloquent model name
-            'attribute' => 'name', // The column to display for the select options
-            'model' => "App\Models\Tag", // The model to use for the select options
+            'name' => 'tags',
+            'entity' => 'tags',
+            'attribute' => 'name',
+            'model' => "App\Models\Tag",
         ]);
+    }
+
+    /**
+     * Define what happens when the Delete operation is loaded.
+     * 
+     * @see https://backpackforlaravel.com/docs/crud-operation-delete
+     * @return void
+     */
+    protected function setupDeleteOperation()
+    {
     }
 }

@@ -11,4 +11,4 @@
 
 <x-backpack::menu-item title="Users" icon="la la-users" :link="backpack_url('user')" />
 <x-backpack::menu-item title="Roles" icon="la la-user-circle" :link="backpack_url('role')" />
-<x-backpack::menu-item title="Permissions" icon="la la-key" :link="backpack_url('permission')" />
+

@@ -29,6 +29,11 @@ class DemiCategorieCrudController extends CrudController
         CRUD::setModel(\App\Models\DemiCategorie::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/demi-categorie');
         CRUD::setEntityNameStrings('demi categorie', 'demi categories');
+
+        $user = backpack_user();
+        if (!$user->hasRole('Super Admin')) {
+            $this->crud->denyAccess('delete');
+        }
     }
 
     /**

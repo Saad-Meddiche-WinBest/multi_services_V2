@@ -22,7 +22,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 Route::get('/societies', function () {
-
+    
     return view('societies.index');
 })->name('societies.index');
 

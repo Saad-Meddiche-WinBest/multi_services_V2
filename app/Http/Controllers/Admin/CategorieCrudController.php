@@ -29,6 +29,11 @@ class CategorieCrudController extends CrudController
         CRUD::setModel(\App\Models\Categorie::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/categorie');
         CRUD::setEntityNameStrings('categorie', 'categories');
+
+        $user = backpack_user();
+        if (!$user->hasRole('Super Admin')) {
+            $this->crud->denyAccess('delete');
+        }
     }
 
     /**
@@ -40,13 +45,6 @@ class CategorieCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('name');
-       
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
     }
 
     /**
@@ -58,12 +56,6 @@ class CategorieCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::field('name');
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
     }
 
     /**
