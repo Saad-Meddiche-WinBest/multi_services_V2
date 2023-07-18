@@ -4,20 +4,26 @@ Vue.component('societie-list', {
       return {
         societies: [],
         societie:'',
-        looking_for:''
+        looking_for:'',
       };
-    },
+    }
+    ,
     methods: {
+      get_url(){
+        const url = '/api' + window.location.pathname;
+        return url;
+      }
+      ,
       fetch_societies() {
-        axios.get('/api/societies')
+        axios.get(this.get_url())
           .then(response => {
             this.societies = response.data.societies;
-            console.log(response);
           })
           .catch(error => {
             console.error(error);
           });
-      },
+      }
+      ,
       show_societie(societie){
         axios.get('/api/societie/'+societie.id+'/show')
         .then(response => {
@@ -30,7 +36,7 @@ Vue.component('societie-list', {
       }
     },
     mounted() {
-      this.fetch_societies();
+      return this.fetch_societies();
     },
     computed:{
       filtred_societies(){
@@ -61,7 +67,6 @@ Vue.component('societie-list', {
     },
     template: `
     <div class="container">
-    <h1 class="mt-4">Societies</h1>
     <div class="m-4">
       <input type="text" v-model="looking_for" placeholder="Search ...">
     </div>

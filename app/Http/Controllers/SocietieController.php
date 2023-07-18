@@ -27,13 +27,19 @@ class SocietieController extends Controller
 
     public function fetchSocietiesByCitie(Citie $citie)
     {
-
         $societies = $citie->societies;
+
+        $societies->load('tags', 'cities', 'demiCategorie');
+
+        return response()->json(['societies' => $societies]);
     }
 
     public function fetchSocietiesByCategorie(Categorie $categorie)
     {
         $societies = $categorie->societies;
+
+        $societies->load('tags', 'cities', 'demiCategorie');
+
         return response()->json(['societies' => $societies]);
     }
 }

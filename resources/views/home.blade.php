@@ -14,7 +14,8 @@
                                 <div class="row align-items-stretch retro-layout justify-content-center">
                                     @foreach ($topCities as $citie)
                                         <div class="col-md-4 mb-4">
-                                            <a class="card text-decoration-none text-dark h-100">
+                                            <a class="card text-decoration-none text-dark h-100"
+                                                href="{{ route('societiesByCitie.index', $citie->id) }}">
 
                                                 <img src="{{ $citie->image }}" alt=""
                                                     class="card-img-top img-fluid">

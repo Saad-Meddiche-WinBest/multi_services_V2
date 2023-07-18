@@ -21,4 +21,7 @@ use App\Http\Controllers\SocietieController;
 
 
 Route::get('/societies', [SocietieController::class, 'index']);
+Route::get('/societies/byCity/{citie}', [SocietieController::class, 'fetchSocietiesByCitie']);
+Route::get('/societies/byCategory/{categorie}', [SocietieController::class, 'fetchSocietiesByCategorie']);
+
 Route::get('/societie/{societie}/show', [SocietieController::class, 'show']);
