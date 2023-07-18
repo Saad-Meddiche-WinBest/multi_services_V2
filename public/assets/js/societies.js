@@ -72,21 +72,13 @@ Vue.component('societie-list', {
                 <div class="card-body">
                     <h5 class="card-title">{{ societie.title }}</h5>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>ICE:</strong> {{ societie.ice }}</li>
                         <li class="list-group-item"><strong>Address:</strong> {{ societie.adress }}</li>
                         <li class="list-group-item"><strong>Telephone:</strong> {{ societie.telephone }}</li>
                         <li class="list-group-item">
                             <strong>Cities:</strong>
                             <span v-for="citie in societie.cities">{{ citie.name }}-</span>
                         </li>
-                        <li class="list-group-item"><strong>Web Link:</strong> <a :href="societie.web_link">{{ societie.web_link }}</a></li>
-                        <li class="list-group-item"><strong>Demi Categorie:</strong> {{ societie.demi_categorie.name }}</li>
-                        <li class="list-group-item">
-                            <strong>Tags:</strong>
-                            <span class="tag" v-for="tag in societie.tags">{{ tag.name }}-</span>
-                        </li>
-                        <li class="list-group-item"><strong>Description:</strong> {{ societie.description }}</li>
-                        <li class="list-group-item"><strong>Fax:</strong> {{ societie.fax }}</li>
+                        
                     </ul>
                 </div>
                 <div class="card-footer">

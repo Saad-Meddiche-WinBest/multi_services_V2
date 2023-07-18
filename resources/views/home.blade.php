@@ -75,9 +75,42 @@
                     </div>
                 </div>
 
-                {{-- Societies --}}
+                {{-- Premium Societies --}}
+                <div class="card mb-5">
+                    <div class="card-header">{{ __('Premium Societies') }}</div>
+                    <div class="card-body">
+                        <section class="section bg-light">
+                            <div class="container">
+                                <div class="row align-items-stretch retro-layout justify-content-center">
+                                    @foreach ($societies as $societie)
+                                        <div class="card col-md-6 col-lg-4 m-4" style="width: 18rem;">
+                                            <img src="{{ $societie->image }}" class="card-img-top pt-3" alt="...">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ $societie->title }}</h5>
+                                                {{-- <p class="card-text">{{ $societie->description }}</p> --}}
+                                            </div>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item"><b>Link :</b> <a
+                                                        href="{{ $societie->web_link }}">{{ $societie->web_link }}</a>
+                                                </li>
+                                                <li class="list-group-item"><b>Adress :</b> {{ $societie->adress }}</li>
+                                                <li class="list-group-item"><b>Phone :</b> {{ $societie->telephone }}</li>
+                                            </ul>
+                                            <div class="card-body">
+                                                <a href="{{ route('societie.show', $societie->id) }}"
+                                                    class="card-link"><button>Details</button></a>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                {{-- New Societies --}}
                 <div class="card">
-                    <div class="card-header">{{ __('Societies') }}</div>
+                    <div class="card-header">{{ __('New Societies') }}</div>
                     <div class="card-body">
                         <section class="section bg-light">
                             <div class="container">
