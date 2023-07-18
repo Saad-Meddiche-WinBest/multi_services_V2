@@ -35,3 +35,5 @@ Route::get('/societies/byCategory/{categorie}', function () {
 
     return view('societies.index');
 })->name('societiesByCategory.index');
+
+Route::get('/societie/{societie}/show', [SocietieController::class, 'show'])->name('societie.show');

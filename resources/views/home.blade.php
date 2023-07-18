@@ -97,7 +97,8 @@
                                                 <li class="list-group-item"><b>Phone :</b> {{ $societie->telephone }}</li>
                                             </ul>
                                             <div class="card-body">
-                                                <a href="#" class="card-link"><button>Details</button></a>
+                                                <a href="{{ route('societie.show', $societie->id) }}"
+                                                    class="card-link"><button>Details</button></a>
                                             </div>
                                         </div>
                                     @endforeach

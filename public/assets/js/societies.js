@@ -27,14 +27,7 @@ Vue.component('societie-list', {
       }
       ,
       show_societie(societie){
-        axios.get('/api/societie/'+societie.id+'/show')
-        .then(response => {
-          this.societie = response.data.societie;
-          console.log(this.societie);
-        })
-        .catch(error => {
-          console.error(error);
-        });
+        window.location.replace('/societie/'+ societie.id +'/show');
       }
     },
     mounted() {

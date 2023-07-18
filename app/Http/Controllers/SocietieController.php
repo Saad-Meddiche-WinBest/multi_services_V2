@@ -17,12 +17,12 @@ class SocietieController extends Controller
         return response()->json(['societies' => $societies]);
     }
 
-
     public function show(Societie $societie)
     {
+
         $societie->load('tags', 'cities', 'demiCategorie');
 
-        return response()->json(['societie' => $societie]);
+        return view('societies.show', compact('societie'));
     }
 
     public function fetchSocietiesByCitie(Citie $citie)
