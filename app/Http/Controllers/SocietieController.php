@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categorie;
 use App\Models\Citie;
+use App\Models\Premium;
 use App\Models\Societie;
 use Illuminate\Http\Request;
 
@@ -47,5 +48,13 @@ class SocietieController extends Controller
     {
         $societies = Societie::orderby('id', 'desc')->limit($limit)->get();
         return $societies;
+    }
+
+    static public function fetchPremiumSocieties()
+    {
+        $idsSocieties = Premium::all()->pluck('societie_id');
+        $premiumSocieties = Societie::whereIn('id', $idsSocieties)->get();
+
+        return $premiumSocieties;
     }
 }

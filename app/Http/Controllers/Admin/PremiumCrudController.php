@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PremiumRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use PhpParser\Lexer\TokenEmulator\AttributeEmulator;
 
 /**
  * Class PremiumCrudController
@@ -46,6 +47,7 @@ class PremiumCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+
         CRUD::column('societie');
         CRUD::column('plan');
         CRUD::column('consumed_at')->type('date');
@@ -61,7 +63,6 @@ class PremiumCrudController extends CrudController
         CRUD::column('expire_at')->type('date');
         CRUD::column('created_at');
         CRUD::column('updated_at');
-
     }
 
 
