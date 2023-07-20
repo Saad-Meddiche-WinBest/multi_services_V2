@@ -37,12 +37,12 @@ class Premium extends Model
     */
     public function plan()
     {
-        return $this->belongsTo(Plan::class, 'premiums');
+        return $this->belongsTo(Plan::class, 'plan_id');
     }
 
     public function societie()
     {
-        return $this->belongsTo(Societie::class, 'premiums');
+        return $this->belongsTo(Societie::class, 'societie_id');
     }
 
     /*

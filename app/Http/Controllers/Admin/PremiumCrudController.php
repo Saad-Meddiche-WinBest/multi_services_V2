@@ -46,8 +46,6 @@ class PremiumCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-
-
         CRUD::column('societie');
         CRUD::column('plan');
         CRUD::column('consumed_at')->type('date');
@@ -105,6 +103,22 @@ class PremiumCrudController extends CrudController
         $periodInMonths = $plan->periode;
         $expireAt = Carbon::parse($consumedAt)->addMonths($periodInMonths);
         $request['expire_at'] = $expireAt;
-        return $this->traitStore($request);
+
+        return $this->traitStore();
+    }
+
+    protected function update(Request $request)
+    {
+
+        $planId = $request->input('plan_id');
+        $consumedAt = $request->input('consumed_at');
+
+        $plan = Plan::find($planId);
+
+        $periodInMonths = $plan->periode;
+        $expireAt = Carbon::parse($consumedAt)->addMonths($periodInMonths);
+        $request['expire_at'] = $expireAt;
+
+        return $this->traitUpdate();
     }
 }
