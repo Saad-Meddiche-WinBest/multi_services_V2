@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
 use App\Http\Requests\UserRequest;
-use Illuminate\Support\Facades\Hash;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -33,6 +31,7 @@ class UserCrudController extends CrudController
         CRUD::setEntityNameStrings('user', 'users');
 
         $user = backpack_user();
+
         if (!$user->hasRole('Super Admin')) {
             $this->crud->denyAccess('delete');
         }
@@ -46,15 +45,32 @@ class UserCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name');
-        CRUD::column('email');
-        // CRUD::column('password');
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
+        $this->crud->addColumns([
+            [
+                'name'  => 'id',
+                'label' => 'Id',
+                'type'  => 'int',
+                'prefix' => '#'
+            ],
+            [
+                'name'  => 'name',
+                'label' => trans('backpack::permissionmanager.name'),
+                'type'  => 'text',
+            ],
+            [
+                'name'  => 'email',
+                'label' => trans('backpack::permissionmanager.email'),
+                'type'  => 'email',
+            ],
+            [ // n-n relationship (with pivot table)
+                'label'     => trans('backpack::permissionmanager.roles'), // Table column heading
+                'type'      => 'select_multiple',
+                'name'      => 'roles', // the method that defines the relationship in your Model
+                'entity'    => 'roles', // the method that defines the relationship in your Model
+                'attribute' => 'name', // foreign key attribute that is shown to user
+                'model'     => config('permission.models.role'), // foreign key model
+            ],
+        ]);
     }
 
     /**
@@ -65,19 +81,42 @@ class UserCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::field('name')->validationRules('required|min:5');
-        CRUD::field('email')->validationRules('required|email|unique:users,email');
-        CRUD::field('password')->validationRules('required');
+        $this->crud->addFields([
+            [
+                'name'  => 'name',
+                'label' => trans('backpack::permissionmanager.name'),
+                'type'  => 'text',
+            ],
+            [
+                'name'  => 'email',
+                'label' => trans('backpack::permissionmanager.email'),
+                'type'  => 'email',
+            ],
+            [
+                'name'  => 'password',
+                'label' => trans('backpack::permissionmanager.password'),
+                'type'  => 'password',
+            ],
+            [
+                'name'  => 'password_confirmation',
+                'label' => trans('backpack::permissionmanager.password_confirmation'),
+                'type'  => 'password',
+            ],
+            [
+                'label'             => 'Roles',
+                'field_unique_name' => 'user_role_permission',
+                'type'              => 'checklist',
+                'name'              => 'roles',
+                'entity'            => 'roles',
+                'attribute'         => 'name', // the column that contains the role name in the roles table
+                'model'             => config('permission.models.role'), // the model that contains the roles
+                'pivot'             => true, // on create&update, do you need to add/delete pivot table entries?
+                'number_columns'    => 3, // can be 1, 2, 3, 4, 6
+            ],
 
-        User::creating(function ($entry) {
-            $entry->password = Hash::make($entry->password);
-        });
 
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
+
+        ]);
     }
 
     /**
@@ -88,16 +127,6 @@ class UserCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        CRUD::field('name')->validationRules('required|min:5');
-        CRUD::field('email')->validationRules('required|email|unique:users,email,' . CRUD::getCurrentEntryId());
-        CRUD::field('password')->hint('Type a password to change it.');
-
-        User::updating(function ($entry) {
-            if (request('password') == null) {
-                $entry->password = $entry->getOriginal('password');
-            } else {
-                $entry->password = Hash::make(request('password'));
-            }
-        });
+        $this->setupCreateOperation();
     }
 }
