@@ -94,7 +94,8 @@ class SocietieCrudController extends CrudController
 
         CRUD::column('ice');
         CRUD::column('adress');
-        CRUD::column('description');
+        CRUD::column('description')->type('summernote');
+
         CRUD::column('telephone');
         CRUD::column('fax');
         CRUD::column('web_link');
@@ -114,7 +115,7 @@ class SocietieCrudController extends CrudController
         CRUD::field('title');
         CRUD::field('ice');
         CRUD::field('adress');
-        CRUD::field('description');
+        CRUD::field('description')->type('summernote');
 
 
         CRUD::field([   // Upload
@@ -133,7 +134,7 @@ class SocietieCrudController extends CrudController
             ->entity('demiCategorie');
 
         $this->crud->addField([
-            'label' => 'cities',
+            'label' => 'cities (Press ctrl for multiple selection)',
             'type' => 'select_multiple',
             'name' => 'cities',
             'entity' => 'cities',
@@ -142,7 +143,7 @@ class SocietieCrudController extends CrudController
         ]);
 
         $this->crud->addField([
-            'label' => 'Tags',
+            'label' => 'Tags (Press ctrl for multiple selection)',
             'type' => 'select_multiple',
             'name' => 'tags',
             'entity' => 'tags',
@@ -162,7 +163,7 @@ class SocietieCrudController extends CrudController
         CRUD::field('title');
         CRUD::field('ice');
         CRUD::field('adress');
-        CRUD::field('description');
+        CRUD::field('description')->type('summernote');
 
 
         CRUD::field([

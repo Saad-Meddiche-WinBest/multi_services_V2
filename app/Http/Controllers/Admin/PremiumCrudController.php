@@ -52,6 +52,19 @@ class PremiumCrudController extends CrudController
         CRUD::column('expire_at')->type('date');
     }
 
+    protected function setupShowOperation()
+    {
+
+        CRUD::column('societie');
+        CRUD::column('plan');
+        CRUD::column('consumed_at')->type('date');
+        CRUD::column('expire_at')->type('date');
+        CRUD::column('created_at');
+        CRUD::column('updated_at');
+
+    }
+
+
     /**
      * Define what happens when the Create operation is loaded.
      * 

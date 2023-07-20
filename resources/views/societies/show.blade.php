@@ -17,7 +17,7 @@
                                             <img src="{{ $societie->image }}" class="card-img-top pt-3 w-25" alt="...">
                                             <div class="card-body align-item-center">
                                                 <h5 class="card-title">{{ $societie->title }}</h5>
-                                                <p class="card-text">{{ $societie->description }}</p>
+                                                <p class="card-text">{!! $societie->description !!}</p>
                                             </div>
                                         </div>
 
