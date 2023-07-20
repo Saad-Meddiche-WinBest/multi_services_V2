@@ -29,7 +29,7 @@ class HomeController extends Controller
 
         $categories = CategorieController::allWithExtraInformations();
 
-        $societies = Societie::limit(5)->get();
+        $societies = Societie::limit(9)->get();
 
         return view('home', compact('topCities', 'categories', 'societies'));
     }
