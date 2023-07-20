@@ -9,5 +9,8 @@
 <x-backpack::menu-item title="Demi categories" icon="la la-tags" :link="backpack_url('demi-categorie')" />
 <x-backpack::menu-item title="Tags" icon="la la-tag" :link="backpack_url('tag')" />
 
-<x-backpack::menu-item title="Users" icon="la la-users" :link="backpack_url('user')" />
-<x-backpack::menu-item title="Roles" icon="la la-user-circle" :link="backpack_url('role')" />
+
+@role('Super Admin')
+    <x-backpack::menu-item title="Users" icon="la la-users" :link="backpack_url('user')" />
+    <x-backpack::menu-item title="Roles" icon="la la-user-circle" :link="backpack_url('role')" />
+@endrole
