@@ -35,6 +35,6 @@ class HomeController extends Controller
 
         $premiumSocieties = SocietieController::fetchPremiumSocieties();
 
-        return view('home', compact('topCities', 'categories', 'societies', 'premiumSocieties'));
+        return view('home', compact('topCities', 'categories', 'newsocieties', 'premiumSocieties'));
     }
 }
