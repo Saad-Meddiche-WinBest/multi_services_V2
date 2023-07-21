@@ -67,6 +67,8 @@ class SocietieCrudController extends CrudController
 
 
         CRUD::column('demiCategorie');
+        CRUD::column('services');
+
         CRUD::column('tags');
         CRUD::column('description');
         CRUD::column('fax');
@@ -91,6 +93,7 @@ class SocietieCrudController extends CrudController
         CRUD::column('cities');
 
         CRUD::column('demiCategorie');
+        CRUD::column('services');
 
         CRUD::column('ice');
         CRUD::column('adress');
@@ -134,7 +137,16 @@ class SocietieCrudController extends CrudController
             ->entity('demiCategorie');
 
         $this->crud->addField([
-            'label' => 'cities (Press ctrl for multiple selection)',
+            'label' => 'Services (Press ctrl for multiple selection)',
+            'type' => 'select_multiple',
+            'name' => 'services',
+            'entity' => 'services',
+            'attribute' => 'name',
+            'model' => "App\Models\Service",
+        ]);
+
+        $this->crud->addField([
+            'label' => 'Cities (Press ctrl for multiple selection)',
             'type' => 'select_multiple',
             'name' => 'cities',
             'entity' => 'cities',
@@ -181,7 +193,14 @@ class SocietieCrudController extends CrudController
             ->label('Demi Categorie')
             ->entity('demiCategorie');
 
-
+        $this->crud->addField([
+            'label' => 'Services (Press ctrl for multiple selection)',
+            'type' => 'select_multiple',
+            'name' => 'services',
+            'entity' => 'services',
+            'attribute' => 'name',
+            'model' => "App\Models\Service",
+        ]);
 
 
         $this->crud->addField([

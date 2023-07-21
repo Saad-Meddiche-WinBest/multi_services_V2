@@ -19,11 +19,6 @@ class ServiceCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
-    /**
-     * Configure the CrudPanel object. Apply settings to all operations.
-     * 
-     * @return void
-     */
     public function setup()
     {
         CRUD::setModel(\App\Models\Service::class);
@@ -31,54 +26,59 @@ class ServiceCrudController extends CrudController
         CRUD::setEntityNameStrings('service', 'services');
     }
 
-    /**
-     * Define what happens when the List operation is loaded.
-     * 
-     * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
-     * @return void
-     */
     protected function setupListOperation()
     {
         CRUD::column('name');
-        CRUD::column('description');
-        CRUD::column('image');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
+        CRUD::column('image')
+            ->type('image')
+            ->value(function ($value) {
 
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
+                if (filter_var($value->image, FILTER_VALIDATE_URL)) {
+                    return $value->image;
+                }
+
+                $imageUrl = '/storage/' . $value->image;
+                return $imageUrl;
+            })
+            ->sanitize(false);
+        CRUD::column('description');
     }
 
-    /**
-     * Define what happens when the Create operation is loaded.
-     * 
-     * @see https://backpackforlaravel.com/docs/crud-operation-create
-     * @return void
-     */
+    protected function setupShowOperation()
+    {
+
+
+        CRUD::column('name');
+        CRUD::column('description')->type('summernote');
+        CRUD::column('image')
+            ->type('image')
+            ->value(function ($value) {
+
+                if (filter_var($value->image, FILTER_VALIDATE_URL)) {
+                    return $value->image;
+                }
+
+                $imageUrl = '/storage/' . $value->image;
+                return $imageUrl;
+            })
+            ->sanitize(false);
+        CRUD::column('created_at');
+        CRUD::column('updated_at');
+    }
+
     protected function setupCreateOperation()
     {
         CRUD::field('name');
-        CRUD::field('description');
+        CRUD::column('description')->type('summernote');
         CRUD::field('image');
 
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
+       
     }
 
-    /**
-     * Define what happens when the Update operation is loaded.
-     * 
-     * @see https://backpackforlaravel.com/docs/crud-operation-update
-     * @return void
-     */
     protected function setupUpdateOperation()
     {
-        $this->setupCreateOperation();
+        CRUD::field('name');
+        CRUD::column('description')->type('summernote');
+        CRUD::field('image');
     }
 }

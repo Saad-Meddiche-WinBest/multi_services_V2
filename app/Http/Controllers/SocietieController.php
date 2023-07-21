@@ -21,7 +21,7 @@ class SocietieController extends Controller
     public function show(Societie $societie)
     {
 
-        $societie->load('tags', 'cities', 'demiCategorie');
+        $societie->load('tags', 'cities', 'demiCategorie', 'services');
 
         return view('societies.show', compact('societie'));
     }

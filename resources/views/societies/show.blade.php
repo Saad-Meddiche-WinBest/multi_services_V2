@@ -36,6 +36,12 @@
                                                     <span>{{ $citie->name }}-</span>
                                                 @endforeach
                                             </li>
+                                            <li class="list-group-item">
+                                                <b>Services:</b>
+                                                @foreach ($societie->services as $service)
+                                                    <span>{{ $service->name }}-</span>
+                                                @endforeach
+                                            </li>
 
                                             <li class="list-group-item"><b>Demi Categorie:</b>
                                                 {{ $societie->demiCategorie->name }}</li>

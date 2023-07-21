@@ -47,6 +47,11 @@ class Societie extends Model
         return $this->belongsTo(DemiCategorie::class);
     }
 
+    public function services()
+    {
+        return $this->belongsToMany(Service::class, 'societie_has_services');
+    }
+
     public function cities()
     {
         return $this->belongsToMany(Citie::class, 'citie_has_societies');
