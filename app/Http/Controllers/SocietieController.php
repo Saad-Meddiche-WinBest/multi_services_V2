@@ -13,7 +13,7 @@ class SocietieController extends Controller
     public function index(Request $request)
     {
 
-        $societies = Societie::with(['tags', 'cities', 'demiCategorie'])->get();
+        $societies = Societie::with(['tags', 'cities', 'demiCategorie', 'services'])->get();
 
         return response()->json(['societies' => $societies]);
     }
