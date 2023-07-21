@@ -870,6 +870,24 @@ from {
   }
 }
 
+/* ###### PREMIUM CARDS SOCIETY ######*/
+
+/* Adjust styles as needed */
+.slider-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.slider .cards {
+  flex: 0 0 300px; /* Adjust the card width as needed */
+  margin-right: 20px; /* Adjust spacing between cards */
+}
+
 /* _________________________________
 ######### PARTIE MOBILE ############
 ````````````````````````````````````

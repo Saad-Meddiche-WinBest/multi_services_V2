@@ -57,4 +57,6 @@
 {{-- Functions Of Societies --}}
 <script src="{{asset('assets/js/societies.js')}}" type="module"></script>
 
+{{-- jQuery library --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </html>
