@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('ice');
             $table->string('adress');
-            $table->string('description', 2000);
+            $table->string('description', 3000);
             $table->string('image');
             $table->string('telephone');
             $table->string('fax')->nullable();

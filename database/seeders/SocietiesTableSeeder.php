@@ -19,6 +19,7 @@ class SocietiesTableSeeder extends Seeder
         $faker = Faker::create();
 
         $demiCategoryIds = DB::table('demi_categories')->pluck('id')->toArray();
+        $serviceIds = DB::table('services')->pluck('id')->toArray();
 
         foreach (range(1, 100) as $index) {
             DB::table('societies')->insert([
@@ -31,6 +32,7 @@ class SocietiesTableSeeder extends Seeder
                 'fax' => $faker->optional()->phoneNumber,
                 'web_link' => $faker->url,
                 'demi_categorie_id' => $faker->randomElement($demiCategoryIds),
+                'service_id' => $faker->randomElement($serviceIds),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
