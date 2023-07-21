@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SocietieController;
-use GuzzleHttp\Psr7\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +16,21 @@ use GuzzleHttp\Psr7\Request;
 |
 */
 
+/*
+|--------------------------------------------------------------------------
+| Home
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
-
+/*
+|--------------------------------------------------------------------------
+| Societie
+|--------------------------------------------------------------------------
+*/
 Route::get('/societies', function () {
-    
+
     return view('societies.index');
 })->name('societies.index');
 
@@ -37,3 +45,13 @@ Route::get('/societies/byCategory/{categorie}', function () {
 })->name('societiesByCategory.index');
 
 Route::get('/societie/{societie}/show', [SocietieController::class, 'show'])->name('societie.show');
+
+/*
+|--------------------------------------------------------------------------
+| Review
+|--------------------------------------------------------------------------
+*/
+
+Route::post('/review/create', [ReviewController::class, 'store'])->name('review.store');
+Route::put('/review/{review}', [ReviewController::class, 'update'])->name('review.update');
+Route::delete('/review/{review}', [ReviewController::class, 'destroy'])->name('review.destroy');

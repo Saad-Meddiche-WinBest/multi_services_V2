@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
+        <div class="row justify-content-center mt-5">
 
-                {{-- Societie --}}
+            {{-- Societie --}}
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">{{ __('Societie') }}</div>
                     <div class="card-body">
@@ -61,6 +61,50 @@
                     </div>
                 </div>
             </div>
+
+            {{-- Review Form --}}
+            <div class="container mt-4">
+                <h2>Review Form with Multiple Ratings</h2>
+                <form method="POST" action="{{ route('review.store') }}">
+                    @csrf
+                    <input type="hidden" name="societie_id" value="{{ $societie->id }}">
+                    <div class="form-group">
+                        <label for="name">Your Name:</label>
+                        <input type="text" name="name" class="form-control" id="name"
+                            placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address:</label>
+                        <input type="email" name="email" class="form-control" id="email"
+                            placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Location:</label>
+                        <div id="location-rating"></div>
+                        <input type="hidden" name="location_rating" id="location-rating-value" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Price:</label>
+                        <div id="price-rating"></div>
+                        <input type="hidden" name="price_rating" id="price-rating-value" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Quality:</label>
+                        <div id="quality-rating"></div>
+                        <input type="hidden" name="quality_rating" id="quality-rating-value" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Service:</label>
+                        <div id="service-rating"></div>
+                        <input type="hidden" name="service_rating" id="service-rating-value" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="review">Your Review:</label>
+                        <textarea class="form-control" name="content" id="review" rows="5" placeholder="Write your review here"
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
         </div>
-    </div>
-@endsection
+    @endsection
