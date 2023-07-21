@@ -17,3 +17,5 @@
     <x-backpack::menu-item title="Roles" icon="la la-user-circle" :link="backpack_url('role')" />
 @endrole
 
+
+<x-backpack::menu-item title="Services" icon="la la-question" :link="backpack_url('service')" />
