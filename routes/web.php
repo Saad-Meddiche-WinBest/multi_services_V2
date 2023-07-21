@@ -19,15 +19,21 @@ use GuzzleHttp\Psr7\Request;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Route::get('/societies/{id}/show', function () {
-//     return view('home');
-// })->name('societies.show');
-
-// Route::get('/societies', function (Request $request) {
-//     return view('societies.index');
-// })->name('societies.index');
 
 
 Route::get('/societies', function () {
+    
     return view('societies.index');
 })->name('societies.index');
+
+Route::get('/societies/byCity/{citie}', function () {
+
+    return view('societies.index');
+})->name('societiesByCitie.index');
+
+Route::get('/societies/byCategory/{categorie}', function () {
+
+    return view('societies.index');
+})->name('societiesByCategory.index');
+
+Route::get('/societie/{societie}/show', [SocietieController::class, 'show'])->name('societie.show');

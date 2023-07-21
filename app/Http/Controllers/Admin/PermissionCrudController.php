@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\DemiCategorieRequest;
+use App\Http\Requests\PermissionRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class DemiCategorieCrudController
+ * Class PermissionCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class DemiCategorieCrudController extends CrudController
+class PermissionCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    // use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
+    // use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    // use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
+    // use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -26,14 +26,14 @@ class DemiCategorieCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\DemiCategorie::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/demi-categorie');
-        CRUD::setEntityNameStrings('demi categorie', 'demi categories');
+        CRUD::setModel(\App\Models\Permission::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/permission');
+        CRUD::setEntityNameStrings('permission', 'permissions');
 
-        $user = backpack_user();
-        if (!$user->hasRole('Super Admin')) {
-            $this->crud->denyAccess('delete');
-        }
+        $this->crud->denyAccess('delete');
+        $this->crud->denyAccess('update');
+        $this->crud->denyAccess('show');
+        $this->crud->denyAccess('list');
     }
 
     /**
@@ -45,8 +45,9 @@ class DemiCategorieCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('name');
-        CRUD::column('categorie_id');
-
+        CRUD::column('guard_name');
+        CRUD::column('created_at');
+        CRUD::column('updated_at');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -64,9 +65,7 @@ class DemiCategorieCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::field('name');
-        CRUD::field('categorie_id')->type('select')
-            ->label('Categorie')
-            ->entity('categorie');
+        CRUD::field('guard_name');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
@@ -83,10 +82,6 @@ class DemiCategorieCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        CRUD::field('name');
-        CRUD::field('categorie_id')->type('select')
-            ->label('Categorie')
-            ->entity('categorie');
         $this->setupCreateOperation();
     }
 }

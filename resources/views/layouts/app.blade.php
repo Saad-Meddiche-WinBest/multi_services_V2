@@ -38,6 +38,7 @@
             @yield('content')
         </main>
 
+
     </div>
     @include('layouts.includes.user.footer')
 </body>
@@ -54,6 +55,6 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 {{-- Functions Of Societies --}}
-<script src="assets/js/societies.js" type="module"></script>
+<script src="{{asset('assets/js/societies.js')}}" type="module"></script>
 
 </html>

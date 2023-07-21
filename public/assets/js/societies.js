@@ -4,33 +4,34 @@ Vue.component('societie-list', {
       return {
         societies: [],
         societie:'',
-        looking_for:''
+        looking_for:'',
       };
-    },
+    }
+    ,
     methods: {
+      get_url(){
+        const url = '/api' + window.location.pathname;
+        return url;
+      }
+      ,
       fetch_societies() {
-        axios.get('/api/societies')
+        axios.get(this.get_url())
           .then(response => {
             this.societies = response.data.societies;
-            console.log(response);
+            console.log(this.societies);
+
           })
           .catch(error => {
             console.error(error);
           });
-      },
+      }
+      ,
       show_societie(societie){
-        axios.get('/api/societie/'+societie.id+'/show')
-        .then(response => {
-          this.societie = response.data.societie;
-          console.log(this.societie);
-        })
-        .catch(error => {
-          console.error(error);
-        });
+        window.location.replace('/societie/'+ societie.id +'/show');
       }
     },
     mounted() {
-      this.fetch_societies();
+      return this.fetch_societies();
     },
     computed:{
       filtred_societies(){
@@ -61,7 +62,6 @@ Vue.component('societie-list', {
     },
     template: `
     <div class="container">
-    <h1 class="mt-4">Societies</h1>
     <div class="m-4">
       <input type="text" v-model="looking_for" placeholder="Search ...">
     </div>
@@ -72,21 +72,13 @@ Vue.component('societie-list', {
                 <div class="card-body">
                     <h5 class="card-title">{{ societie.title }}</h5>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>ICE:</strong> {{ societie.ice }}</li>
                         <li class="list-group-item"><strong>Address:</strong> {{ societie.adress }}</li>
                         <li class="list-group-item"><strong>Telephone:</strong> {{ societie.telephone }}</li>
                         <li class="list-group-item">
                             <strong>Cities:</strong>
                             <span v-for="citie in societie.cities">{{ citie.name }}-</span>
                         </li>
-                        <li class="list-group-item"><strong>Web Link:</strong> <a :href="societie.web_link">{{ societie.web_link }}</a></li>
-                        <li class="list-group-item"><strong>Demi Categorie:</strong> {{ societie.demi_categorie.name }}</li>
-                        <li class="list-group-item">
-                            <strong>Tags:</strong>
-                            <span class="tag" v-for="tag in societie.tags">{{ tag.name }}-</span>
-                        </li>
-                        <li class="list-group-item"><strong>Description:</strong> {{ societie.description }}</li>
-                        <li class="list-group-item"><strong>Fax:</strong> {{ societie.fax }}</li>
+                        
                     </ul>
                 </div>
                 <div class="card-footer">

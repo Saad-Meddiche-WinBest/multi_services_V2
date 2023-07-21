@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categorie;
 use App\Models\Citie;
+use App\Models\Premium;
 use App\Models\Societie;
 use Illuminate\Http\Request;
 
@@ -17,23 +18,43 @@ class SocietieController extends Controller
         return response()->json(['societies' => $societies]);
     }
 
-
     public function show(Societie $societie)
     {
+
         $societie->load('tags', 'cities', 'demiCategorie');
 
-        return response()->json(['societie' => $societie]);
+        return view('societies.show', compact('societie'));
     }
 
     public function fetchSocietiesByCitie(Citie $citie)
     {
-
         $societies = $citie->societies;
+
+        $societies->load('tags', 'cities', 'demiCategorie');
+
+        return response()->json(['societies' => $societies]);
     }
 
     public function fetchSocietiesByCategorie(Categorie $categorie)
     {
-        $societies = $categorie->societies;
+        $societies = $categorie->demiCategories->flatMap(function ($demiCategorie) {
+            return $demiCategorie->societies->load('tags', 'cities', 'demiCategorie');
+        });
+
         return response()->json(['societies' => $societies]);
+    }
+
+    static public function fetchNewSocities($limit)
+    {
+        $societies = Societie::orderby('id', 'desc')->limit($limit)->get();
+        return $societies;
+    }
+
+    static public function fetchPremiumSocieties()
+    {
+        $idsSocieties = Premium::all()->pluck('societie_id');
+        $premiumSocieties = Societie::whereIn('id', $idsSocieties)->get();
+
+        return $premiumSocieties;
     }
 }
