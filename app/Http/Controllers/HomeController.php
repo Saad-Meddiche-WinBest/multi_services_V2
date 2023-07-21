@@ -30,7 +30,7 @@ class HomeController extends Controller
         $categories = CategorieController::allWithExtraInformations();
 
 
-        $societies = SocietieController::fetchNewSocities(9);
+        $newsocieties = SocietieController::fetchNewSocities(9);
 
 
         $premiumSocieties = SocietieController::fetchPremiumSocieties();
