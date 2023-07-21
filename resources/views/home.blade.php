@@ -118,7 +118,7 @@
                         <section class="section bg-light">
                             <div class="container">
                                 <div class="row align-items-stretch retro-layout justify-content-center">
-                                    @foreach ($societies as $societie)
+                                    @foreach ($newSocieties as $societie)
                                         <div class="card col-md-6 col-lg-4 m-4" style="width: 18rem;">
                                             <img src="{{ $societie->image }}" class="card-img-top pt-3" alt="...">
                                             <div class="card-body">

@@ -29,12 +29,10 @@ class HomeController extends Controller
 
         $categories = CategorieController::allWithExtraInformations();
 
-
-        $societies = SocietieController::fetchNewSocities(9);
-
+        $newSocieties = SocietieController::fetchNewSocities(9);
 
         $premiumSocieties = SocietieController::fetchPremiumSocieties();
 
-        return view('home', compact('topCities', 'categories', 'societies', 'premiumSocieties'));
+        return view('home', compact('topCities', 'categories', 'newSocieties', 'premiumSocieties'));
     }
 }
