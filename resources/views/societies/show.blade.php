@@ -62,6 +62,57 @@
                 </div>
             </div>
 
+
+            {{-- Reviews --}}
+            <div class="col-md-12 mt-5">
+                <div class="card mb-5">
+                    <div class="card-header">{{ __('Reviews') }}</div>
+                    <div class="card-body">
+                        <section class="section bg-light">
+                            <div class="container">
+                                <div class="row align-items-stretch retro-layout justify-content-center">
+                                    @if (isset($reviews))
+                                        @foreach ($reviews as $review)
+                                            <div class="col-md-4 mb-4">
+                                                <div class="card text-decoration-none text-dark h-100">
+
+                                                    <div class="card-body d-flex flex-column">
+                                                        <h2 class="card-title">{{ $review->name }}</h2>
+                                                        <div class="card-text mt-auto">
+                                                            {{ $review->email }}
+                                                        </div>
+                                                    </div>
+
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item"><b>Description :</b>
+                                                            {{ $review->content }}
+                                                        </li>
+                                                        <li class="list-group-item"><b>Rating :</b>
+                                                            {{ array_sum([$review->location_rating, $review->price_rating, $review->service_rating, $review->quality_rating]) / 4 }}
+                                                        </li>
+                                                        <li class="list-group-item"><b>Creation Date :</b>
+                                                            {{ $review->created_at }}
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <div class="text-center">
+                                            No Reviews ...
+                                        </div>
+                                    @endif
+
+                                </div>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+
             {{-- Review Form --}}
             <div class="container mt-4">
                 <h2>Review Form with Multiple Ratings</h2>

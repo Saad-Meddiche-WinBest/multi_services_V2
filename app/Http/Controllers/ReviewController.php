@@ -16,16 +16,15 @@ class ReviewController extends Controller
         return Redirect::route('societie.show', ['societie' => $request->societie_id]);
     }
 
-
-
     public function update(Request $request, Review $review)
     {
         //
     }
 
-
     public function destroy(Review $review)
     {
         //
     }
+
+   
 }

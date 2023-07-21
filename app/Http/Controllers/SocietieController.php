@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categorie;
 use App\Models\Citie;
 use App\Models\Premium;
+use App\Models\Review;
 use App\Models\Societie;
 use Illuminate\Http\Request;
 
@@ -22,8 +23,8 @@ class SocietieController extends Controller
     {
 
         $societie->load('tags', 'cities', 'demiCategorie', 'services');
-
-        return view('societies.show', compact('societie'));
+        $reviews = Review::getReviewsOfSociety($societie->id);
+        return view('societies.show', compact('societie', 'reviews'));
     }
 
     public function fetchSocietiesByCitie(Citie $citie)

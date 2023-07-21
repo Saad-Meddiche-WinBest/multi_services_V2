@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'name',
         'email',
@@ -18,4 +19,10 @@ class Review extends Model
         'quality_rating',
         'location_rating',
     ];
+
+    public static function getReviewsOfSociety($society_id)
+    {
+        $reviews = Review::where('societie_id', $society_id)->get();
+        return $reviews;
+    }
 }
