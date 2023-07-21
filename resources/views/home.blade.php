@@ -1,10 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('layouts.includes.user.searchbar')
+    @include('cities.index')
+    @include('categories.index')
+    @include('societies.list')
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-
                 {{-- Cities --}}
                 <div class="card mb-5">
                     <div class="card-header">{{ __('Cities') }}</div>
