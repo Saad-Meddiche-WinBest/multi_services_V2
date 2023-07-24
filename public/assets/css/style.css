@@ -1,5 +1,21 @@
 @import "node_modules/font-awesome/scss/font-awesome.scss";
-
+/* NAVBAR CSS */
+.btn-devis{
+  height:fit-content;
+  width: fit-content;
+  border-radius: 20px;
+  margin: 5px 10px;
+  padding: 0;
+  text-decoration: underline black;
+  background-color: #BBDEFB;
+  box-shadow: 0 0 9px white;
+  border:0;
+}
+.btn-devis a{
+  font-weight: 600;
+  font-family: 'Times New Roman', Times, serif;
+}
+/*SEARCH BAR*/
 .main-search {
   padding: 5% 10%;
   margin: 0 auto;
