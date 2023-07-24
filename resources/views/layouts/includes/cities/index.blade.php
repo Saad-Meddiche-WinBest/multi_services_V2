@@ -4,7 +4,7 @@
             <div class="">
                 <section class="header">
                     <div class="">
-                        <h1 class="title">Category-based city listings</h1>
+                        <h1 class="title">TOP RATED CITY</h1>
                     </div>
                     <div class="">
                         <p class="sous-title">Integer a porta Quisque nisi felis, tincidunt cursus efficitur at. Duis vel interdum elit. Vivamus vel risus est.</p>
@@ -106,7 +106,7 @@
                                                     <div class="card-ville-info">
                                                         <div class="icon-info">
                                                             <a href=""> 
-                                                                <span>Marrakech</span>
+                                                                <span>Rabat</span>
                                                             </a>
                                                         </div>
                                                     </div>

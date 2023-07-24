@@ -3,9 +3,13 @@
         <a class="navbar-brand" style="color: white" href="{{ url('/') }}">
             <b>Multi</b>Serivces
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        <button class="navbar-toggler"  type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-            <span class="navbar-toggler-icon"></span>
+            <div class="sandwitch-icon">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </div>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -27,6 +31,11 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link" style="color:white;text-decoration:underline;" href="{{ route('societies.index') }}">{{ __('Toutes les catégories') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:white;text-decoration:underline;" href="{{ route('societies.index') }}">{{ __('A propos') }}</a>
+                </li><li class="nav-item">
                     <a class="nav-link" style="color:white;text-decoration:underline;" href="{{ route('societies.index') }}">{{ __('Découvrir nos solutions') }}</a>
                 </li>
                 <li class="nav-item">

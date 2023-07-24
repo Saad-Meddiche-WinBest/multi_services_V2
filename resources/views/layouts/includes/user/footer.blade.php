@@ -22,7 +22,7 @@
     </symbol>
 </svg>
 <footer>
-<div class="container" style="width: 974px;">
+<div class="container"  >
     <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
             <div class="block">

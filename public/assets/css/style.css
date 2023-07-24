@@ -15,6 +15,18 @@
   font-weight: 600;
   font-family: 'Times New Roman', Times, serif;
 }
+.sandwitch-icon .icon-bar {
+  width: 35px;
+  height: 4px;
+  background-color: rgb(252, 239, 1);
+  margin: 6px 0;
+  transition: 0.4s;
+  display: block;
+}
+.nav-item
+{
+  padding-left:22px;
+}
 /*SEARCH BAR*/
 .main-search {
   padding: 5% 10%;
@@ -756,10 +768,15 @@
   .container .about-items .right-about .satisfaction,
   .container .about-items .right-about .satisfaction .div-satisfaction {
     display: block;
+    text-align: center;
   }
 
   .container .about-items {
     padding: 0 10px;
+  }
+  * p{
+    display: block;
+    text-align: center;
   }
 }
 
@@ -919,6 +936,7 @@ from {
   width: 100%;
   position: relative;
   padding: 30px;
+  padding-bottom: 0 !important;
   margin: 0 auto;
 }
 .premium{
@@ -1049,6 +1067,11 @@ from {
   font-family: 'Times New Roman', Times, serif;
   font-weight: 500;
 }
+.swipe{
+  display: none;
+}
+
+
 @media screen and (max-width: 900px) {
   .wrapper .carousel {
     grid-auto-columns: calc((100% / 2) - 50px);
@@ -1075,6 +1098,18 @@ from {
     display: none;
 
   }
+  .swipe{
+    display: block;
+    margin: auto;
+    width: 50%;
+  }
+  .swipe i{
+    width: 70px;
+    height:50px;
+    font-weight: 800;
+    font-size: 2em;
+    padding-left:25%;
+  }
 }
 @media screen and (max-width: 600px) {
   .wrapper .carousel {
@@ -1084,6 +1119,18 @@ from {
     display: none;
 
   }
+  .swipe{
+    display: block;
+    margin: auto;
+    width: 50%;
+  }
+  .swipe i{
+    width: 70px;
+    height:50px;
+    font-weight: 800;
+    font-size: 2em;
+    padding-left:25%;
+  }
 }
 
 /* FOOTER CSS */
@@ -1092,6 +1139,8 @@ footer{
 }
 .title p{
   color: white;
+  display: block;
+  text-align: center;
 }
 .opening-hours .choose-footer{
   border-bottom:1px solid white;
@@ -1100,11 +1149,21 @@ footer{
 .opening-hours .choose-footer a{
   color:white;
   text-decoration: none;
+  display: block;
+  text-align: center;
 }
 footer .container ul{
   padding:20px;
   display: flex;
   justify-content: center;
+}
+@media (max-width:767)
+{
+  .opening-hours .choose-footer a{
+    color:white;
+    text-decoration: none;
+    text-align: center;
+  }
 }
 /* _________________________________
 ######### PARTIE MOBILE ############

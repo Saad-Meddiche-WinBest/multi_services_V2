@@ -162,5 +162,13 @@
             </ul>
             
         </div>
+        <div class="swipe">
+            <div>
+                <span>Swipe for more</span>
+            </div>
+            <div>
+                <i class="fa fa-arrow-right"></i>
+            </div>
+        </div>
     </div>
 </div>
