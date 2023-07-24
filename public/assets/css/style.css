@@ -1086,6 +1086,26 @@ from {
   }
 }
 
+/* FOOTER CSS */
+footer{
+  background-color: rgb(39, 37, 37);
+}
+.title p{
+  color: white;
+}
+.opening-hours .choose-footer{
+  border-bottom:1px solid white;
+  padding: 3px 0;
+}
+.opening-hours .choose-footer a{
+  color:white;
+  text-decoration: none;
+}
+footer .container ul{
+  padding:20px;
+  display: flex;
+  justify-content: center;
+}
 /* _________________________________
 ######### PARTIE MOBILE ############
 ````````````````````````````````````

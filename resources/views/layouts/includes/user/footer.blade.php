@@ -21,7 +21,100 @@
         </path>
     </symbol>
 </svg>
-<div class="container">
+<footer>
+<div class="container" style="width: 974px;">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+            <div class="block">
+                <div class="title">
+                    <p style="font-size:20px;margin-top:20px;">Société professionnelle</p>
+                </div>
+                 <div class="opening-hours">
+                    @foreach ($newsocieties as $society)
+                    <div class="choose-footer">
+                        <a href="/societies/{{$society->id}}">{{$society->title}}</a>
+                   </div>
+                    @endforeach
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+            <div class="block">
+                <div class="title">
+                    <p style="font-size:20px;margin-top:20px;">Société particulier</p>
+                </div>
+                 <div class="opening-hours">
+                    @foreach ($newsocieties as $society)
+                    <div class="choose-footer">
+                        <a href="/societies/{{$society->id}}">{{$society->title}}</a>
+                   </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+            <div class="block">
+                <div class="title">
+                    <p style="font-size:20px;margin-top:20px;">villes</p>
+                </div>
+                <div class="opening-hours">
+                    @foreach($topCities as $city)
+                    <div class="choose-footer">
+                         <a href="/cities/{{$city->id}}">{{$city->name}}</a>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+            <div class="block">
+                <div class="title">
+                    <p style="font-size:20px;margin-top:20px;">A propos</p>
+                </div>
+                <div class="opening-hours">
+                    <div class="choose-footer">
+                        <a href="https://www.moteur.ma/fr/voiture/">Accueil</a>
+                    </div>
+                    <div class="choose-footer">
+                        <a href="https://www.moteur.ma/fr/a-propos/">Qui sommes-nous?</a>
+                    </div>
+                    <div class="choose-footer">
+                        <a href="https://www.moteur.ma/fr/offre/?from=footer&amp;carrier=link">Offres Premium</a>
+                    </div>
+                    <div class="choose-footer">
+                        <a href="https://www.moteur.ma/fr/offre/premium_pro/?from=footer_pro">Offres Premium Pro</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="nav justify-content-center list-unstyled d-flex">
+        <li class="ms-3">
+            <a class="text-muted" href="#">
+                <svg class="bi" width="24" height="24">
+                    <use xlink:href="#twitter"></use>
+                </svg>
+            </a>
+        </li>
+        <li class="ms-3">
+            <a class="text-muted" href="#">
+                <svg class="bi" width="24" height="24">
+                    <use xlink:href="#instagram"></use>
+                </svg>
+            </a>
+        </li>
+        <li class="ms-3">
+            <a class="text-muted" href="#">
+                <svg class="bi" width="24" height="24">
+                    <use xlink:href="#facebook"></use>
+                </svg>
+            </a>
+        </li>
+    </ul>
+</div>
+{{-- <div class="container">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
         <div class="col-md-4 d-flex align-items-center">
             <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
@@ -44,4 +137,4 @@
                     </svg></a></li>
         </ul>
     </footer>
-</div>
+</div> --}}
