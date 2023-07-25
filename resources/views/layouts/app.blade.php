@@ -62,4 +62,6 @@
 
 {{-- Function of slider --}}
 <script src="{{asset('assets/js/slider.js')}}" type="module"></script>
+{{-- Function of stars --}}
+<script src="{{asset('assets/js/stars.js')}}" type="module"></script>
 </html>

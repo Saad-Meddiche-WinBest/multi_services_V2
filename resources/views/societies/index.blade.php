@@ -5,7 +5,7 @@
                                 <section class="gray">
                                     <div class="container">
                                         <div class="row">
-                                            @foreach($newsocieties as $society)                                     
+                                            @foreach($societies as $society)                                     
                                             <div class="col-lg-4 col-md-6 col-sm-12">  
                                                 <div class="society-card">
                                                     <div class="image-card">

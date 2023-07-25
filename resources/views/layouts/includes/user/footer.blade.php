@@ -30,7 +30,7 @@
                     <p style="font-size:20px;margin-top:20px;">Société professionnelle</p>
                 </div>
                  <div class="opening-hours">
-                    @foreach ($newsocieties as $society)
+                    @foreach (App\Http\Controllers\SocietieController::fetchNewSocities(5) as $society)
                     <div class="choose-footer">
                         <a href="/societies/{{$society->id}}">{{$society->title}}</a>
                    </div>
@@ -45,7 +45,7 @@
                     <p style="font-size:20px;margin-top:20px;">Société particulier</p>
                 </div>
                  <div class="opening-hours">
-                    @foreach ($newsocieties as $society)
+                    @foreach (App\Http\Controllers\SocietieController::fetchNewSocities(5) as $society)
                     <div class="choose-footer">
                         <a href="/societies/{{$society->id}}">{{$society->title}}</a>
                    </div>
@@ -59,9 +59,9 @@
                     <p style="font-size:20px;margin-top:20px;">villes</p>
                 </div>
                 <div class="opening-hours">
-                    @foreach($topCities as $city)
+                    @foreach(App\Http\Controllers\SocietieController::fetchNewSocities(5) as $city)
                     <div class="choose-footer">
-                         <a href="/cities/{{$city->id}}">{{$city->name}}</a>
+                         <a href="/cities/{{$city->id}}">{{$city->title}}</a>
                     </div>
                     @endforeach
                 </div>
