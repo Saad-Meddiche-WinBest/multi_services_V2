@@ -63,6 +63,15 @@
 {{-- Functions Of Societies --}}
 <script src="{{asset('assets/js/societies.js')}}" type="module"></script>
 
+{{-- jQuery library --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+{{-- Function of slider --}}
+<script src="{{asset('assets/js/slider.js')}}" type="module"></script>
+
+{{-- Function of stars --}}
+<script src="{{asset('assets/js/stars.js')}}" type="module"></script>
+
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 
