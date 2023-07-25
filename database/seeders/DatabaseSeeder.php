@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call(ServicesTableSeeder::class);
         $this->call(TagsTableSeeder::class);
         $this->call(CitiesTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
@@ -19,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SocietiesTableSeeder::class);
         $this->call(SocietieHasTagsTableSeeder::class);
         $this->call(CitieHasSocietiesTableSeeder::class);
+        $this->call(SocietieHasServices::class);
     }
 }

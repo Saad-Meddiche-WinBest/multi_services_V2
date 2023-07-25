@@ -15,11 +15,6 @@ use App\Http\Controllers\SocietieController;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-
 Route::get('/societies', [SocietieController::class, 'index']);
 Route::get('/societies/byCity/{citie}', [SocietieController::class, 'fetchSocietiesByCitie']);
 Route::get('/societies/byCategory/{categorie}', [SocietieController::class, 'fetchSocietiesByCategorie']);

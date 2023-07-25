@@ -45,6 +45,7 @@ Vue.component('societie-list', {
             item.ice.toLowerCase().includes(searchValue),
             item.adress.toLowerCase().includes(searchValue),
             item.cities.some(city => city.name.toLowerCase().includes(searchValue)),
+            item.services.some(service => service.name.toLowerCase().includes(searchValue)),
             item.tags.some(tag => tag.name.toLowerCase().includes(searchValue)),
             item.demi_categorie.name.toLowerCase().includes(searchValue),
             item.web_link.toLowerCase().includes(searchValue),
@@ -77,6 +78,10 @@ Vue.component('societie-list', {
                         <li class="list-group-item">
                             <strong>Cities:</strong>
                             <span v-for="citie in societie.cities">{{ citie.name }}-</span>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Services:</strong>
+                            <span v-for="service in societie.services">{{ service.name }}-</span>
                         </li>
                         
                     </ul>

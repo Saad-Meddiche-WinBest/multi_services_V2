@@ -69,32 +69,22 @@ class RoleCrudController extends CrudController
         }
     }
 
-    /**
-     * Define what happens when the Create operation is loaded.
-     * 
-     * @see https://backpackforlaravel.com/docs/crud-operation-create
-     * @return void
-     */
     protected function setupCreateOperation()
     {
-        CRUD::field('name');
-        CRUD::field('guard_name');
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
+        $this->crud->addField([
+            'name'  => 'name',
+            'label' => 'Name',
+            'type'  => 'text',
+        ]);
     }
 
-    /**
-     * Define what happens when the Update operation is loaded.
-     * 
-     * @see https://backpackforlaravel.com/docs/crud-operation-update
-     * @return void
-     */
+
     protected function setupUpdateOperation()
     {
-        $this->setupCreateOperation();
+        $this->crud->addField([
+            'name'  => 'name',
+            'label' => 'Name',
+            'type'  => 'text',
+        ]);
     }
 }

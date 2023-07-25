@@ -48,10 +48,31 @@ class PremiumCrudController extends CrudController
     protected function setupListOperation()
     {
 
-        CRUD::column('societie');
+        CRUD::column('societie')->wrapper([
+            'href' => function ($crud, $column, $entry) {
+                return backpack_url('societie/' . $entry->id . '/show');
+            }
+        ]);
         CRUD::column('plan');
         CRUD::column('consumed_at')->type('date');
-        CRUD::column('expire_at')->type('date');
+        CRUD::column('expire_at')->type('date')->wrapper([
+            'class' => function ($crud, $column, $entry) {
+                // Get today's date
+                $today = now()->format('Y-m-d');
+
+                if ($entry->expire_at > $today) {
+                    return 'badge bg-success'; 
+                }
+
+                if ($entry->expire_at == $today) {
+                    return 'badge bg-warning'; 
+                }
+
+                if ($entry->expire_at < $today) {
+                    return 'badge bg-danger'; 
+                }
+            }
+        ]);
     }
 
     protected function setupShowOperation()
