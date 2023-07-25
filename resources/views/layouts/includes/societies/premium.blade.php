@@ -14,11 +14,11 @@
         <div class="wrapper">
             <ul class="carousel">
                 @foreach($newsocieties as $society)
-            <li class="card">
+            <li class="card h-100" >
                 <div class="img">
                     <img src="{{asset("assets/images/premium-img1.jpg")}}" alt="img" draggable="false">
                 </div>
-                <h2>Blanche Pearson</h2>
+                <h2>{{$society->title}}</h2>
                 <i class="fa fa-map-pin"></i>
                 <span>Casablanca | Oasis 33</span>
                 <div class="contact">
