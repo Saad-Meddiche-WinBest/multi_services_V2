@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('socities', function (Blueprint $table) {
+        Schema::table('societies', function (Blueprint $table) {
             /* Socials*/
             $table->string('facebook');
             $table->string('twitter');
@@ -31,7 +31,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('socities', function (Blueprint $table) {
+        Schema::table('societies', function (Blueprint $table) {
             /* Socials*/
             $table->dropColumn('facebook');
             $table->dropColumn('twitter');
