@@ -856,23 +856,27 @@
   .cards .all-cards-ville .card-ville-right .card-ville .a-card .card-image{
   padding: 10px;
 }
-.card-ville-info{
+.huge-card .card-ville-info{
   position: absolute;
-  left:0;
-  top:0;
-  display: flex;
-  margin: 0 auto;
+  left:30%;
+  top:35%;
+}
+.row-ville .card-ville-info{
+  position: absolute;
+  left:12%;
+  top:30%;
 }
 
 .card-ville .a-card .card-ville-info{
   z-index: 2;
   display: block;
-  text-align:center !important;
+  justify-content: center;
+  align-self: center;
 }
 
 .card-ville-info .icon-info{
-  display: block;
-  text-align:center !important;
+  display: flex;
+  justify-content: center;
 }
 
 .card-ville-info .icon-info a{

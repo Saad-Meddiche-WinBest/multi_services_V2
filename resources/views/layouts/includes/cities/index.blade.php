@@ -15,18 +15,18 @@
                             <div class="card-ville-left">
                                 <div class="huge-card">
                                     <div class="a-card">
-                                            <div class="card-image">
-                                                <a href="{{route('societiesByCitie.index',$topCities[0]->id)}}">
-                                                    <img src="{{$topCities[0]->image}}" alt=""/>
+                                        <div class="card-image">
+                                            <a href="{{route('societiesByCitie.index',$topCities[0]->id)}}">
+                                                <img src="{{$topCities[0]->image}}" alt=""/>
+                                            </a>
+                                        </div>
+                                        <div class="card-ville-info">
+                                            <div class="icon-info">
+                                                <a href="{{route('societiesByCitie.index',$topCities[0]->id)}}"> 
+                                                    <span>{{$topCities[0]->name}}</span>
                                                 </a>
                                             </div>
-                                            <div class="card-ville-info">
-                                                <div class="icon-info">
-                                                    <a href="{{route('societiesByCitie.index',$topCities[0]->id)}}"> 
-                                                        <span>{{$topCities[0]->name}}</span>
-                                                    </a>
-                                                </div>
-                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
