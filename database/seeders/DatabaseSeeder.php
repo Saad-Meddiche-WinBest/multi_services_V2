@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TagsTableSeeder::class);
         $this->call(CitiesTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
-        $this->call(DemiCategoriesTableSeeder::class);
         $this->call(SocietiesTableSeeder::class);
         $this->call(SocietieHasTagsTableSeeder::class);
         $this->call(CitieHasSocietiesTableSeeder::class);

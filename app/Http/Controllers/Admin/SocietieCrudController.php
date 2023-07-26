@@ -66,7 +66,7 @@ class SocietieCrudController extends CrudController
         CRUD::column('web_link');
 
 
-        CRUD::column('demiCategorie');
+        CRUD::column('Categorie');
         CRUD::column('services');
 
         CRUD::column('tags');
@@ -92,7 +92,7 @@ class SocietieCrudController extends CrudController
             ->sanitize(false);
         CRUD::column('cities');
 
-        CRUD::column('demiCategorie');
+        CRUD::column('Categorie');
         CRUD::column('services');
 
         CRUD::column('ice');
@@ -150,9 +150,9 @@ class SocietieCrudController extends CrudController
 
 
 
-        CRUD::field('demi_categorie_id')->type('select')
-            ->label('Demi Categorie')
-            ->entity('demiCategorie');
+        CRUD::field('categorie_id')->type('select')
+            ->label('Categorie')
+            ->entity('Categorie');
 
         $this->crud->addField([
             'label' => 'Services (Press ctrl for multiple selection)',
@@ -215,9 +215,9 @@ class SocietieCrudController extends CrudController
         CRUD::field('coordinations');
         CRUD::field('email');
 
-        CRUD::field('demi_categorie_id')->type('select')
-            ->label('Demi Categorie')
-            ->entity('demiCategorie');
+        CRUD::field('categorie_id')->type('select')
+            ->label('Categorie')
+            ->entity('Categorie');
 
         $this->crud->addField([
             'label' => 'Services (Press ctrl for multiple selection)',

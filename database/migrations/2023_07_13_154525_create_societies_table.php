@@ -25,11 +25,11 @@ return new class extends Migration
             $table->string('telephone');
             $table->string('fax')->nullable();
             $table->string('web_link');
-            $table->unsignedBigInteger('demi_categorie_id')->nullable();
+            $table->unsignedBigInteger('categorie_id')->nullable();
             $table->timestamps();
 
             //Foreigns
-            $table->foreign('demi_categorie_id')->references('id')->on('demi_categories')->onDelete('set null');
+            $table->foreign('categorie_id')->references('id')->on('categories')->onDelete('set null');
         });
     }
 

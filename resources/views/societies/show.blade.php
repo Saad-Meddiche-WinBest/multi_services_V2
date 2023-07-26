@@ -311,7 +311,7 @@
                                             </li>
 
                                             <li class="list-group-item"><b>Demi Categorie:</b>
-                                                {{ $societie->demiCategorie->name }}</li>
+                                                {{ $societie->Categorie->name }}</li>
                                             <li class="list-group-item">
                                                 <b>Tags:</b>
                                                 @foreach ($societie->tags as $tag)
