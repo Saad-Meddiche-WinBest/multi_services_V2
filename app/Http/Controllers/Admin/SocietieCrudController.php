@@ -102,6 +102,14 @@ class SocietieCrudController extends CrudController
         CRUD::column('telephone');
         CRUD::column('fax');
         CRUD::column('web_link');
+
+        CRUD::column('facebook');
+        CRUD::column('instagram');
+        CRUD::column('twitter');
+        CRUD::column('linkdin');
+
+        CRUD::column('coordinations');
+        CRUD::column('email');
     }
 
 
@@ -131,6 +139,16 @@ class SocietieCrudController extends CrudController
         CRUD::field('telephone');
         CRUD::field('fax');
         CRUD::field('web_link');
+
+        CRUD::field('facebook');
+        CRUD::field('instagram');
+        CRUD::field('twitter');
+        CRUD::field('linkdin');
+
+        CRUD::field('coordinations');
+        CRUD::field('email');
+
+
 
         CRUD::field('demi_categorie_id')->type('select')
             ->label('Demi Categorie')
@@ -188,6 +206,14 @@ class SocietieCrudController extends CrudController
         CRUD::field('telephone');
         CRUD::field('fax');
         CRUD::field('web_link');
+
+        CRUD::field('facebook');
+        CRUD::field('instagram');
+        CRUD::field('twitter');
+        CRUD::field('linkdin');
+
+        CRUD::field('coordinations');
+        CRUD::field('email');
 
         CRUD::field('demi_categorie_id')->type('select')
             ->label('Demi Categorie')

@@ -33,6 +33,13 @@ class SocietiesTableSeeder extends Seeder
                 'demi_categorie_id' => $faker->randomElement($demiCategoryIds),
                 'created_at' => now(),
                 'updated_at' => now(),
+
+                'facebook' => $faker->url,
+                'instagram' => $faker->url,
+                'twitter' => $faker->url,
+                'linkdin' => $faker->url,
+                'coordinations' => $faker->localCoordinates,
+                'email' => $faker->email,
             ]);
         }
     }
