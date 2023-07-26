@@ -28,7 +28,7 @@ class SocietieController extends Controller
         $reviews = Review::getReviewsOfSociety($societie->id);
 
         if ($user = session()->get('user'))
-            $reviewOfLoggedUser = Review::where('sub_googleUser', $user['sub_googleUser'])->first();
+            $reviewOfLoggedUser = Review::where('sub_googleUser', $user['sub_googleUser'])->where('societie_id', $societie->id)->first();
         else
             $reviewOfLoggedUser = false;
 

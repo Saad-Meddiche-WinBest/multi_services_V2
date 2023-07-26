@@ -32,8 +32,10 @@ class ReviewController extends Controller
         return Redirect::route('societie.show', ['societie' => $request->societie_id]);
     }
 
-    public function destroy(Review $review)
+    public function destroy(Request $request, Review $review)
     {
-        //
+        $review->delete();
+
+        return Redirect::route('societie.show', ['societie' => $request->societie_id]);
     }
 }

@@ -432,6 +432,16 @@
                                                 </div>
                                                 <button type="submit" class="btn btn-primary">Update</button>
                                             </form>
+
+                                            <form action="{{ route('review.destroy', $reviewOfLoggedUser->id) }}"
+                                                method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <input type="hidden" name="societie_id" value="{{ $societie->id }}">
+
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+
+                                            </form>
                                         @else
                                             <form method="POST" action="{{ route('review.store') }}">
                                                 @csrf
