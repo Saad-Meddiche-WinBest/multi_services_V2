@@ -21,10 +21,18 @@ class SocietieController extends Controller
 
     public function show(Societie $societie)
     {
+        // session()->forget('user');
 
         $societie->load('tags', 'cities', 'demiCategorie', 'services');
+
         $reviews = Review::getReviewsOfSociety($societie->id);
-        return view('societies.show', compact('societie', 'reviews'));
+
+        if ($user = session()->get('user'))
+            $reviewOfLoggedUser = Review::where('sub_googleUser', $user['sub_googleUser'])->first();
+        else
+            $reviewOfLoggedUser = false;
+
+        return view('societies.show', compact('societie', 'reviews', 'reviewOfLoggedUser'));
     }
 
     public function fetchSocietiesByCitie(Citie $citie)

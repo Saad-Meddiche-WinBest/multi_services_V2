@@ -183,6 +183,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'Review' => App\Models\Review::class,
+
     ])->toArray(),
 
 ];

@@ -24,8 +24,6 @@ class AuthController extends Controller
             'sub_googleUser' =>  $googleUser->id
         ]);
 
-        $request->session()->get('user');
-
-        return redirect()->back(); // Redirect to the homepage after login
+        return redirect('/');
     }
 }
