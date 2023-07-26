@@ -17,11 +17,6 @@ class AuthController extends Controller
     {
         $googleUser = Socialite::driver('google')->user();
 
-        $data['name'] = $googleUser->name;
-        $data['email'] = $googleUser->email;
-        $data['image'] = $googleUser->avatar;
-        $data['sub_googleUser'] = $googleUser->id;
-
         $request->session()->put('user', [
             'name' => $googleUser->name,
             'email' => $googleUser->email,
@@ -29,8 +24,8 @@ class AuthController extends Controller
             'sub_googleUser' =>  $googleUser->id
         ]);
 
-        $user = $request->session()->get('user');
+        $request->session()->get('user');
 
-        return redirect('/'); // Redirect to the homepage after login
+        return redirect()->back(); // Redirect to the homepage after login
     }
 }
