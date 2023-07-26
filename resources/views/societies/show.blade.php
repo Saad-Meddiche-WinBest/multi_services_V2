@@ -5,7 +5,7 @@
     <section class="page-title-banner"
         style="background-image:url(https://smartdemowp.com/reveal/wp-content/uploads/2020/04/l-2.jpg);">
         <div class="container">
-            <<<<<<< HEAD <div class="row m-0 align-items-end detail-swap">
+            <div class="row m-0 align-items-end detail-swap">
                 <div class="tr-list-wrap">
                     <div class="tr-list-detail">
                         <div class="tr-list-thumb">

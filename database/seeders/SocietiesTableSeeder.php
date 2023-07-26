@@ -38,7 +38,7 @@ class SocietiesTableSeeder extends Seeder
                 'instagram' => $faker->url,
                 'twitter' => $faker->url,
                 'linkdin' => $faker->url,
-                'coordinations' => $faker->localCoordinates,
+                'coordinations' => $faker->localCoordinates["latitude"] . ',' . $faker->localCoordinates["longitude"],
                 'email' => $faker->email,
             ]);
         }
