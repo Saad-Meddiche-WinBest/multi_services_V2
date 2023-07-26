@@ -7,5 +7,5 @@
     @include('layouts.includes.aboutPages.index')
     @include('layouts.includes.cities.index')
     @include('layouts.includes.categories.index')
-
+    @include('layouts.includes.societies.index')
 @endsection
