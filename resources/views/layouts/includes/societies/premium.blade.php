@@ -16,15 +16,17 @@
                 @foreach($newsocieties as $society)
             <li class="card h-100" >
                 <div class="img">
-                    <img src="{{asset("assets/images/premium-img1.jpg")}}" alt="img" draggable="false">
+                    <img src="{{$society->image}}" alt="img" draggable="false">
                 </div>
-                <h2>{{$society->title}}</h2>
+                <div class="card-title">
+                    <h2>{{$society->title}}</h2>
+                </div>
                 <i class="fa fa-map-pin"></i>
-                <span>Casablanca | Oasis 33</span>
+                <span>{{$society->adress}}</span>
                 <div class="contact">
                     <div class="tel">
                         <i class="fa fa-phone"></i>
-                        <span>+2120606060606</span>
+                        <span>{{$society->telephone}}</span>
                     </div>
                     <div class="time">
                         <i class="fa fa-clock"></i>
@@ -36,7 +38,7 @@
                         <button class="btn btn-light">From $39</button>
                     </div>
                     <div class="button-section">
-                       <button class="btn btn-primary"> <a href="{{ route('societie.show',$society->id) }}">Test</a></button>
+                        <a href="{{ route('societie.show',$society->id) }}"><button class="btn btn-primary"> Test</button></a>
                     </div>  
                 </div>
             </li>

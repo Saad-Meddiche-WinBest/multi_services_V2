@@ -858,21 +858,21 @@
 }
 .card-ville-info{
   position: absolute;
-  left:30%;
-  top:35%;
-  z-index: 2;
+  left:0;
+  top:0;
+  display: flex;
+  margin: 0 auto;
 }
 
 .card-ville .a-card .card-ville-info{
   z-index: 2;
-  display: flex;
-  justify-content: center;
-  align-self: center;
+  display: block;
+  text-align:center !important;
 }
 
 .card-ville-info .icon-info{
-  display: flex;
-  justify-content: center;
+  display: block;
+  text-align:center !important;
 }
 
 .card-ville-info .icon-info a{
@@ -1030,6 +1030,9 @@ from {
   height: 148px;
   width: 100%;
 }
+.card .card-title{
+  height:60px;
+}
 .card .img img {
   width: 100%;
   height: 100%;
@@ -1047,6 +1050,7 @@ from {
 }
 .carouse1 .card .card-info{
   display:block;
+  position: absolute;
 }
 .button-section{
   display: flex;
@@ -1061,11 +1065,17 @@ from {
   padding: 10px 0;
 }
 .button-section .btn-light, 
-.button-section .btn-primary{
+.button-section a .btn-primary{
   width: 100%;
   font-size: medium;
   font-family: 'Times New Roman', Times, serif;
   font-weight: 500;
+}
+.button-section a, 
+.button-section a {
+  text-decoration: none;
+  color:white;
+  width: 100%;
 }
 .swipe{
   display: none;

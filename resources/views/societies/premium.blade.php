@@ -19,7 +19,9 @@
                 <div class="img">
                     <img src="{{asset("assets/images/premium-img1.jpg")}}" alt="img" draggable="false">
                 </div>
-                <h2>Blanche Pearson</h2>
+                <div class="card-title">
+                    <h2>Blanche Pearson</h2>
+                </div>
                 <i class="fa fa-map-pin"></i>
                 <span>Casablanca | Oasis 33</span>
                 <div class="contact">
