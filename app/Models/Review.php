@@ -37,9 +37,10 @@ class Review extends Model
 
     public static function getReviewsOfSociety($society_id)
     {
-        $reviews = Review::where('societie_id', $society_id)->get();
+        $reviews = Review::where('societie_id', $society_id)->orderBy("id","desc")->paginate(3);
         return $reviews;
     }
+
 
     public static function UserSendedAReview()
     {
@@ -49,4 +50,5 @@ class Review extends Model
 
         return $review ? true : false;
     }
+
 }

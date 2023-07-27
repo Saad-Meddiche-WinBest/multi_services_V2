@@ -24,6 +24,11 @@ class ReviewController extends Controller
 
         return Redirect::route('societie.show', ['societie' => $request->societie_id]);
     }
+    public function getItems($page)
+    {
+        $reviews = Review::paginate(3, ['*'], 'page', $page);
+        return response()->json($reviews);  
+    }
 
     public function update(Request $request, Review $review)
     {

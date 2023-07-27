@@ -14,38 +14,40 @@
         </div>
         <div class="wrapper">
             <ul class="carousel">
-                @foreach ($newsocieties as $society)
-                    <li class="card h-100">
-                        <div class="img">
-                            <img src="{{ $society->image }}" alt="img" draggable="false">
-                        </div>
-                        <div class="card-title">
-                            <h2>{{ $society->title }}</h2>
-                        </div>
-                        <i class="fa fa-map-pin"></i>
-                        <span>{{ $society->adress }}</span>
-                        <div class="contact">
-                            <div class="tel">
-                                <i class="fa fa-phone"></i>
-                                <span>{{ $society->telephone }}</span>
-                            </div>
-                            <div class="time">
-                                <i class="fa fa-clock"></i>
-                                <span>09:00 | 21:00</span>
-                            </div>
-                        </div>
-                        <div class="card-info">
-                            <div class="button-section">
-                                <button class="btn btn-light">From $39</button>
-                            </div>
-                            <div class="button-section">
-                                <a href="{{ route('societie.show', $society->id) }}"><button class="btn btn-primary">
-                                        Test</button></a>
-                            </div>
-                        </div>
-                    </li>
-                @endforeach
-                {{-- <li class="card">
+
+
+                @foreach($newsocieties as $society)
+            <li class="card h-100" >
+                <div class="img">
+                    <img src="{{$society->image}}" alt="img" draggable="false">
+                </div>
+                <div class="card-title">
+                    <h2>{{$society->title}}</h2>
+                </div>
+                <i class="fa fa-map-pin"></i>
+                <span>{{$society->adress}}</span>
+                <div class="contact">
+                    <div class="tel">
+                        <i class="fa fa-phone"></i>
+                        <span>{{$society->telephone}}</span>
+                    </div>
+                    <div class="time">
+                        <i class="fa fa-clock"></i>
+                        <span>09:00 | 21:00</span>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <div class="button-section">
+                        <button class="btn btn-light">From $39</button>
+                    </div>
+                    <div class="button-section">
+                        <a href="{{ route('societie.show',$society->id) }}"><button class="btn btn-primary"> Test</button></a>
+                    </div>  
+                </div>
+            </li>
+            @endforeach
+            {{-- <li class="card">
+
                 <div class="img"><img src="assets/images/premium-img1.jpg" alt="img" draggable="false"></div>
                 <h2>Joenas Brauers</h2>
                 <i class="fa fa-map-pin"></i>

@@ -856,16 +856,20 @@
   .cards .all-cards-ville .card-ville-right .card-ville .a-card .card-image{
   padding: 10px;
 }
-.card-ville-info{
+.huge-card .card-ville-info{
   position: absolute;
   left:30%;
   top:35%;
-  z-index: 2;
+}
+.row-ville .card-ville-info{
+  position: absolute;
+  left:12%;
+  top:30%;
 }
 
 .card-ville .a-card .card-ville-info{
   z-index: 2;
-  display: flex;
+  display: block;
   justify-content: center;
   align-self: center;
 }
@@ -1030,6 +1034,9 @@ from {
   height: 148px;
   width: 100%;
 }
+.card .card-title{
+  height:60px;
+}
 .card .img img {
   width: 100%;
   height: 100%;
@@ -1047,6 +1054,7 @@ from {
 }
 .carouse1 .card .card-info{
   display:block;
+  position: absolute;
 }
 .button-section{
   display: flex;
@@ -1061,11 +1069,17 @@ from {
   padding: 10px 0;
 }
 .button-section .btn-light, 
-.button-section .btn-primary{
+.button-section a .btn-primary{
   width: 100%;
   font-size: medium;
   font-family: 'Times New Roman', Times, serif;
   font-weight: 500;
+}
+.button-section a, 
+.button-section a {
+  text-decoration: none;
+  color:white;
+  width: 100%;
 }
 .swipe{
   display: none;
@@ -1339,14 +1353,18 @@ footer .container ul{
 }
 .left-details{
   display: block;
-  width:75%;
+  width:120%;
   padding-right:20px ;
+}
+.right-details{
+  width:70%;
 }
 .right-details .description-details,
 .left-details .description-details{
   padding:20px;
   margin: 20px 5px;
   background-color: white;
+  width:100%;
 }
 
 .left-details .description-details .description-title{
@@ -1612,6 +1630,17 @@ footer .container ul{
       margin:0 !important;
       width: 100%;
     }
+    .description-content iframe{
+      height:auto;
+      width:100%;
+    }
+    .right-details{
+      margin:0 !important;
+      width: 100%;
+    }
+    .description-content .right-details{
+      width: 100%;
+    }
 }
 /*PARTIE COMMENTAIRE*/
 .checked{
@@ -1619,22 +1648,67 @@ footer .container ul{
 }
 .commentaire-section{
   display:flex;
+  width: 100%;
 }
 .comment{
   display:block;
   text-align: left;
   padding:10px;
+  width: 100%;
 }
 .comment-info{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; 
+}
+.text-commentaire{
+  position: relative;
+  width:100%;
+}
+.text-commentaire .commentaire{
+  position: relative;
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  /* Nouveau style pour limiter la hauteur et ajouter le défilement vertical */
+  word-break: break-all;
+}
+@media(max-width:767px){
+  .comment-info{
+    display:block !important;
+  }
 }
 /*AJOUT RATE*/
 .comment-rate{
   display: block;
   text-align: left;
 }
+.left-details .links{
+  display: flex;
+  justify-content: center;
+}
 /* PARTIE STARS */
+
+.jq-ry-container>.jq-ry-group-wrapper>.jq-ry-group>svg {
+  display: inline-block;
+  height: 20px;
+}
+.star-row{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap ;
+}
+.star-row input{
+  font-size:10px;
+}
+.description-content label,
+.star-row .form-group label{
+  color:#495e96;
+  font-weight: 600;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  display: block;
+  text-align: left;
+}
+
 .ratings{
   display:flex;
   flex-direction: row-reverse;
@@ -1691,6 +1765,124 @@ footer .container ul{
 }
 
 
+/* EXTRA INFORMATION */
+.tr-single-body{
+  box-sizing: border-box;
+  outline: none;
+  width: 100%;
+  padding: 15px 25px 25px;
+}
+.extra-service {
+  margin: 10px 0 0;
+  display: table;
+  width: 100%;
+  padding: 0;
+}
+.extra-service li {
+  list-style: none;
+  padding: 10px 0;
+}
+.icon-box-icon-block {
+  width: 100%;
+  display: inline-block;
+  font-size: 13px;
+}
+.icon-box-icon-block a {
+  color: #2d3954;
+  text-decoration: none;
+  background-color: transparent;
+}
+.icon-box-icon-block a:hover {
+  color: #ffae00;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+
+.icon-box-icon-block a {
+  outline: 0;
+  cursor: pointer;
+}
+.icon-box-round {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  margin-right: 7px;
+  font-size: 15px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: rgba(249, 104, 37, 0.1);
+  vertical-align: middle;
+}
+.icon-box-round:hover{
+  background-color: #ffae00;
+  box-shadow: 5px 5px 5px rgba(255, 162, 0, 0.385);
+}
+.icon-box-round i ,
+  .icon-box-round svg {
+  font-style: normal;
+  font-weight: 400;
+  text-transform: none;
+  line-height: 1;
+}
+.icon-box-text {
+  display: inline-block;
+  vertical-align: middle;
+  width:70%;
+  font-size: 1em;
+  font-weight: 500;
+}
+.description-title-extra{
+  border-bottom: 1px solid rgb(178, 175, 175);
+}
+.description-title-extra h1{
+  font-size: 1.3em;
+  font-weight: 500;
+}
+.single-follow-us-social-icon{
+  margin-top: 15px;
+}
+.single-follow-us-social-icon h5 {
+  font-size: 14px;
+  margin-bottom: 5px;
+  line-height: 22px;
+  font-size: 18px;
+  color: #2d3954;
+}
+.single-follow-us-social-icon ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+}
+.single-follow-us-social-icon ul li {
+  list-style: none;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+.single-follow-us-social-icon ul li a {
+  width: 40px;
+  height: 40px;
+  box-shadow: 0px 0px 10px 0px rgba(88, 96, 109, 0.1);
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  color: #ff7800;
+  font-size: 14px;
+}
+.single-follow-us-social-icon ul li a i ,
+  .single-follow-us-social-icon ul li a svg {
+  font-style: normal;
+  font-weight: 400;
+  text-transform: none;
+  line-height: 1;
+}
+.half{
+  display: flex;
+  flex-wrap: wrap;
+}
 /* _________________________________
 ######### PARTIE MOBILE ############
 ````````````````````````````````````

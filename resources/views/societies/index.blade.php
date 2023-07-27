@@ -8,10 +8,10 @@
                     <div class="card-header">{{ __('Societies') }}</div>
                     <div class="card-body">
                         <societie-list></societie-list>
-                        test
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
