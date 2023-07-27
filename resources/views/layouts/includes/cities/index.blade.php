@@ -86,7 +86,7 @@
                                                     <div class="card-ville-info">
                                                         <div class="icon-info">
                                                             <a href="{{route('societiesByCitie.index',$topCities[3]->id)}}"> 
-                                                                <span>{{$topCities[3]->title}}</span>
+                                                                <span>{{$topCities[3]->name}}</span>
                                                             </a>
                                                         </div>
                                                     </div>
@@ -106,7 +106,7 @@
                                                     <div class="card-ville-info">
                                                         <div class="icon-info">
                                                             <a href="{{route('societiesByCitie.index',$topCities[4]->id)}}"> 
-                                                                <span>{{$topCities[4]->title}}</span>
+                                                                <span>{{$topCities[4]->name}}</span>
                                                             </a>
                                                         </div>
                                                     </div>
