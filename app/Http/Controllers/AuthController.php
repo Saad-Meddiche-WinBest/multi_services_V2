@@ -11,13 +11,17 @@ class AuthController extends Controller
 {
     public function loginWithGoogle()
     {
+        // Stock the Link that the request came from
         $referer = $_SERVER['HTTP_REFERER'];
         Cache::forever('referer', $referer);
+
         return Socialite::driver('google')->redirect();
     }
 
     public function loginCallback(Request $request)
     {
+        /* Get that stock stocked link , so after choosing an account connetcing with ,
+        it will redirect you to the page you came from */
         if (Cache::has('referer')) {
             $referer = Cache::get('referer');
             Cache::forget('referer');
