@@ -36,9 +36,10 @@ class Categorie extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function demiCategories()
+   
+    public function societies()
     {
-        return $this->hasMany(DemiCategorie::class);
+        return $this->hasMany(Societie::class);
     }
 
     /*

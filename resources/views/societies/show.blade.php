@@ -310,7 +310,7 @@
                                                 @endforeach
                                             </li>
 
-                                            <li class="list-group-item"><b>Demi Categorie:</b>
+                                            <li class="list-group-item"><b>Categorie:</b>
                                                 {{ $societie->Categorie->name }}</li>
                                             <li class="list-group-item">
                                                 <b>Tags:</b>
