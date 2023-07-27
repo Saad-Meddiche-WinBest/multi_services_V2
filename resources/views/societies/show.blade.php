@@ -91,9 +91,7 @@
                             <h1>Description</h1>
                         </div>
                         <div class="description-content">
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, quo sed. Eligendi cum
-                                perspiciatis sequi voluptate labore nulla illo totam enim, cupiditate, quas minima fuga
-                                earum quaerat eaque delectus dignissimos.</p>
+                            <p>{{$societie->description}}</p>
                         </div>
                     </div>
                     {{-- services --}}
@@ -165,8 +163,28 @@
                             </div>
                         </div>
                     </div>
-                    {{-- Tous les commentaire--}}
+                    {{-- Maps --}}
                     <div class="description-details">
+                        <div class="description-title">
+                            <h1>Location</h1>
+                        </div>
+                        <div class="description-content" style="width:100%;height:100%">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1765447.4557971733!2d-0.7723994710233274!3d30.204563933774068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1275a35fd7cbe955%3A0x81367f417e2bf07c!2sKsar%20Kaddour%2C%20Alg%C3%A9rie!5e0!3m2!1sfr!2sma!4v1690456615806!5m2!1sfr!2sma" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                    {{-- Youtube --}}
+                    <div class="description-details">
+                        <div class="description-title">
+                            <h1>Video</h1>
+                        </div>
+                        <div class="description-content">
+                            <iframe width="100%" height="315px"
+                                src="https://www.youtube.com/embed/tgbNymZ7vqY">
+                            </iframe>
+                        </div>
+                    </div>
+                    {{-- Tous les commentaire--}}
+                    <div class="description-details" id="pagination-items">
                         <div class="description-title">
                             <h1>Item Reviews - 1</h1>
                         </div>
@@ -204,6 +222,10 @@
                                 </div>
                             @endif
                         </div>
+                    </div>
+                    <div class="links">
+                        {{$reviews->links()}}
+                        {{-- <button id="load-more">Load More</button> --}}
                     </div>
                     {{-- formule commentaires --}}
                     <div class="description-details">
@@ -258,11 +280,11 @@
                                     <input type="email" name="email" class="form-control" id="email"
                                         placeholder="Enter your email" required>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="review">Your Review:</label>
                                     <textarea class="form-control" name="content" id="review" rows="5" placeholder="Write your review here"
-                                        required></textarea>
+                                       style="min-height:100px;" maxlength="1000" required></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
@@ -419,7 +441,7 @@
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
                                             </div>
                                             <div class="icon-box-text">
-                                                noreply@smartdatasoft.com 
+                                                noreply@smartdatasoft.com
                                             </div>
                                         </a>
                                     </div>
@@ -431,13 +453,13 @@
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><style>svg{fill:#ff9500}</style><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64H348.7c2.2 20.4 3.3 41.8 3.3 64zm28.8-64H503.9c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0H18.6C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192H131.2c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6H344.3c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352H135.3zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6H493.4z"/></svg>
                                             </div>
                                             <div class="icon-box-text">
-                                                www.smartdatasoft.com 
+                                                www.smartdatasoft.com
                                             </div>
                                         </a>
                                     </div>
                                 </li>
                             </ul>
-                            
+
                             <div class="single-follow-us-social-icon">
                                 <h5>Follow Us</h5>
                                 <ul>
@@ -469,7 +491,7 @@
                                                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M0 80V229.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0L418.7 317.3c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7H48C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
                                                 </div>
                                                 <div class="icon-box-text">
-                                                    {{ $tag->name }} 
+                                                    {{ $tag->name }}
                                                 </div>
                                             </a>
                                         </div>
@@ -477,12 +499,13 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        </div>  
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
 
 
     <!-- <div class="container">

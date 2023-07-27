@@ -71,6 +71,8 @@
 
 {{-- Function of stars --}}
 <script src="{{asset('assets/js/stars.js')}}" type="module"></script>
+{{-- Function of maps --}}
+<script src="{{asset('assets/js/maps.js')}}" type="module"></script>
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -86,6 +88,37 @@
             fullStar: true,
             onSet: function(rating, rateYoInstance) {
                 $(this).next().val(rating);
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        let currentPage = {{ $reviews->currentPage() }};
+        let lastPage = {{ $reviews->lastPage() }};
+        let nextPage = currentPage + 1;
+
+        $('#load-more').on('click', function() {
+          
+            if (nextPage <= lastPage) {
+                alert('resrs')
+                $.ajax({
+                    url: '/reviews/' + nextPage,
+                    type: 'GET',
+                    success: function(data) {
+                        console.log(data)
+                        // Append the new paginated content to the existing content
+                        $.each(data.data, function(index, item) {
+                            // Append each item to the container (replace 'item-container' with the appropriate ID)
+                            $('#pagination-items').append('<div>' + item.name + '</div>');
+                        });
+                        currentPage = data.current_page;
+                        nextPage = currentPage + 1;
+                    },
+                    error: function(xhr) {
+                        console.log(xhr.responseText);
+                    }
+                });
             }
         });
     });

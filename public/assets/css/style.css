@@ -1630,6 +1630,17 @@ footer .container ul{
       margin:0 !important;
       width: 100%;
     }
+    .description-content iframe{
+      height:auto;
+      width:100%;
+    }
+    .right-details{
+      margin:0 !important;
+      width: 100%;
+    }
+    .description-content .right-details{
+      width: 100%;
+    }
 }
 /*PARTIE COMMENTAIRE*/
 .checked{
@@ -1670,6 +1681,10 @@ footer .container ul{
 .comment-rate{
   display: block;
   text-align: left;
+}
+.left-details .links{
+  display: flex;
+  justify-content: center;
 }
 /* PARTIE STARS */
 

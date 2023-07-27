@@ -55,3 +55,6 @@ Route::get('/societie/{societie}/show', [SocietieController::class, 'show'])->na
 Route::post('/review/create', [ReviewController::class, 'store'])->name('review.store');
 Route::put('/review/{review}', [ReviewController::class, 'update'])->name('review.update');
 Route::delete('/review/{review}', [ReviewController::class, 'destroy'])->name('review.destroy');
+
+Route::get('/reviews/{page}', 'ReviewController@getItems'); // Route to handle AJAX requests for pagination
+
