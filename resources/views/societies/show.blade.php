@@ -330,6 +330,12 @@
             </div>
 
 
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5589.323090512702!2d34.65951665086507!3d-1.8957684438953748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda7cb6e713aa063%3A0xe7dee5e7a99ae160!2sJAWHARA%20PHONE%20MARKET%20&#39;JPM%20&#39;!5e0!3m2!1sfr!2sma!4v1690453595561!5m2!1sfr!2sma"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
             {{-- Reviews --}}
             <div class="col-md-12 mt-5">
                 <div class="card mb-5">

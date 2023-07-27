@@ -22,7 +22,10 @@ return new class extends Migration
             $table->string('email');
 
             /* Coordinations */
-            $table->string('coordinations');
+            $table->string('coordinations', 5000);
+
+            /* Video */
+            $table->string('video');
         });
     }
 
@@ -43,6 +46,9 @@ return new class extends Migration
 
             /* Coordinations */
             $table->dropColumn('coordinations');
+
+            /* Video */
+            $table->dropColumn('video');
         });
     }
 };

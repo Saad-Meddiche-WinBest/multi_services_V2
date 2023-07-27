@@ -33,7 +33,10 @@ Vue.component('societie-list', {
     mounted() {
       return this.fetch_societies();
     },
+
+
     computed:{
+      
       filtred_societies(){
         
         return this.societies.filter(item => {
@@ -48,7 +51,14 @@ Vue.component('societie-list', {
             item.services.some(service => service.name.toLowerCase().includes(searchValue)),
             item.tags.some(tag => tag.name.toLowerCase().includes(searchValue)),
             item.web_link.toLowerCase().includes(searchValue),
-            item.description.toLowerCase().includes(searchValue)
+            item.description.toLowerCase().includes(searchValue),
+            item.facebook.toLowerCase().includes(searchValue),
+            item.twitter.toLowerCase().includes(searchValue),
+            item.instagram.toLowerCase().includes(searchValue),
+            item.linkdin.toLowerCase().includes(searchValue),
+            item.email.toLowerCase().includes(searchValue),
+            item.coordinations.toLowerCase().includes(searchValue),
+            item.video.toLowerCase().includes(searchValue),
           ];
           
           if (item.fax != null) {
@@ -57,7 +67,8 @@ Vue.component('societie-list', {
           
           return matches.some(match => match);
           
-        });      
+        });    
+        
       }
     },
     template: `
