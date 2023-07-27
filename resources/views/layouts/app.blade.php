@@ -127,36 +127,6 @@
         $("#service-rating-value").val(serviceRating);
     });
 </script>
-<script>
-    $(document).ready(function() {
-        let currentPage = {{ $reviews->currentPage() }};
-        let lastPage = {{ $reviews->lastPage() }};
-        let nextPage = currentPage + 1;
 
-        $('#load-more').on('click', function() {
-          
-            if (nextPage <= lastPage) {
-                alert('resrs')
-                $.ajax({
-                    url: '/reviews/' + nextPage,
-                    type: 'GET',
-                    success: function(data) {
-                        console.log(data)
-                        // Append the new paginated content to the existing content
-                        $.each(data.data, function(index, item) {
-                            // Append each item to the container (replace 'item-container' with the appropriate ID)
-                            $('#pagination-items').append('<div>' + item.name + '</div>');
-                        });
-                        currentPage = data.current_page;
-                        nextPage = currentPage + 1;
-                    },
-                    error: function(xhr) {
-                        console.log(xhr.responseText);
-                    }
-                });
-            }
-        });
-    });
-</script>
 
 </html>
