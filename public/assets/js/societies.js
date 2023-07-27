@@ -121,7 +121,7 @@ Vue.component('societie-list', {
           </div>
           <div class="society_content">
               <div class="proerty_text">
-                  <h3 class="captlize"><a href="#">{{societie.title}}</a>
+                  <h3 class="captlize"><a :href="'societie/'+societie.id+'/show'">{{societie.title}}</a>
                   <span class="veryfied-author"></span> </h3>
               </div>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit Neque similique .</p>
