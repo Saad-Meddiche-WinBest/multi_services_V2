@@ -71,6 +71,7 @@
 
 {{-- Function of stars --}}
 <script src="{{asset('assets/js/stars.js')}}" type="module"></script>
+
 {{-- Function of maps --}}
 <script src="{{asset('assets/js/maps.js')}}" type="module"></script>
 

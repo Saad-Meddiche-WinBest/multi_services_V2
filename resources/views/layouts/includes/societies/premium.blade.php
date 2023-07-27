@@ -4,8 +4,7 @@
             <div class="premium-header-title">
                 <span class="sous-titre">Explore-Now</span>
                 <h1 class="titre-about">Enjoy the happenings</h1>
-                <p class="p-about">Volutpat consequat mauris nunc congue nisi.<br> Sed ullamcorper morbi tincidunt
-                    ornare. Ac placerat ves lectus</p>
+                <p class="p-about">Volutpat consequat mauris nunc congue nisi.<br> Sed ullamcorper morbi tincidunt ornare. Ac placerat ves lectus</p>
             </div>
             <div class="premium-header-button">
                 <i id="left" class="fa fa-angle-left"></i>
@@ -14,8 +13,6 @@
         </div>
         <div class="wrapper">
             <ul class="carousel">
-
-
                 @foreach($newsocieties as $society)
             <li class="card h-100" >
                 <div class="img">
@@ -47,7 +44,6 @@
             </li>
             @endforeach
             {{-- <li class="card">
-
                 <div class="img"><img src="assets/images/premium-img1.jpg" alt="img" draggable="false"></div>
                 <h2>Joenas Brauers</h2>
                 <i class="fa fa-map-pin"></i>
@@ -168,7 +164,7 @@
                 </div>
             </li> --}}
             </ul>
-
+            
         </div>
         <div class="swipe">
             <div>
