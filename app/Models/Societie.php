@@ -37,9 +37,9 @@ class Societie extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function demiCategorie()
+    public function Categorie()
     {
-        return $this->belongsTo(DemiCategorie::class);
+        return $this->belongsTo(Categorie::class);
     }
 
     public function services()

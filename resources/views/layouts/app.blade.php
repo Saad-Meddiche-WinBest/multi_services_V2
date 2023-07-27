@@ -83,13 +83,48 @@
 <script>
     $(document).ready(function() {
 
-        $("#location-rating, #price-rating, #quality-rating, #service-rating").rateYo({
-            rating: 0,
+        var locationRating = {{ $reviewOfLoggedUser->location_rating ?? 0 }};
+        $("#location-rating").rateYo({
+            rating: locationRating,
             fullStar: true,
             onSet: function(rating, rateYoInstance) {
                 $(this).next().val(rating);
             }
         });
+        $("#location-rating-value").val(locationRating);
+
+
+        var priceRating = {{ $reviewOfLoggedUser->price_rating ?? 0 }};
+        $("#price-rating").rateYo({
+            rating: priceRating,
+            fullStar: true,
+            onSet: function(rating, rateYoInstance) {
+                $(this).next().val(rating);
+            }
+        });
+        $("#price-rating-value").val(priceRating);
+
+
+        var qualityRating = {{ $reviewOfLoggedUser->quality_rating ?? 0 }};
+        $("#quality-rating").rateYo({
+            rating: qualityRating,
+            fullStar: true,
+            onSet: function(rating, rateYoInstance) {
+                $(this).next().val(rating);
+            }
+        });
+        $("#quality-rating-value").val(qualityRating);
+
+
+        var serviceRating = {{ $reviewOfLoggedUser->service_rating ?? 0 }};
+        $("#service-rating").rateYo({
+            rating: serviceRating,
+            fullStar: true,
+            onSet: function(rating, rateYoInstance) {
+                $(this).next().val(rating);
+            }
+        });
+        $("#service-rating-value").val(serviceRating);
     });
 </script>
 <script>

@@ -15,16 +15,15 @@ class CategorieController extends Controller
     static public function allWithExtraInformations()
     {
 
-        $categories = Categorie::withCount('demiCategories')->get();
+        $categories = Categorie::all();
 
         $data = [];
 
         foreach ($categories as $categorie) {
+
             $societieCount = 0;
 
-            foreach ($categorie->demiCategories as $demiCategorie) {
-                $societieCount += $demiCategorie->societies->count();
-            }
+            $societieCount += $categorie->societies->count();
 
             $categorie->setAttribute('societies_count', $societieCount);
 

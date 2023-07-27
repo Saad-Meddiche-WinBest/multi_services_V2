@@ -14,32 +14,40 @@ class SocietieController extends Controller
     public function index(Request $request)
     {
 
-        $societies = Societie::with(['tags', 'cities', 'demiCategorie', 'services'])->get();
+        $societies = Societie::with(['tags', 'cities', 'Categorie', 'services'])->get();
 
         return response()->json(['societies' => $societies]);
     }
 
     public function show(Societie $societie)
     {
+        // session()->forget('user');
 
-        $societie->load('tags', 'cities', 'demiCategorie', 'services');
+        $societie->load('tags', 'cities', 'Categorie', 'services');
+
         $reviews = Review::getReviewsOfSociety($societie->id);
-        return view('societies.show', compact('societie', 'reviews'));
+
+        if ($user = session()->get('user'))
+            $reviewOfLoggedUser = Review::where('sub_googleUser', $user['sub_googleUser'])->where('societie_id', $societie->id)->first();
+        else
+            $reviewOfLoggedUser = false;
+
+        return view('societies.show', compact('societie', 'reviews', 'reviewOfLoggedUser'));
     }
 
     public function fetchSocietiesByCitie(Citie $citie)
     {
         $societies = $citie->societies;
 
-        $societies->load('tags', 'cities', 'demiCategorie', 'services');
+        $societies->load('tags', 'cities', 'Categorie', 'services');
 
         return response()->json(['societies' => $societies]);
     }
 
     public function fetchSocietiesByCategorie(Categorie $categorie)
     {
-        $societies = $categorie->demiCategories->flatMap(function ($demiCategorie) {
-            return $demiCategorie->societies->load('tags', 'cities', 'demiCategorie', 'services');
+        $societies = $categorie->Categories->flatMap(function ($Categorie) {
+            return $Categorie->societies->load('tags', 'cities', 'Categorie', 'services');
         });
 
         return response()->json(['societies' => $societies]);

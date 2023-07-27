@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <section class="page-title-banner"
         style="background-image:url(https://smartdemowp.com/reveal/wp-content/uploads/2020/04/l-2.jpg);">
         <div class="container">
@@ -44,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-        </div>
+            </div>
         </div>
     </section>
 
@@ -223,6 +222,7 @@
                             @endif
                         </div>
                     </div>
+
                     <div class="links">
                         {{$reviews->links()}}
                         {{-- <button id="load-more">Load More</button> --}}
@@ -342,7 +342,9 @@
                             </div> --}}
                         </div>
                     </div>
+
                 </div>
+
                 <div class="right-details">
                     {{-- Form de contact --}}
                     <div class="description-details">
@@ -502,173 +504,254 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
 
 
-    <!-- <div class="container">
+    <div class="container">
 
-            <div class="row justify-content-center mt-5">
 
-                {{-- Societie --}}
-                <div class="col-md-12">
+        <div class="row justify-content-center mt-5">
 
-                    <div class="card">
-                        <div class="card-header">{{ __('Societie') }}</div>
-                        <div class="card-body">
-                            <section class="section bg-light">
-                                <div class="container">
-                                    <div class="row align-items-stretch retro-layout justify-content-center">
-                                        <div class="card col-12 m-4" style="width: 100%;">
-                                            <div class="d-flex m-3">
-                                                <img src="{{ $societie->image }}" class="card-img-top pt-3 w-25"
-                                                    alt="...">
-                                                <div class="card-body align-item-center">
-                                                    <h5 class="card-title">{{ $societie->title }}</h5>
-                                                    <p class="card-text">{!! $societie->description !!}</p>
-                                                </div>
+            {{-- Societie --}}
+            <div class="col-md-12">
+
+                <div class="card">
+                    <div class="card-header">{{ __('Societie') }}</div>
+                    <div class="card-body">
+                        <section class="section bg-light">
+                            <div class="container">
+                                <div class="row align-items-stretch retro-layout justify-content-center">
+                                    <div class="card col-12 m-4" style="width: 100%;">
+                                        <div class="d-flex m-3">
+                                            <img src="{{ $societie->image }}" class="card-img-top pt-3 w-25"
+                                                alt="...">
+                                            <div class="card-body align-item-center">
+                                                <h5 class="card-title">{{ $societie->title }}</h5>
+                                                <p class="card-text">{!! $societie->description !!}</p>
                                             </div>
-
-                                            <ul class="list-group list-group-flush">
-                                                <li class="list-group-item"><b>Link :</b> <a
-                                                        href="{{ $societie->web_link }}">{{ $societie->web_link }}</a>
-                                                </li>
-                                                <li class="list-group-item"><b>Adress :</b> {{ $societie->adress }}</li>
-                                                <li class="list-group-item"><b>Phone :</b> {{ $societie->telephone }}</li>
-                                                <li class="list-group-item"><b>Fax:</b> {{ $societie->fax }}</li>
-
-                                                <li class="list-group-item"><b>ICE:</b> {{ $societie->ice }}</li>
-                                                <li class="list-group-item">
-                                                    <b>Cities:</b>
-                                                    @foreach ($societie->cities as $citie)
-    <span>{{ $citie->name }}-</span>
-    @endforeach
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <b>Services:</b>
-                                                    @foreach ($societie->services as $service)
-    <span>{{ $service->name }}-</span>
-    @endforeach
-                                                </li>
-
-                                                <li class="list-group-item"><b>Demi Categorie:</b>
-                                                    {{ $societie->demiCategorie->name }}</li>
-                                                <li class="list-group-item">
-                                                    <b>Tags:</b>
-                                                    @foreach ($societie->tags as $tag)
-    <span class="tag">{{ $tag->name }}-</span>
-    @endforeach
-                                                </li>
-
-                                            </ul>
-
                                         </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </div>
 
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item"><b>Link :</b> <a
+                                                    href="{{ $societie->web_link }}">{{ $societie->web_link }}</a>
+                                            </li>
+                                            <li class="list-group-item"><b>Adress :</b> {{ $societie->adress }}</li>
+                                            <li class="list-group-item"><b>Phone :</b> {{ $societie->telephone }}</li>
+                                            <li class="list-group-item"><b>Fax:</b> {{ $societie->fax }}</li>
 
-                {{-- Reviews --}}
-                <div class="col-md-12 mt-5">
-                    <div class="card mb-5">
-                        <div class="card-header">{{ __('Reviews') }}</div>
-                        <div class="card-body">
-                            <section class="section bg-light">
-                                <div class="container">
-                                    <div class="row align-items-stretch retro-layout justify-content-center">
-                                        @if (isset($reviews))
-    @foreach ($reviews as $review)
-    <div class="col-md-4 mb-4">
-                                                    <div class="card text-decoration-none text-dark h-100">
+                                            <li class="list-group-item"><b>ICE:</b> {{ $societie->ice }}</li>
+                                            <li class="list-group-item">
+                                                <b>Cities:</b>
+                                                @foreach ($societie->cities as $citie)
+                                                    <span>{{ $citie->name }}-</span>
+                                                @endforeach
+                                            </li>
+                                            <li class="list-group-item">
+                                                <b>Services:</b>
+                                                @foreach ($societie->services as $service)
+                                                    <span>{{ $service->name }}-</span>
+                                                @endforeach
+                                            </li>
 
-                                                        <div class="card-body d-flex flex-column">
-                                                            <h2 class="card-title">{{ $review->name }}</h2>
-                                                            <div class="card-text mt-auto">
-                                                                {{ $review->email }}
-                                                            </div>
-                                                        </div>
+                                            <li class="list-group-item"><b>Categorie:</b>
+                                                {{ $societie->Categorie->name }}</li>
+                                            <li class="list-group-item">
+                                                <b>Tags:</b>
+                                                @foreach ($societie->tags as $tag)
+                                                    <span class="tag">{{ $tag->name }}-</span>
+                                                @endforeach
+                                            </li>
 
-                                                        <ul class="list-group list-group-flush">
-                                                            <li class="list-group-item"><b>Description :</b>
-                                                                {{ $review->content }}
-                                                            </li>
-                                                            <li class="list-group-item"><b>Rating :</b>
-                                                                {{ array_sum([$review->location_rating, $review->price_rating, $review->service_rating, $review->quality_rating]) / 4 }}
-                                                            </li>
-                                                            <li class="list-group-item"><b>Creation Date :</b>
-                                                                {{ $review->created_at }}
-                                                            </li>
-
-                                                        </ul>
-                                                    </div>
-                                                </div>
-    @endforeach
-@else
-    <div class="text-center">
-                                                No Reviews ...
-                                            </div>
-    @endif
+                                        </ul>
 
                                     </div>
-
                                 </div>
-                            </section>
-                        </div>
+                            </div>
+                        </section>
                     </div>
-                </div>
-
-
-                {{-- Review Form --}}
-                <div class="container mt-4">
-                    <h2>Review Form with Multiple Ratings</h2>
-                    <form method="POST" action="{{ route('review.store') }}">
-                        @csrf
-                        <input type="hidden" name="societie_id" value="{{ $societie->id }}">
-                        <div class="form-group">
-                            <label for="name">Your Name:</label>
-                            <input type="text" name="name" class="form-control" id="name"
-                                placeholder="Enter your name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email address:</label>
-                            <input type="email" name="email" class="form-control" id="email"
-                                placeholder="Enter your email" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Location:</label>
-                            <div id="location-rating"></div>
-                            <input type="hidden" name="location_rating" id="location-rating-value" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Price:</label>
-                            <div id="price-rating"></div>
-                            <input type="hidden" name="price_rating" id="price-rating-value" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Quality:</label>
-                            <div id="quality-rating"></div>
-                            <input type="hidden" name="quality_rating" id="quality-rating-value" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Service:</label>
-                            <div id="service-rating"></div>
-                            <input type="hidden" name="service_rating" id="service-rating-value" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="review">Your Review:</label>
-                            <textarea class="form-control" name="content" id="review" rows="5" placeholder="Write your review here"
-                                required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
                 </div>
             </div>
+
+
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5589.323090512702!2d34.65951665086507!3d-1.8957684438953748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda7cb6e713aa063%3A0xe7dee5e7a99ae160!2sJAWHARA%20PHONE%20MARKET%20&#39;JPM%20&#39;!5e0!3m2!1sfr!2sma!4v1690453595561!5m2!1sfr!2sma"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
+            {{-- Reviews --}}
+            <div class="col-md-12 mt-5">
+                <div class="card mb-5">
+                    <div class="card-header">{{ __('Reviews') }}</div>
+                    <div class="card-body">
+                        <section class="section bg-light">
+                            <div class="container">
+                                <div class="row align-items-stretch retro-layout justify-content-center">
+
+                                    @if (isset($reviews))
+                                        @foreach ($reviews as $review)
+                                            <div class="col-md-4 mb-4">
+                                                <div class="card text-decoration-none text-dark h-100">
+
+                                                    <div class="card-body d-flex flex-column">
+                                                        <h2 class="card-title">{{ $review->name }}</h2>
+                                                        <div class="card-text mt-auto">
+                                                            {{ $review->email }}
+                                                        </div>
+                                                    </div>
+
+                                                    <img src="{{ $review->image }}" class="w-25" alt="">
+
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item"><b>Description :</b>
+                                                            {{ $review->content }}
+                                                        </li>
+                                                        <li class="list-group-item"><b>Rating :</b>
+                                                            {{ array_sum([$review->location_rating, $review->price_rating, $review->service_rating, $review->quality_rating]) / 4 }}
+                                                        </li>
+                                                        <li class="list-group-item"><b>Creation Date :</b>
+                                                            {{ $review->created_at }}
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <div class="text-center">
+                                            No Reviews ...
+                                        </div>
+                                    @endif
+
+                                </div>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+            {{-- Review Form --}}
+            <div class="col-md-12 mt-5">
+
+                <div class="card mb-5">
+                    <div class="card-header">{{ __('Review Form') }}</div>
+                    <div class="card-body">
+                        <section class="section bg-light">
+                            <div class="container">
+                                <div class="row align-items-stretch retro-layout justify-content-center">
+
+                                    {{-- check if the user has logged in with google --}}
+                                    @if (session('user'))
+                                        {{-- check if the user has already send a review --}}
+                                        @if ($reviewOfLoggedUser)
+                                            <form method="POST"
+                                                action="{{ route('review.update', $reviewOfLoggedUser->id) }}">
+                                                @csrf
+                                                @method('put')
+                                                <input type="hidden" name="societie_id" value="{{ $societie->id }}">
+                                                <div class="form-group">
+                                                    <label>Location:</label>
+                                                    <div id="location-rating" style="width:40% !important;"></div>
+                                                    <input type="hidden" name="location_rating" value="2"
+                                                        id="location-rating-value" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Price:</label>
+                                                    <div id="price-rating"></div>
+                                                    <input type="hidden" name="price_rating" id="price-rating-value"
+                                                        required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Quality:</label>
+                                                    <div id="quality-rating"></div>
+                                                    <input type="hidden" name="quality_rating" id="quality-rating-value"
+                                                        required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Service:</label>
+                                                    <div id="service-rating"></div>
+                                                    <input type="hidden" name="service_rating" id="service-rating-value"
+                                                        required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="review">Your Review:</label>
+                                                    <textarea class="form-control" name="content" id="review" rows="5" placeholder="Write your review here"
+                                                        required>{{ $reviewOfLoggedUser['content'] }}</textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Update</button>
+                                            </form>
+
+                                            <form action="{{ route('review.destroy', $reviewOfLoggedUser->id) }}"
+                                                method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <input type="hidden" name="societie_id" value="{{ $societie->id }}">
+
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+
+                                            </form>
+                                        @else
+                                            <form method="POST" action="{{ route('review.store') }}">
+                                                @csrf
+                                                <input type="hidden" name="societie_id" value="{{ $societie->id }}">
+
+                                                <div class="form-group">
+                                                    <label>Location:</label>
+                                                    <div id="location-rating" style="width:40% !important;"></div>
+                                                    <input type="hidden" name="location_rating" value="2"
+                                                        id="location-rating-value" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Price:</label>
+                                                    <div id="price-rating"></div>
+                                                    <input type="hidden" name="price_rating" id="price-rating-value"
+                                                        required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Quality:</label>
+                                                    <div id="quality-rating"></div>
+                                                    <input type="hidden" name="quality_rating" id="quality-rating-value"
+                                                        required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Service:</label>
+                                                    <div id="service-rating"></div>
+                                                    <input type="hidden" name="service_rating" id="service-rating-value"
+                                                        required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="review">Your Review:</label>
+                                                    <textarea class="form-control" name="content" id="review" rows="5" placeholder="Write your review here"
+                                                        required></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </form>
+                                        @endif
+                                    @else
+                                        You Need To Sign in to make a commantaire
+                                        <a href="{{ route('login') }}" class="btn btn-google">Sign in with Google</a>
+                                    @endif
+
+
+
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
         </div>
-        -->
+    </div>
+
 
 @endsection

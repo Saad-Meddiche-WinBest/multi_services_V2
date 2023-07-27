@@ -11,7 +11,16 @@ class ReviewController extends Controller
 
     public function store(Request $request)
     {
-        Review::create($request->all());
+        $user = $request->session()->get('user');
+
+        $data = $request->all();
+
+        $data['name'] = $user['name'];
+        $data['sub_googleUser'] = $user['sub_googleUser'];
+        $data['image'] = $user['image'];
+        $data['email'] = $user['email'];
+
+        Review::create($data);
 
         return Redirect::route('societie.show', ['societie' => $request->societie_id]);
     }
@@ -23,13 +32,15 @@ class ReviewController extends Controller
 
     public function update(Request $request, Review $review)
     {
-        //
+        $review->update($request->all());
+
+        return Redirect::route('societie.show', ['societie' => $request->societie_id]);
     }
 
-    public function destroy(Review $review)
+    public function destroy(Request $request, Review $review)
     {
-        //
-    }
+        $review->delete();
 
-   
+        return Redirect::route('societie.show', ['societie' => $request->societie_id]);
+    }
 }
