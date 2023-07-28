@@ -22,34 +22,27 @@ class SocietieController extends Controller
     {
         // session()->forget('user');
         $rating = Societie::getRatingOfSocitie($societie->id);
-
-        $societie->load('tags', 'cities', 'Categorie', 'services');
-
-        $reviews = $societie->reviews()->paginate(3);
+        
+        $reviews = $societie->load('tags', 'cities', 'Categorie', 'services')->reviews()->paginate(3);
 
         // Get the review of user if he is signed in with google account
-        if ($user = session()->get('user'))
-            $reviewOfLoggedUser = Review::where('sub_googleUser', $user['sub_googleUser'])->where('societie_id', $societie->id)->first();
-        else
-            $reviewOfLoggedUser = false;
+        $user = session('user');
+
+        $reviewOfLoggedUser = Review::GetReviewOFUserInThisSocieite($user['sub_googleUser'], $societie->id);
 
         return view('societies.show', compact('societie', 'reviews', 'reviewOfLoggedUser', 'rating'));
     }
 
     public function fetchSocietiesByCitie(Citie $citie)
     {
-        $societies = $citie->societies;
-
-        $societies->load('tags', 'cities', 'Categorie', 'services');
+        $societies = $citie->societies->load('tags', 'cities', 'Categorie', 'services');
 
         return response()->json(['societies' => $societies]);
     }
 
     public function fetchSocietiesByCategorie(Categorie $categorie)
     {
-        $societies = $categorie->Categories->flatMap(function ($Categorie) {
-            return $Categorie->societies->load('tags', 'cities', 'Categorie', 'services');
-        });
+        $societies = $categorie->societies->load('tags', 'cities', 'Categorie', 'services');
 
         return response()->json(['societies' => $societies]);
     }

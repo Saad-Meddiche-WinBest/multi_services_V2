@@ -36,7 +36,7 @@ class Societie extends Model
     {
         $reviews = Review::where('societie_id', $societie_id)->get();
 
-        $numberOfReviews = $reviews->count();
+        $numberOfReviews = $reviews->count() != 0 ? $reviews->count() : 1;
 
         $sumOfRatings = ['service_rating' => 0, 'price_rating' => 0, 'quality_rating' => 0, 'location_rating' => 0];
 
@@ -86,6 +86,8 @@ class Societie extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+
 
     /*
     |--------------------------------------------------------------------------

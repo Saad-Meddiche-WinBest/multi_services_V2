@@ -35,13 +35,10 @@ class Review extends Model
     |--------------------------------------------------------------------------
     */
 
-    public static function UserSendedAReview()
+    public static function GetReviewOFUserInThisSocieite($userSub, $societieId)
     {
-        $user = session()->get('user');
+        $review = Review::where('sub_googleUser', $userSub)->where('societie_id', $societieId)->first();
 
-        $review = Review::where('sub_googleUser', $user['sub_googleUser'])->get();
-
-        return $review ? true : false;
+        return $review ?? null;
     }
-
 }
