@@ -46,6 +46,4 @@ class SocietieController extends Controller
 
         return response()->json(['societies' => $societies]);
     }
-
-   
 }

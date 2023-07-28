@@ -112,7 +112,7 @@
                     <div class="description-details">
                         <div class="rating-overview" style="width:100%;">
                             <div class="rating-overview-box">
-                                <span class="rating-overview-box-total">3.8</span>
+                                <span class="rating-overview-box-total">{{ $rating['ratingOfSocietie'] }}</span>
                                 <span class="rating-overview-box-percent">out of 5.0</span>
                                 <div class="star-rating" data-rating="5">
                                     <i class="fa fa-star checked"></i>
@@ -127,36 +127,40 @@
                                     <span class="rating-bars-name">Service</span>
                                     <span class="rating-bars-inner">
                                         <span class="rating-bars-rating high" data-rating="4">
-                                            <span class="rating-bars-rating-inner" style="width: 80%;"></span>
+                                            <span class="rating-bars-rating-inner"
+                                                style="width: {{ $rating['service_rating'] * 20 }}%;"></span>
                                         </span>
-                                        <strong>4 </strong>
+                                        <strong>{{ $rating['service_rating'] }}</strong>
                                     </span>
                                 </div>
                                 <div class="rating-bars-item">
                                     <span class="rating-bars-name">Price</span>
                                     <span class="rating-bars-inner">
                                         <span class="rating-bars-rating high" data-rating="3">
-                                            <span class="rating-bars-rating-inner" style="width: 60%;"></span>
+                                            <span class="rating-bars-rating-inner"
+                                                style="width: {{ $rating['price_rating'] * 20 }}%;"></span>
                                         </span>
-                                        <strong>3</strong>
+                                        <strong>{{ $rating['price_rating'] }}</strong>
                                     </span>
                                 </div>
                                 <div class="rating-bars-item">
                                     <span class="rating-bars-name">Quality</span>
                                     <span class="rating-bars-inner">
                                         <span class="rating-bars-rating high" data-rating="4">
-                                            <span class="rating-bars-rating-inner" style="width: 80%;"></span>
+                                            <span class="rating-bars-rating-inner"
+                                                style="width: {{ $rating['quality_rating'] * 20 }}%;"></span>
                                         </span>
-                                        <strong>4</strong>
+                                        <strong>{{ $rating['quality_rating'] }}</strong>
                                     </span>
                                 </div>
                                 <div class="rating-bars-item">
                                     <span class="rating-bars-name">Location</span>
                                     <span class="rating-bars-inner">
                                         <span class="rating-bars-rating high" data-rating="4">
-                                            <span class="rating-bars-rating-inner" style="width:80%;"></span>
+                                            <span class="rating-bars-rating-inner"
+                                                style="width: {{ $rating['location_rating'] * 20 }}%;"></span>
                                         </span>
-                                        <strong>4</strong>
+                                        <strong>{{ $rating['location_rating'] }}</strong>
                                     </span>
                                 </div>
                             </div>
