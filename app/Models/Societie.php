@@ -55,6 +55,7 @@ class Societie extends Model
         return array_merge($moyenOfRatings, ['ratingOfSocietie' => $ratingOfSocietie]);
     }
 
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
@@ -79,6 +80,11 @@ class Societie extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'societie_has_tags');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 
     /*

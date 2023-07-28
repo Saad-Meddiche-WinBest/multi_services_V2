@@ -13,7 +13,6 @@ class SocietieController extends Controller
 {
     public function index(Request $request)
     {
-
         $societies = Societie::with(['tags', 'cities', 'Categorie', 'services'])->get();
 
         return response()->json(['societies' => $societies]);
@@ -24,12 +23,11 @@ class SocietieController extends Controller
         // session()->forget('user');
         $rating = Societie::getRatingOfSocitie($societie->id);
 
-        dd($rating);
-
         $societie->load('tags', 'cities', 'Categorie', 'services');
 
-        $reviews = Review::getReviewsOfSociety($societie->id);
+        $reviews = $societie->reviews()->paginate(3);
 
+        // Get the review of user if he is signed in with google account
         if ($user = session()->get('user'))
             $reviewOfLoggedUser = Review::where('sub_googleUser', $user['sub_googleUser'])->where('societie_id', $societie->id)->first();
         else
