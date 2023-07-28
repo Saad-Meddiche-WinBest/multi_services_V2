@@ -83,25 +83,14 @@ Vue.component('societie-list', {
 
         <div class="main-header-box-search">
 
-            <form method="GET" action="">
-                <div class="row">
-                    <div class="col-md-10">
-                        
-                    <input type="text" v-model="looking_for" class="form-control" placeholder="Search ..." >                        <ul class="autocomplete"></ul>
-                    </div>
-                    <div class="col-md-2" style="align-items: center">
-                        <button onclick="" class="btn btn-danger" type="submit">
+          <div class="row justify-content-center w-100 " >
+              <div class="col-md-10 w-100 " style="padding:0px !important">
+                  
+                <input type="text" v-model="looking_for" class="form-control w-100" placeholder="Search ..." >                        <ul class="autocomplete"></ul>
+              </div>
+          
 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                              </svg>
-                            <span>Trouver<span>
-                        </button>
-                    </div>
-
-                    <input type="hidden" name="produit" value="" />
-                </div>
-            </form>
+          </div>
         </div>
     </div>
 </div>
@@ -121,7 +110,7 @@ Vue.component('societie-list', {
           </div>
           <div class="society_content">
               <div class="proerty_text">
-                  <h3 class="captlize"><a href="#">{{societie.title}}</a>
+                  <h3 class="captlize"><a :href="'societie/'+societie.id+'/show'">{{societie.title}}</a>
                   <span class="veryfied-author"></span> </h3>
               </div>
               <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit Neque similique .</p>
