@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->string('content');
+            $table->string('content',1000);
             $table->unsignedBigInteger('societie_id');
             $table->string('service_rating');
             $table->string('price_rating');
