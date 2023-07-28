@@ -22,6 +22,7 @@ class SocietieController extends Controller
     public function show(Societie $societie)
     {
         // session()->forget('user');
+        $rating = Societie::moyenOfSocietyRatingmoyenOfSocietyRatingmoyenOfSocietyRating($societie->id);
 
         $societie->load('tags', 'cities', 'Categorie', 'services');
 
@@ -32,7 +33,7 @@ class SocietieController extends Controller
         else
             $reviewOfLoggedUser = false;
 
-        return view('societies.show', compact('societie', 'reviews', 'reviewOfLoggedUser'));
+        return view('societies.show', compact('societie', 'reviews', 'reviewOfLoggedUser', 'rating'));
     }
 
     public function fetchSocietiesByCitie(Citie $citie)
