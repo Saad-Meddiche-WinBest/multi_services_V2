@@ -47,17 +47,5 @@ class SocietieController extends Controller
         return response()->json(['societies' => $societies]);
     }
 
-    static public function fetchNewSocities($limit)
-    {
-        $societies = Societie::orderby('id', 'desc')->limit($limit)->get();
-        return $societies;
-    }
-
-    static public function fetchPremiumSocieties()
-    {
-        $idsSocieties = Premium::all()->pluck('societie_id');
-        $premiumSocieties = Societie::whereIn('id', $idsSocieties)->get();
-
-        return $premiumSocieties;
-    }
+   
 }

@@ -55,6 +55,19 @@ class Societie extends Model
         return array_merge($moyenOfRatings, ['ratingOfSocietie' => $ratingOfSocietie]);
     }
 
+    static public function fetchNewSocities($limit)
+    {
+        $societies = Societie::orderby('id', 'desc')->limit($limit)->get();
+        return $societies;
+    }
+
+    static public function fetchPremiumSocieties()
+    {
+        $idsSocieties = Premium::all()->pluck('societie_id');
+        $premiumSocieties = Societie::whereIn('id', $idsSocieties)->get();
+
+        return $premiumSocieties;
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -87,8 +100,8 @@ class Societie extends Model
         return $this->hasMany(Review::class);
     }
 
-    
-    
+
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

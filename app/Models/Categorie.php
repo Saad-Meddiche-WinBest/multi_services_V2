@@ -31,12 +31,38 @@ class Categorie extends Model
     |--------------------------------------------------------------------------
     */
 
+    /**
+     * Retrieves all categories with extra information (Count Of Demi-Categories and societies).
+     *
+     * @return array The array of categories with those extra information.
+     */
+    static public function allWithExtraInformations()
+    {
+
+        $categories = Categorie::all();
+
+        $data = [];
+
+        foreach ($categories as $categorie) {
+
+            $societieCount = 0;
+
+            $societieCount += $categorie->societies->count();
+
+            $categorie->setAttribute('societies_count', $societieCount);
+
+            $data[] = $categorie;
+        }
+
+        return $data;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-   
+
     public function societies()
     {
         return $this->hasMany(Societie::class);
