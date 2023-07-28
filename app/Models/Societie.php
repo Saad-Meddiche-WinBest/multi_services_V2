@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Mockery\Undefined;
 
 class Societie extends Model
 {
@@ -37,32 +38,21 @@ class Societie extends Model
 
         $numberOfReviews = $reviews->count();
 
-        $sumOfServiceRating = 0;
-        $sumOfPriceRating = 0;
-        $sumOfQualityRating = 0;
-        $sumOfLocationRating = 0;
+        $sumOfRatings = ['service_rating' => 0, 'price_rating' => 0, 'quality_rating' => 0, 'location_rating' => 0];
 
         foreach ($reviews as $review) {
-            $sumOfServiceRating += $review->service_rating;
-            $sumOfPriceRating += $review->price_rating;
-            $sumOfQualityRating += $review->quality_rating;
-            $sumOfLocationRating += $review->location_rating;
+            foreach ($sumOfRatings as $key => $value) {
+                $sumOfRatings[$key] += $review->{$key};
+            }
         }
 
-        $moyenOfServiceRating = $sumOfServiceRating / $numberOfReviews;
-        $moyenOfPriceRating = $sumOfPriceRating / $numberOfReviews;
-        $moyenOfQualityRating = $sumOfQualityRating / $numberOfReviews;
-        $moyenOfLocationRating = $sumOfLocationRating / $numberOfReviews;
+        $moyenOfRatings = array_map(function ($sum) use ($numberOfReviews) {
+            return $sum / $numberOfReviews;
+        }, $sumOfRatings);
 
-        $moyenOfSocietyRating = array_sum([$moyenOfServiceRating, $moyenOfPriceRating, $moyenOfQualityRating, $moyenOfLocationRating]) / 4;
+        $ratingOfSocietie = array_sum($moyenOfRatings) / 4;
 
-        return [
-            'moyenOfServiceRating' => $moyenOfServiceRating,
-            'moyenOfPriceRating' => $moyenOfPriceRating,
-            'moyenOfQualityRating' => $moyenOfQualityRating,
-            'moyenOfLocationRating' => $moyenOfLocationRating,
-            'moyenOfSocietyRating' => $moyenOfSocietyRating,
-        ];
+        return array_merge($moyenOfRatings, ['ratingOfSocietie' => $ratingOfSocietie]);
     }
 
     /*

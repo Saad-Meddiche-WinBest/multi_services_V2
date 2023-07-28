@@ -22,7 +22,9 @@ class SocietieController extends Controller
     public function show(Societie $societie)
     {
         // session()->forget('user');
-        $rating = Societie::moyenOfSocietyRatingmoyenOfSocietyRatingmoyenOfSocietyRating($societie->id);
+        $rating = Societie::getRatingOfSocitie($societie->id);
+
+        dd($rating);
 
         $societie->load('tags', 'cities', 'Categorie', 'services');
 
