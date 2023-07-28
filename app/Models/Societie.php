@@ -87,8 +87,8 @@ class Societie extends Model
         return $this->hasMany(Review::class);
     }
 
-
-
+    
+    
     /*
     |--------------------------------------------------------------------------
     | SCOPES
