@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SocietieController;
+use App\Mail\emailMailable;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,5 +69,8 @@ Route::get('/reviews/{page}', 'ReviewController@getItems'); // Route to handle A
 Route::get('/login', [AuthController::class, 'loginWithGoogle'])->name('login');
 Route::get('/test', [AuthController::class, 'loginCallback']);
 
-
+Route::get('/mail', function(){
+    Mail::to('ijalali626@gmail.com')->to('ijalali396@gmail.com')
+    ->send(new emailMailable());
+});
 
