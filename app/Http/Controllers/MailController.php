@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Redirect;
 class MailController extends Controller
 {
     public function sendMail(Request $request,Societie $societie){
-        dd($societie->email);
         $request->validate([
             'name'=>'required',
             'email'=>'required|email',

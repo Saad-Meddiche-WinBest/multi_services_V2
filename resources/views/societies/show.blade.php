@@ -19,10 +19,6 @@
                     </div>
                     <div class="listing-detail_right">
                         <div class="listing-detail-item">
-                            <a href="#" data-toggle="modal" data-target="#login" class="btn btn-list"><i
-                                    class="fa fa-heart" style="padding-right:5px"></i>Favorite</a>
-                        </div>
-                        <div class="listing-detail-item">
                             <div class="share-opt-wrap">
                                 <button type="button" class="btn btn-list" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false">
@@ -54,10 +50,20 @@
                     <div class="rixel-bar">
                         <div class="rixel-bar-left">
                             <div class="rate-overall rate-high">
-                                <div class="overrate-box">3.8 </div>
-                                <div class="overrate-box-caption">
-                                    <span>Good</span>
-                                    <a href="#comments-wrap" class="rating-link">1 reviewers rated</a>
+                                {{-- Conditions sur le rating --}}
+                                    @if($rating['ratingOfSocietie']>=2.5)
+                                    <div class="overrate-box">{{ $rating['ratingOfSocietie'] }}</div>
+                                    <div class="overrate-box-caption">
+                                    <span style="text-align: center">Good</span>
+                                    @elseif($rating['ratingOfSocietie']==0)
+                                    <div class="overrate-box" style="color: blue;border:1px dashed blue">{{ $rating['ratingOfSocietie'] }}</div>
+                                    <div class="overrate-box-caption">
+                                    <span style="color:blue">No reviews</span>
+                                    @else
+                                    <div class="overrate-box" style="color:red;border:1px dashed red">{{ $rating['ratingOfSocietie'] }}</div>
+                                    <div class="overrate-box-caption">
+                                    <span style="color:red">Mauvais</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
