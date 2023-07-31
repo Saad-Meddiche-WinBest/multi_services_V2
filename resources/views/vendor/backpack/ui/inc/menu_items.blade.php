@@ -3,6 +3,7 @@
         {{ trans('backpack::base.dashboard') }}</a></li>
 
 <x-backpack::menu-item title="Societies" icon="la la-building" :link="backpack_url('societie')" />
+<x-backpack::menu-item title="Schedules" icon="la la-clock" :link="backpack_url('schedule')" />
 <x-backpack::menu-item title="Cities" icon="la la-city" :link="backpack_url('citie')" />
 
 <x-backpack::menu-item title="Services" icon="la la-server" :link="backpack_url('service')" />

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categorie;
+use App\Models\Citie;
 use App\Models\Societie;
-use Illuminate\Http\Request;
+use App\Models\Categorie;
 
 class HomeController extends Controller
 {
@@ -25,16 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $topCities = CitieController::topCitiesBySocieties(6);
+        $topCities = Citie::topCitiesBySocieties(6);
 
-        $categories = CategorieController::allWithExtraInformations();
+        $categories = Categorie::allWithExtraInformations();
 
+        $newsocieties = Societie::fetchNewSocities(9);
 
-        $newsocieties = SocietieController::fetchNewSocities(9);
-
-        $premiumSocieties = SocietieController::fetchPremiumSocieties();
+        $premiumSocieties = Societie::fetchPremiumSocieties();
 
         return view('home', compact('topCities', 'categories', 'newsocieties', 'premiumSocieties'));
-
     }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Mockery\Undefined;
 
 class Societie extends Model
 {
@@ -31,6 +32,43 @@ class Societie extends Model
     |--------------------------------------------------------------------------
     */
 
+    public static function getRatingOfSocitie($societie_id)
+    {
+        $reviews = Review::where('societie_id', $societie_id)->get();
+
+        $numberOfReviews = $reviews->count() != 0 ? $reviews->count() : 1;
+
+        $sumOfRatings = ['service_rating' => 0, 'price_rating' => 0, 'quality_rating' => 0, 'location_rating' => 0];
+
+        foreach ($reviews as $review) {
+            foreach ($sumOfRatings as $key => $value) {
+                $sumOfRatings[$key] += $review->{$key};
+            }
+        }
+
+        $moyenOfRatings = array_map(function ($sum) use ($numberOfReviews) {
+            return $sum / $numberOfReviews;
+        }, $sumOfRatings);
+
+        $ratingOfSocietie = array_sum($moyenOfRatings) / 4;
+
+        return array_merge($moyenOfRatings, ['ratingOfSocietie' => $ratingOfSocietie]);
+    }
+
+    static public function fetchNewSocities($limit)
+    {
+        $societies = Societie::orderby('id', 'desc')->limit($limit)->get();
+        return $societies;
+    }
+
+    static public function fetchPremiumSocieties()
+    {
+        $idsSocieties = Premium::all()->pluck('societie_id');
+        $premiumSocieties = Societie::whereIn('id', $idsSocieties)->get();
+
+        return $premiumSocieties;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
@@ -56,6 +94,18 @@ class Societie extends Model
     {
         return $this->belongsToMany(Tag::class, 'societie_has_tags');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
+
+
 
     /*
     |--------------------------------------------------------------------------

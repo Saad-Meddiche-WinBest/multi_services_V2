@@ -6,8 +6,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SocietieController;
+use App\Http\Controllers\Admin\ScheduleCrudController;
 use App\Mail\emailMailable;
-use Illuminate\Support\Facades\Mail;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -59,7 +61,6 @@ Route::get('/societie/{societie}/show', [SocietieController::class, 'show'])->na
 Route::post('/review/create', [ReviewController::class, 'store'])->name('review.store');
 Route::put('/review/{review}', [ReviewController::class, 'update'])->name('review.update');
 Route::delete('/review/{review}', [ReviewController::class, 'destroy'])->name('review.destroy');
-Route::get('/reviews/{page}', 'ReviewController@getItems'); // Route to handle AJAX requests for pagination
 
 
 /*
@@ -70,9 +71,12 @@ Route::get('/reviews/{page}', 'ReviewController@getItems'); // Route to handle A
 Route::get('/login', [AuthController::class, 'loginWithGoogle'])->name('login');
 Route::get('/test', [AuthController::class, 'loginCallback']);
 
-// Route::get('/mail', function(){
-//     Mail::to('ijalali626@gmail.com')->to('ijalali396@gmail.com')
-//     ->send(new emailMailable());
-// });
 
+
+/*
+|--------------------------------------------------------------------------
+| Mail
+|--------------------------------------------------------------------------
+*/
 Route::post('/mail/{societie}',[MailController::class,'sendMail'])->name("mail");
+

@@ -6,7 +6,7 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Categorie extends Model
+class Schedule extends Model
 {
     use CrudTrait;
     use HasFactory;
@@ -17,7 +17,7 @@ class Categorie extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'categories';
+    protected $table = 'schedules';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -31,42 +31,21 @@ class Categorie extends Model
     |--------------------------------------------------------------------------
     */
 
-    /**
-     * Retrieves all categories with extra information (Count Of Demi-Categories and societies).
-     *
-     * @return array The array of categories with those extra information.
-     */
-    static public function allWithExtraInformations()
-    {
-
-        $categories = Categorie::all();
-
-        $data = [];
-
-        foreach ($categories as $categorie) {
-
-            $societieCount = 0;
-
-            $societieCount += $categorie->societies->count();
-
-            $categorie->setAttribute('societies_count', $societieCount);
-
-            $data[] = $categorie;
-        }
-
-        return $data;
-    }
-
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
-    public function societies()
+    public function societie()
     {
-        return $this->hasMany(Societie::class);
+        return $this->belongsTo(Societie::class);
     }
+
+    public function day()
+    {
+        return $this->belongsTo(Day::class);
+    }
+
 
     /*
     |--------------------------------------------------------------------------

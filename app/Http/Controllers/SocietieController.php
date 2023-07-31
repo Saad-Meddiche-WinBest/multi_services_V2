@@ -15,7 +15,6 @@ class SocietieController extends Controller
 {
     public function index(Request $request)
     {
-
         $societies = Societie::with(['tags', 'cities', 'Categorie', 'services'])->get();
 
         return response()->json(['societies' => $societies]);
@@ -61,48 +60,29 @@ class SocietieController extends Controller
     public function show(Societie $societie)
     {
         // session()->forget('user');
+        $rating = Societie::getRatingOfSocitie($societie->id);
 
-        $societie->load('tags', 'cities', 'Categorie', 'services');
+        $reviews = $societie->load('tags', 'cities', 'Categorie', 'services', 'schedules')->reviews()->paginate(3);
 
-        $reviews = Review::getReviewsOfSociety($societie->id);
+        // Get the review of user if he is signed in with google account
+        $user = session('user') ?? null;
 
-        if ($user = session()->get('user'))
-            $reviewOfLoggedUser = Review::where('sub_googleUser', $user['sub_googleUser'])->where('societie_id', $societie->id)->first();
-        else
-            $reviewOfLoggedUser = false;
+        $reviewOfLoggedUser = $user ? Review::GetReviewOFUserInThisSocieite($user['sub_googleUser'], $societie->id) : null;
 
-        return view('societies.show', compact('societie', 'reviews', 'reviewOfLoggedUser'));
+        return view('societies.show', compact('societie', 'reviews', 'reviewOfLoggedUser', 'rating'));
     }
 
     public function fetchSocietiesByCitie(Citie $citie)
     {
-        $societies = $citie->societies;
-
-        $societies->load('tags', 'cities', 'Categorie', 'services');
+        $societies = $citie->societies->load('tags', 'cities', 'Categorie', 'services');
 
         return response()->json(['societies' => $societies]);
     }
 
     public function fetchSocietiesByCategorie(Categorie $categorie)
     {
-        $societies = $categorie->Categories->flatMap(function ($Categorie) {
-            return $Categorie->societies->load('tags', 'cities', 'Categorie', 'services');
-        });
+        $societies = $categorie->societies->load('tags', 'cities', 'Categorie', 'services');
 
         return response()->json(['societies' => $societies]);
-    }
-
-    static public function fetchNewSocities($limit)
-    {
-        $societies = Societie::orderby('id', 'desc')->limit($limit)->get();
-        return $societies;
-    }
-
-    static public function fetchPremiumSocieties()
-    {
-        $idsSocieties = Premium::all()->pluck('societie_id');
-        $premiumSocieties = Societie::whereIn('id', $idsSocieties)->get();
-
-        return $premiumSocieties;
     }
 }
