@@ -380,9 +380,8 @@
                         </div>
                         
                     @endif
-
                 </div>
-
+                
                 <div class="right-details">
                     {{-- Form de contact --}}
                     <div class="description-details">

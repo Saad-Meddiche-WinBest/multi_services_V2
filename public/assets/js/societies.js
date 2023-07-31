@@ -5,6 +5,7 @@ Vue.component('societie-list', {
         societies: [],
         societie:'',
         looking_for:'',
+        hidden_search:''
       };
     }
     ,
@@ -18,7 +19,6 @@ Vue.component('societie-list', {
         axios.get(this.get_url())
           .then(response => {
             this.societies = response.data.societies;
-            console.log(this.societies);
 
           })
           .catch(error => {
@@ -28,10 +28,16 @@ Vue.component('societie-list', {
       ,
       show_societie(societie){
         window.location.replace('/societie/'+ societie.id +'/show');
+      },
+      check_url_parametre($parametre){
+        const urlParams = new URLSearchParams(window.location.search);
+        const paramExists = urlParams.has($parametre);
+        return paramExists ? urlParams.get($parametre) : '';
       }
     },
     mounted() {
-      return this.fetch_societies();
+      this.fetch_societies();
+      this.hidden_search = this.check_url_parametre('search');
     },
 
 
@@ -40,8 +46,9 @@ Vue.component('societie-list', {
       filtred_societies(){
         
         return this.societies.filter(item => {
-          const searchValue = this.looking_for.toLowerCase();
-
+         
+          const searchValue = this.looking_for.toLowerCase() || this.hidden_search.toLowerCase();
+        
           const matches = [
             item.title.toLowerCase().includes(searchValue),
             item.telephone.toLowerCase().includes(searchValue),
@@ -96,7 +103,7 @@ Vue.component('societie-list', {
 </div>
       <div class="container">
       <div class="row">
-      <div class="col-lg-4 col-md-6 col-sm-12" v-for="societie in newsocieties" :key="'societie'+societie.id">  
+      <div class="col-lg-4 col-md-6 col-sm-12" v-for="societie in filtred_societies" :key="'societieRE'+societie.id">  
       <div class="society-card" style="background-color:red;">
           <div class="image-card">
               <a href="#" class="listing-thumb">
