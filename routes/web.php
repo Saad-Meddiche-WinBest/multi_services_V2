@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SocietieController;
 use App\Mail\emailMailable;
@@ -74,4 +75,4 @@ Route::get('/test', [AuthController::class, 'loginCallback']);
 //     ->send(new emailMailable());
 // });
 
-Route::post('/mail',[SocietieController::class,'sendMail'])->name("mail");
+Route::post('/mail/{societie}',[MailController::class,'sendMail'])->name("mail");

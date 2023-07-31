@@ -392,15 +392,11 @@
                                     <h4>
                                         <a href="{{ $societie->id }}">{{ $societie->title }}</a>
                                     </h4>
-                                    <span>
-                                        <i class="ti-view-grid"></i>
-                                        7 Listings
-                                    </span>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
                             <div id="listing-equiry-form">
-                                <form action="{{route('mail')}}" method="post">
+                                <form action="{{route('mail',['societie' => $societie->id])}}" method="post">
                                     @csrf
                                     @if(Session::has('error'))
                                         <div class="alert alert-danger">
@@ -414,7 +410,7 @@
                                         </div>
                                     @endif
                                     <div class="form-group">
-                                        <input type="hidden" name="created_for" class="form-control" value="3">
+                                        <input type="hidden" name="created_for" class="form-control" value="{{$societie->email}}">
                                     </div>
                                     <div class="form-group">
                                         <input type="text" name="name" required="" class="form-control"
