@@ -37,7 +37,7 @@ class emailMailable extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.hello',
+            markdown: 'mail.email-template',
         );
     }
 

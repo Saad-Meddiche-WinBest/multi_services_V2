@@ -69,8 +69,9 @@ Route::get('/reviews/{page}', 'ReviewController@getItems'); // Route to handle A
 Route::get('/login', [AuthController::class, 'loginWithGoogle'])->name('login');
 Route::get('/test', [AuthController::class, 'loginCallback']);
 
-Route::get('/mail', function(){
-    Mail::to('ijalali626@gmail.com')->to('ijalali396@gmail.com')
-    ->send(new emailMailable());
-});
+// Route::get('/mail', function(){
+//     Mail::to('ijalali626@gmail.com')->to('ijalali396@gmail.com')
+//     ->send(new emailMailable());
+// });
 
+Route::post('/mail',[SocietieController::class,'sendMail'])->name("mail");

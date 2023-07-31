@@ -400,20 +400,32 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div id="listing-equiry-form">
-                                <form action="#" method="post">
+                                <form action="{{route('mail')}}" method="post">
+                                    @csrf
+                                    @if(Session::has('error'))
+                                        <div class="alert alert-danger">
+                                            {{Session::get('error')}}
+                                        </div>
+                                    @endif
+                                    
+                                    @if(Session::has('success'))
+                                        <div class="alert alert-success">
+                                            {{Session::get('success')}}
+                                        </div>
+                                    @endif
                                     <div class="form-group">
                                         <input type="hidden" name="created_for" class="form-control" value="3">
                                     </div>
                                     <div class="form-group">
                                         <input type="text" name="name" required="" class="form-control"
-                                            placeholder="Your Name">
+                                            placeholder="Your Name" value="{{old('name')}}"> 
                                     </div>
                                     <div class="form-group">
                                         <input type="email" name="email" required="" class="form-control"
-                                            placeholder="Your Email">
+                                            placeholder="Your Email" value="{{old('email')}}">
                                     </div>
                                     <div class="form-group">
-                                        <textarea class="form-control" required="" name="message" placeholder="Send Message to author..."></textarea>
+                                        <textarea class="form-control" required="" name="message" placeholder="Send Message to author..." value="{{old('message')}}"></textarea>
                                     </div>
                                     <div id="message">
                                     </div>
