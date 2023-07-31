@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SocietieController;
+use App\Http\Controllers\Admin\ScheduleCrudController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,7 +57,6 @@ Route::get('/societie/{societie}/show', [SocietieController::class, 'show'])->na
 Route::post('/review/create', [ReviewController::class, 'store'])->name('review.store');
 Route::put('/review/{review}', [ReviewController::class, 'update'])->name('review.update');
 Route::delete('/review/{review}', [ReviewController::class, 'destroy'])->name('review.destroy');
-Route::get('/reviews/{page}', 'ReviewController@getItems'); // Route to handle AJAX requests for pagination
 
 
 /*
@@ -66,6 +66,7 @@ Route::get('/reviews/{page}', 'ReviewController@getItems'); // Route to handle A
 */
 Route::get('/login', [AuthController::class, 'loginWithGoogle'])->name('login');
 Route::get('/test', [AuthController::class, 'loginCallback']);
+
 
 
 

@@ -100,6 +100,11 @@ class Societie extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
+
 
 
     /*

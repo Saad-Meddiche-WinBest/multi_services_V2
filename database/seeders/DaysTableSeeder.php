@@ -17,7 +17,7 @@ class DaysTableSeeder extends Seeder
 
         foreach ($days as $day) {
             DB::table('days')->insert([
-                'name' => $day
+                'day' => $day
             ]);
         }
     }

@@ -45,7 +45,6 @@ class SocietieCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-
         CRUD::column('title');
         CRUD::column('image')
             ->type('image')
@@ -72,6 +71,8 @@ class SocietieCrudController extends CrudController
         CRUD::column('tags');
         CRUD::column('description');
         CRUD::column('fax');
+
+        $this->crud->addButtonFromView('line', 'schedule', 'schedule', 'beginning');
     }
     protected function setupShowOperation()
     {

@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\DemiCategorieRequest;
+use Illuminate\Support\Facades\Cache;
+use App\Http\Requests\ScheduleRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
+
 /**
- * Class DemiCategorieCrudController
+ * Class ScheduleCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class DemiCategorieCrudController extends CrudController
+class ScheduleCrudController extends CrudController
 {
-    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation {
+        index as traitList;
+    }
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
@@ -26,14 +30,9 @@ class DemiCategorieCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\DemiCategorie::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/demi-categorie');
-        CRUD::setEntityNameStrings('demi categorie', 'demi categories');
-
-        $user = backpack_user();
-        if (!$user->hasRole('Super Admin')) {
-            $this->crud->denyAccess('delete');
-        }
+        CRUD::setModel(\App\Models\Schedule::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/schedule');
+        CRUD::setEntityNameStrings('schedule', 'schedules');
     }
 
     /**
@@ -44,15 +43,28 @@ class DemiCategorieCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('name');
-        CRUD::column('categorie_id');
-
+        CRUD::column('societie_id');
+        CRUD::column('day_id');
+        CRUD::column('from');
+        CRUD::column('until');
+        // CRUD::column('created_at');
+        // CRUD::column('updated_at');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
          * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
          */
+    }
+
+    protected function setupShowOperation()
+    {
+        CRUD::column('societie_id');
+        CRUD::column('day_id');
+        CRUD::column('from');
+        CRUD::column('until');
+        CRUD::column('created_at');
+        CRUD::column('updated_at');
     }
 
     /**
@@ -63,10 +75,23 @@ class DemiCategorieCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::field('name');
-        CRUD::field('categorie_id')->type('select')
-            ->label('Categorie')
-            ->entity('categorie');
+        if (isset($_GET['societie_id'])) {
+            Cache::forever('societie_id', $_GET['societie_id']);
+            CRUD::addField([
+                'name' => 'societie_id',
+                'type' => 'hidden',
+                'value' => Cache::get('societie_id'),
+            ]);
+        } else {
+            CRUD::field('societie_id');
+            Cache::forget('societie_id');
+        }
+
+
+
+        CRUD::field('day');
+        CRUD::field('from');
+        CRUD::field('until');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
@@ -83,10 +108,6 @@ class DemiCategorieCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        CRUD::field('name');
-        CRUD::field('categorie_id')->type('select')
-            ->label('Categorie')
-            ->entity('categorie');
         $this->setupCreateOperation();
     }
 }

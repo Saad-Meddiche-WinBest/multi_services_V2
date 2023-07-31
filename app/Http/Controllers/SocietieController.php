@@ -22,13 +22,13 @@ class SocietieController extends Controller
     {
         // session()->forget('user');
         $rating = Societie::getRatingOfSocitie($societie->id);
-        
+
         $reviews = $societie->load('tags', 'cities', 'Categorie', 'services')->reviews()->paginate(3);
 
         // Get the review of user if he is signed in with google account
-        $user = session('user');
+        $user = session('user') ?? null;
 
-        $reviewOfLoggedUser = Review::GetReviewOFUserInThisSocieite($user['sub_googleUser'], $societie->id);
+        $reviewOfLoggedUser = $user ? Review::GetReviewOFUserInThisSocieite($user['sub_googleUser'], $societie->id) : null;
 
         return view('societies.show', compact('societie', 'reviews', 'reviewOfLoggedUser', 'rating'));
     }
