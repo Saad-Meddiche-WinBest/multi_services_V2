@@ -191,14 +191,14 @@
                     {{-- Tous les commentaire --}}
                     <div class="description-details" id="pagination-items">
                         <div class="description-title">
-                            <h1>Item Reviews - 1</h1>
+                            <h1>Reviews</h1>
                         </div>
                         <div class="description-content">
                             @if (isset($reviews))
                                 @foreach ($reviews as $review)
                                     <div class="commentaire-section">
                                         <div class="agent-photo">
-                                            <img src="{{ $societie->image }}" class="author-avater-img" width="60"
+                                            <img src="{{ $review->image }}" class="author-avater-img" width="60"
                                                 height="60" alt="img">
                                         </div>
                                         <div class="comment">
@@ -208,7 +208,7 @@
                                                 </div>
                                                 <div class="day-comment">
                                                     <i class="fa fa-calendar"
-                                                        style="color:#ff9500"></i><span>{{ $review->created_at }}</span>
+                                                        style="color:#ff9500;padding-right:5px;"></i><span>{{ $review->created_at }}</span>
                                                 </div>
                                             </div>
                                             <div class="star-rating" data-rating="5">
@@ -242,9 +242,9 @@
                         @if ($reviewOfLoggedUser)
                             <div class="description-details">
                                 <div class="description-title">
-                                    <h1>Review</h1>
+                                    <h1>    Review</h1>
                                 </div>
-                                <div class="description-content">
+                                <div class="description-content" id="forms">
                                     <form method="POST" action="{{ route('review.update', $review->id) }}">
                                         @csrf
                                         @method('put')
@@ -285,7 +285,7 @@
                                             <span>{{ array_sum([$reviews->location_rating, $reviews->price_rating, $reviews->service_rating, $reviews->quality_rating]) / 4 }}</span>
                                             <span>Average Rating</span>
                                         </div>
-                                    </div> --}}
+                                        </div> --}}
                                         </div>
 
                                         <div class="form-group">
@@ -295,18 +295,19 @@
                                         </div>
 
                                         <button type="submit" class="btn btn-primary">Update</button>
+                                        
                                     </form>
-
+                                    <form action="{{ route('review.destroy', $reviewOfLoggedUser->id) }}" style="padding-top:20px" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <input type="hidden" name="societie_id" value="{{ $societie->id }}">
+        
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
                                 </div>
                             </div>
 
-                            <form action="{{ route('review.destroy', $reviewOfLoggedUser->id) }}" method="post">
-                                @csrf
-                                @method('delete')
-                                <input type="hidden" name="societie_id" value="{{ $societie->id }}">
-
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
+                           
                         @else
                             <div class="description-details">
                                 <div class="description-title">
@@ -368,8 +369,16 @@
                             </div>
                         @endif
                     @else
-                        You Need To Sign in to make a commantaire
-                        <a href="{{ route('login') }}" class="btn btn-google">Sign in with Google</a>
+                        <div class="google">
+                            <span>
+                                You Need To Sign in to make a commantaire
+                            </span>
+                            <div class="google-sign-up">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 488 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ca0216}</style><path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"/></svg>
+                                <a href="{{ route('login') }}" class="btn btn-google">Sign in with Google</a>
+                            </div>
+                        </div>
+                        
                     @endif
 
                 </div>
@@ -387,28 +396,36 @@
                                     <h4>
                                         <a href="{{ $societie->id }}">{{ $societie->title }}</a>
                                     </h4>
-                                    <span>
-                                        <i class="ti-view-grid"></i>
-                                        7 Listings
-                                    </span>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
                             <div id="listing-equiry-form">
-                                <form action="#" method="post">
+                                <form action="{{route('mail',['societie' => $societie->id])}}" method="post">
+                                    @csrf
+                                    @if(Session::has('error'))
+                                        <div class="alert alert-danger">
+                                            {{Session::get('error')}}
+                                        </div>
+                                    @endif
+                                    
+                                    @if(Session::has('success'))
+                                        <div class="alert alert-success">
+                                            {{Session::get('success')}}
+                                        </div>
+                                    @endif
                                     <div class="form-group">
-                                        <input type="hidden" name="created_for" class="form-control" value="3">
+                                        <input type="hidden" name="created_for" class="form-control" value="{{$societie->email}}">
                                     </div>
                                     <div class="form-group">
                                         <input type="text" name="name" required="" class="form-control"
-                                            placeholder="Your Name">
+                                            placeholder="Your Name" value="{{old('name')}}"> 
                                     </div>
                                     <div class="form-group">
                                         <input type="email" name="email" required="" class="form-control"
-                                            placeholder="Your Email">
+                                            placeholder="Your Email" value="{{old('email')}}">
                                     </div>
                                     <div class="form-group">
-                                        <textarea class="form-control" required="" name="message" placeholder="Send Message to author..."></textarea>
+                                        <textarea class="form-control" required="" name="message" placeholder="Send Message to author..." value="{{old('message')}}"></textarea>
                                     </div>
                                     <div id="message">
                                     </div>
@@ -476,7 +493,7 @@
                                 </li>
                                 <li>
                                     <div class="icon-box-icon-block">
-                                        <a href="mailto:noreply@smartdatasoft.com">
+                                        <a href="mailto:{{$societie->email}}">
                                             <div class="icon-box-round">
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em"
                                                     viewBox="0 0 512 512">
@@ -492,7 +509,7 @@
                                 </li>
                                 <li>
                                     <div class="icon-box-icon-block">
-                                        <a href="http://www.smartdatasoft.com">
+                                        <a href="{{$societie->web_link}}">
                                             <div class="icon-box-round">
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em"
                                                     viewBox="0 0 512 512">
@@ -506,7 +523,7 @@
                                                 </svg>
                                             </div>
                                             <div class="icon-box-text">
-                                                www.smartdatasoft.com
+                                                {{$societie->web_link}}
                                             </div>
                                         </a>
                                     </div>
@@ -553,7 +570,7 @@
                                     @foreach ($societie->tags as $tag)
                                         <li>
                                             <div class="icon-box-icon-block">
-                                                <a href="https://smartdemowp.com/reveal/rlisting_tags/avenue/">
+                                                <div>
                                                     <div class="icon-box-round">
                                                         <svg xmlns="http://www.w3.org/2000/svg" height="1em"
                                                             viewBox="0 0 448 512">
@@ -564,7 +581,7 @@
                                                     <div class="icon-box-text">
                                                         {{ $tag->name }}
                                                     </div>
-                                                </a>
+                                                </div>
                                             </div>
                                         </li>
                                     @endforeach

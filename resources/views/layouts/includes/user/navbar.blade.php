@@ -31,7 +31,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" style="color:white;text-decoration:underline;" href="{{ route('societies.index') }}">{{ __('Toutes les catégories') }}</a>
+                    <a class="nav-link" style="color:white;text-decoration:underline;" href="{{ route('societies.index') }}">{{ __('Toutes les sociétés') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="color:white;text-decoration:underline;" href="{{ route('societies.index') }}">{{ __('A propos') }}</a>

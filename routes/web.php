@@ -3,9 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SocietieController;
 use App\Http\Controllers\Admin\ScheduleCrudController;
+use App\Mail\emailMailable;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -69,4 +73,10 @@ Route::get('/test', [AuthController::class, 'loginCallback']);
 
 
 
+/*
+|--------------------------------------------------------------------------
+| Mail
+|--------------------------------------------------------------------------
+*/
+Route::post('/mail/{societie}',[MailController::class,'sendMail'])->name("mail");
 

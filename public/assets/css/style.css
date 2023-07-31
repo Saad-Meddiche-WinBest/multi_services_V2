@@ -1086,13 +1086,16 @@ from {
 }
 
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 991px) {
   .wrapper .carousel {
     grid-auto-columns: calc((100% / 2) - 50px);
   }
   .premium-header-button{
     display: flex;
     
+  }
+  .show-section .container .details-section{
+    display: block;
   }
 }
 @media screen and (max-width: 1115px) {
@@ -1347,6 +1350,7 @@ footer .container ul{
 .show-section{
   padding:20px;
   background-color: #f7f9fc;
+  width:100%;
 }
 .details-section{
   display: flex;
@@ -1358,6 +1362,7 @@ footer .container ul{
 }
 .right-details{
   width:70%;
+  padding:0 !important;
 }
 .right-details .description-details,
 .left-details .description-details{
@@ -1561,8 +1566,7 @@ footer .container ul{
   width: 100%;
 }
 /* PARTIE MOBILE SHOW PAGE */
-
-@media (max-width: 767px){
+@media ((max-width: 767px)){
   .rating-bars-item {
     width: calc(50% - 30px);
   }
@@ -1588,6 +1592,7 @@ footer .container ul{
    .show-section{
     margin:0 !important;
     padding: 0 !important;
+    width:100%;
    }
    .show-section .container .details-section .left-details{
     margin: 0;
@@ -1833,6 +1838,10 @@ footer .container ul{
   font-size: 1em;
   font-weight: 500;
 }
+
+.icon-box-text:hover {
+  color:#ffae00;
+}
 .description-title-extra{
   border-bottom: 1px solid rgb(178, 175, 175);
 }
@@ -1883,6 +1892,39 @@ footer .container ul{
   display: flex;
   flex-wrap: wrap;
 }
+/* GOOGLE SIGN IN */
+.google{
+  width:100%;
+  height: auto;
+  padding:20px;
+  background-color: white;
+  display: block;
+  text-align: center;
+}
+.google span{
+  font-weight: 600;
+}
+.google-sign-up{
+  margin:10px;
+  box-shadow: 2px 2px 2px gray;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width:50%;
+}
+.google-sign-up svg{
+  padding-top: 12px;
+  padding-left: 12px;
+  font-size: 1.8em;
+}
+.google-sign-up a{
+  font-size: 1.2em;
+  font-weight: 700;
+}
+.google-sign-up a:hover{
+  color:red;
+}
 /* _________________________________
 ######### PARTIE MOBILE ############
 ````````````````````````````````````
@@ -1896,28 +1938,20 @@ footer .container ul{
 
 }
 
-@media((max-width: 991px)) {
-  .gray .container .row {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100% !important;
-    margin: 0 auto !important;
+@media((max-width:991)){
+  .details-section{
+    display: block;
   }
-
-  .gray .container .row .col-lg-4 {
-    width: 50%;
-  }
-
 }
 
 @media((max-width: 767px)) {
-  .gray .container .row {
-    display: block;
-    width: 100% !important;
-  }
+    .gray .container .row {
+      display: block;
+      width: 100% !important;
+    }
 
-  .gray .container .row .col-lg-4 {
-    width: 100%;
-  }
+    .gray .container .row .col-lg-4 {
+      width: 100%;
+    }
 
-}
+  }
