@@ -105,6 +105,11 @@ class Societie extends Model
         return $this->hasMany(Schedule::class);
     }
 
+    public function premiums()
+    {
+        return $this->hasMany(Premium::class);
+    }
+
 
 
     /*

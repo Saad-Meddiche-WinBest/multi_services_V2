@@ -15,7 +15,14 @@ class SocietieController extends Controller
 {
     public function index(Request $request)
     {
-        $societies = Societie::with(['tags', 'cities', 'Categorie', 'services'])->get();
+        // $societies = Societie::with(['tags', 'cities', 'Categorie', 'services'])->get();
+
+        // return response()->json(['societies' => $societies]);
+
+        $societies = Societie::with(['tags', 'cities', 'categorie', 'services'])
+            ->leftJoin('premiums', 'societies.id', '=', 'premiums.societie_id')
+            ->orderBy('premiums.id', 'DESC')
+            ->get();
 
         return response()->json(['societies' => $societies]);
     }
