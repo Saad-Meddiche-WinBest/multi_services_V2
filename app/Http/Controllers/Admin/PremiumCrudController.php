@@ -115,16 +115,7 @@ class PremiumCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        CRUD::field('plan_id')->type('select')
-            ->label('Plan')
-            ->entity('plan');
-
-        CRUD::field('societie_id')->type('select')
-            ->label('Societie')
-            ->entity('societie');
-
-        CRUD::field('consumed_at')->type('date');
-        CRUD::field('expire_at')->type('hidden');
+        $this->setupCreateOperation();
     }
 
     protected function store(PremiumRequest $request)

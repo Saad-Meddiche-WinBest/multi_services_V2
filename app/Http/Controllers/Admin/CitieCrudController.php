@@ -14,8 +14,12 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 class CitieCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation {
+        store as traitStore;
+    }
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation {
+        update as traitUpdate;
+    }
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
@@ -103,11 +107,6 @@ class CitieCrudController extends CrudController
         ]);
 
 
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
     }
 
     /**
@@ -118,12 +117,16 @@ class CitieCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        CRUD::field('name');
-        CRUD::field([   // Upload
-            'name'      => 'image',
-            'label'     => 'Image',
-            'type'      => 'upload',
-            'withFiles' => true
-        ]);
+        $this->setupCreateOperation();
+    }
+
+    protected function store(CitieRequest $request)
+    {
+        return $this->traitStore();
+    }
+
+    protected function update(CitieRequest $request)
+    {
+        return $this->traitUpdate();
     }
 }

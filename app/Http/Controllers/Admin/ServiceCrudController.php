@@ -84,14 +84,7 @@ class ServiceCrudController extends CrudController
 
     protected function setupUpdateOperation()
     {
-        CRUD::field('name');
-        CRUD::field('description')->type('summernote');
-        CRUD::field([   // Upload
-            'name'      => 'image',
-            'label'     => 'Image',
-            'type'      => 'upload',
-            'withFiles' => true
-        ]);
+        $this->setupCreateOperation();
     }
 
     protected function store(ServiceRequest $request)

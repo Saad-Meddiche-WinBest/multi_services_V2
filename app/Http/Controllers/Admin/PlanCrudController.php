@@ -72,16 +72,7 @@ class PlanCrudController extends CrudController
 
     protected function setupUpdateOperation()
     {
-        CRUD::field('name');
-        CRUD::field([
-            'name'      => 'image',
-            'label'     => 'Image',
-            'type'      => 'upload',
-            'withFiles' => true
-        ]);
-        CRUD::field('description')->type('summernote');
-        CRUD::field('price');
-        CRUD::field('periode');
+        $this->setupCreateOperation();
     }
     protected function store(PlanRequest $request)
     {
