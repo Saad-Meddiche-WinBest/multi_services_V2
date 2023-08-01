@@ -14,8 +14,12 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 class PlanCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation {
+        store as traitStore;
+    }
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation {
+        update as traitUpdate;
+    }
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
@@ -47,7 +51,7 @@ class PlanCrudController extends CrudController
                 return $imageUrl;
             })
             ->sanitize(false);
-        CRUD::column('description');
+        CRUD::column('description')->type('summernote');
         CRUD::column('price')->suffix(' dh');
         CRUD::column('periode')->suffix(' month');;
     }
@@ -55,13 +59,13 @@ class PlanCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::field('name');
-        CRUD::field([ 
+        CRUD::field([
             'name'      => 'image',
             'label'     => 'Image',
             'type'      => 'upload',
             'withFiles' => true
         ]);
-        CRUD::field('description');
+        CRUD::field('description')->type('summernote');
         CRUD::field('price');
         CRUD::field('periode');
     }
@@ -69,9 +73,23 @@ class PlanCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         CRUD::field('name');
-        CRUD::field('image');
-        CRUD::field('description');
+        CRUD::field([
+            'name'      => 'image',
+            'label'     => 'Image',
+            'type'      => 'upload',
+            'withFiles' => true
+        ]);
+        CRUD::field('description')->type('summernote');
         CRUD::field('price');
         CRUD::field('periode');
+    }
+    protected function store(PlanRequest $request)
+    {
+        return $this->traitStore();
+    }
+
+    protected function update(PlanRequest $request)
+    {
+        return $this->traitUpdate();
     }
 }
