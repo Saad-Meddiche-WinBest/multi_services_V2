@@ -1474,6 +1474,12 @@ footer .container ul{
   font-family: 'Times New Roman', Times, serif;
   font-weight: 600;
 }
+.days-schedule .description-title{
+  display: flex;
+  justify-content: space-between;
+  padding:10px;
+}
+
 /*RATING SECTION*/
 .rating-overview {
   display: flex;

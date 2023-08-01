@@ -445,17 +445,38 @@
                         <div class="time-horaire">
                             <div class="description-title">
                                 <div class="description-title-left">
-                                    <i class="fa fa-clock" style="color:#17bd62;padding:5px;"></i><span><b>Day</b></span>
-                                    <div class="society-status">
-                                        <span>open</span>
-                                    </div>
-                                    <span><b>Country</b></span>
+                                    <i class="fa fa-clock" style="color:#17bd62;padding:5px;"></i><span><b>SCHEDULE</b></span>
                                 </div>
                                 <div class="description-title-right">
                                     <span>horaire</span>
                                 </div>
                             </div>
                         </div>
+                        @foreach($societie->schedules as $schedule)
+                        <div class="days-schedule">
+                            <div class="description-title">
+                                <div class="description-title-left">
+                                    @if($schedule->from === null)
+                                        <div class="society-status" style="border:1px solid #df1010;">
+                                            <span style="color:#df1010"><b>{{$schedule->day->day}}</b></span>
+                                        </div>
+                                        </div>
+                                        <div class="description-title-right">
+                                            <span style="color:#df1010">Closed</span>
+                                        </div>
+                                    @else
+                                        <div class="society-status">
+                                            <span><b>{{$schedule->day->day}}</b></span>
+                                        </div>
+                                        </div>
+                                        <div class="description-title-right">
+                                            <span>{{$schedule->from}} | {{$schedule->until}}</span>
+                                        </div>
+                                    @endif
+                                
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
                     {{-- Extra Info --}}
                     <div class="description-details">
