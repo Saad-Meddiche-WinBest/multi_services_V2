@@ -27,8 +27,7 @@ class CheckIfAdmin
      */
     private function checkIfUserIsAdmin($user)
     {
-        // return ($user->hasRole('admin'));
-        return true;
+        return $user->hasAnyRole('Super Admin', 'Admin');
     }
 
     /**
@@ -60,7 +59,7 @@ class CheckIfAdmin
         }
 
         if (!$this->checkIfUserIsAdmin(backpack_user())) {
-            return $this->respondToUnauthorizedRequest($request);
+            return abort(403, 'You Do Not Have permission || Ask Your Manager For Access');
         }
 
         return $next($request);
