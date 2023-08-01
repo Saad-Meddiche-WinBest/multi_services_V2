@@ -14,8 +14,12 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 class RoleCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation {
+        store as traitStore;
+    }
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation {
+        update as traitUpdate;
+    }
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
@@ -81,10 +85,16 @@ class RoleCrudController extends CrudController
 
     protected function setupUpdateOperation()
     {
-        $this->crud->addField([
-            'name'  => 'name',
-            'label' => 'Name',
-            'type'  => 'text',
-        ]);
+        $this->setupCreateOperation();
+    }
+
+    protected function store(RoleRequest $request)
+    {
+        return $this->traitStore();
+    }
+
+    protected function update(RoleRequest $request)
+    {
+        return $this->traitUpdate();
     }
 }
