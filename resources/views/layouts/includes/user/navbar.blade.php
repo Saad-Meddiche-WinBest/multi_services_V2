@@ -22,7 +22,7 @@
                 <!-- Authentication Links -->
                 <li class="nav-item">
                     <button class="btn-devis">
-                        <a class="nav-link" style="color:black;padding:0 5px" href="{{ route('home') }}">
+                        <a class="nav-link" style="color:black;padding:0 5px" href="{{ route('contact') }}">
                             
                             <img src="{{asset('assets/images/new_icon.png')}}" style="position: relative;left: 0;z-index: 999;width: 40px;height: fit-content;bottom: 1px;" />
                             {{-- <i class="fa fa-bullhorn"></i> --}}
