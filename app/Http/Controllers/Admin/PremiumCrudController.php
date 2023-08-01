@@ -127,7 +127,7 @@ class PremiumCrudController extends CrudController
         CRUD::field('expire_at')->type('hidden');
     }
 
-    protected function store(Request $request)
+    protected function store(PremiumRequest $request)
     {
 
         $planId = $request->input('plan_id');
@@ -142,7 +142,7 @@ class PremiumCrudController extends CrudController
         return $this->traitStore();
     }
 
-    protected function update(Request $request)
+    protected function update(PremiumRequest $request)
     {
 
         $planId = $request->input('plan_id');
