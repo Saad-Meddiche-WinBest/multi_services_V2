@@ -419,9 +419,11 @@
                                             {{Session::get('success')}}
                                         </div>
                                     @endif
-                                    <div class="form-group">
-                                        <input type="hidden" name="created_for" class="form-control" value="{{$societie->email}}">
-                                    </div>
+                                    @php
+                                        $mail = Cache::put('emailOfReception',$societie->email);
+                                        
+                                    @endphp
+                                  
                                     <div class="form-group">
                                         <input type="text" name="name" required="" class="form-control"
                                             placeholder="Your Name" value="{{old('name')}}"> 

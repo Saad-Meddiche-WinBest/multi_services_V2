@@ -7,6 +7,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SocietieController;
 use App\Http\Controllers\Admin\ScheduleCrudController;
+use App\Http\Controllers\ContactController;
 use App\Mail\emailMailable;
 
 
@@ -80,3 +81,11 @@ Route::get('/test', [AuthController::class, 'loginCallback']);
 */
 Route::post('/mail/{societie}',[MailController::class,'sendMail'])->name("mail");
 
+/*
+|--------------------------------------------------------------------------
+| Contact
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/contact',[ContactController::class,'index'])->name("contact");
+Route::post('/contact',[MailController::class,'sendMail'])->name("sendMail");
