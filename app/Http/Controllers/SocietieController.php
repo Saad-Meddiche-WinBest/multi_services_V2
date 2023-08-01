@@ -64,4 +64,11 @@ class SocietieController extends Controller
 
         return response()->json(['societies' => $societies]);
     }
+
+    public function getPremiumSocieties()
+    {
+        $societies = Societie::fetchPremiumSocieties();
+        $societies->load('tags', 'cities', 'Categorie', 'services');
+        return response()->json(['societies' => $societies]);
+    }
 }

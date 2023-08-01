@@ -19,6 +19,7 @@ Vue.component('societie-list', {
         axios.get(this.get_url())
           .then(response => {
             this.societies = response.data.societies;
+            console.log(this.societies)
 
           })
           .catch(error => {

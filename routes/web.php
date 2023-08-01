@@ -50,6 +50,11 @@ Route::get('/societies/byCategory/{categorie}', function () {
     return view('societies.index');
 })->name('societiesByCategory.index');
 
+Route::get('/societies/premiums', function () {
+
+    return view('societies.index');
+})->name('societiesPremiums.index');
+
 Route::get('/societie/{societie}/show', [SocietieController::class, 'show'])->name('societie.show');
 
 /*
@@ -78,5 +83,4 @@ Route::get('/test', [AuthController::class, 'loginCallback']);
 | Mail
 |--------------------------------------------------------------------------
 */
-Route::post('/mail/{societie}',[MailController::class,'sendMail'])->name("mail");
-
+Route::post('/mail/{societie}', [MailController::class, 'sendMail'])->name("mail");
