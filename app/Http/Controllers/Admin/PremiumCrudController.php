@@ -37,6 +37,11 @@ class PremiumCrudController extends CrudController
         CRUD::setModel(\App\Models\Premium::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/premium');
         CRUD::setEntityNameStrings('premium', 'premia');
+
+        $user = backpack_user();
+        if (!$user->hasRole('Super Admin')) {
+            $this->crud->denyAccess('delete');
+        }
     }
 
     /**

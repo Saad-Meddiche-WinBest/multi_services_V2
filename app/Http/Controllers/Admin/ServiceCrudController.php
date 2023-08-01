@@ -28,6 +28,11 @@ class ServiceCrudController extends CrudController
         CRUD::setModel(\App\Models\Service::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/service');
         CRUD::setEntityNameStrings('service', 'services');
+
+        $user = backpack_user();
+        if (!$user->hasRole('Super Admin')) {
+            $this->crud->denyAccess('delete');
+        }
     }
 
     protected function setupListOperation()

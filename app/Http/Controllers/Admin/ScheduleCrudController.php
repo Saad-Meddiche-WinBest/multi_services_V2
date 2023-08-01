@@ -37,6 +37,11 @@ class ScheduleCrudController extends CrudController
         CRUD::setModel(\App\Models\Schedule::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/schedule');
         CRUD::setEntityNameStrings('schedule', 'schedules');
+
+        $user = backpack_user();
+        if (!$user->hasRole('Super Admin')) {
+            $this->crud->denyAccess('delete');
+        }
     }
 
     /**
