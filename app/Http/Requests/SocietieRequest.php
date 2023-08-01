@@ -22,7 +22,7 @@ class SocietieRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'title' => 'required|max:255',
+            'title' => 'required|max:255|unique:societies,title',
             'ice' => 'required|numeric|unique:societies,ice',
             'adress' => 'required|max:255',
             'description' => 'required',
@@ -45,6 +45,7 @@ class SocietieRequest extends FormRequest
 
         if ($this->method() === 'PUT' || $this->method() === 'PATCH') {
             $id = $this->route('id');
+            $rules['title'] .= ',' . $id;
             $rules['ice'] .= ',' . $id;
             $rules['telephone'] .= ',' . $id;
             $rules['fax'] .= ',' . $id;

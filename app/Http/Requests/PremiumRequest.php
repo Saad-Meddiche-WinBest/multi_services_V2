@@ -22,7 +22,7 @@ class PremiumRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'plan_id' => 'required|exists:plans,id',
+            'plan_id' => 'required|exists:premiums,id',
             'societie_id' => 'required|exists:societies,id',
             'consumed_at' => 'required|date',
         ];

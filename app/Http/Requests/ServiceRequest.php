@@ -24,7 +24,7 @@ class ServiceRequest extends FormRequest
         $rules = [
             'description' => 'required',
             'image' => 'sometimes|image',
-            'name' => 'required|unique:tags,name', 
+            'name' => 'required|unique:services,name', 
         ];
 
         if ($this->method() === 'PUT' || $this->method() === 'PATCH') {
