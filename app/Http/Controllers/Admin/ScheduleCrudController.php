@@ -18,8 +18,12 @@ class ScheduleCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation {
         index as traitList;
     }
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation {
+        store as traitStore;
+    }
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation {
+        update as traitUpdate;
+    }
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
@@ -89,15 +93,9 @@ class ScheduleCrudController extends CrudController
 
 
 
-        CRUD::field('day');
+        CRUD::field('day_id');
         CRUD::field('from');
         CRUD::field('until');
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
     }
 
     /**
@@ -109,5 +107,15 @@ class ScheduleCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    protected function store(ScheduleRequest $request)
+    {
+        return $this->traitStore();
+    }
+
+    protected function update(ScheduleRequest $request)
+    {
+        return $this->traitUpdate();
     }
 }

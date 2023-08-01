@@ -61,15 +61,15 @@ class PremiumCrudController extends CrudController
                 $today = now()->format('Y-m-d');
 
                 if ($entry->expire_at > $today) {
-                    return 'badge bg-success'; 
+                    return 'badge bg-success';
                 }
 
                 if ($entry->expire_at == $today) {
-                    return 'badge bg-warning'; 
+                    return 'badge bg-warning';
                 }
 
                 if ($entry->expire_at < $today) {
-                    return 'badge bg-danger'; 
+                    return 'badge bg-danger';
                 }
             }
         ]);

@@ -14,8 +14,12 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 class TagCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation {
+        store as traitStore;
+    }
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation {
+        update as traitUpdate;
+    }
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
@@ -47,22 +51,14 @@ class TagCrudController extends CrudController
         CRUD::column('name');
         CRUD::column('created_at');
         CRUD::column('updated_at');
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
     }
 
     protected function setupShowOperation()
     {
-        // Displaying an image column
 
         CRUD::column('name');
         CRUD::column('societies');
         CRUD::column('created_at');
-
         CRUD::column('updated_at');
     }
 
@@ -75,12 +71,6 @@ class TagCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::field('name');
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
     }
 
     /**
@@ -92,5 +82,15 @@ class TagCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    protected function store(TagRequest $request)
+    {
+        return $this->traitStore();
+    }
+
+    protected function update(TagRequest $request)
+    {
+        return $this->traitUpdate();
     }
 }
