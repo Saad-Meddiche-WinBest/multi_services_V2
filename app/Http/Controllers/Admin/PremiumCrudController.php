@@ -123,7 +123,7 @@ class PremiumCrudController extends CrudController
         $this->setupCreateOperation();
     }
 
-    protected function store(PremiumRequest $request)
+    protected function store(Request $request)
     {
 
         $planId = $request->input('plan_id');
@@ -133,22 +133,37 @@ class PremiumCrudController extends CrudController
 
         $periodInMonths = $plan->periode;
         $expireAt = Carbon::parse($consumedAt)->addMonths($periodInMonths);
-        $request['expire_at'] = $expireAt;
+
+
+        $request->validate([
+            'plan_id' => 'required|exists:plans,id',
+            'societie_id' => 'required|exists:societies,id',
+            'consumed_at' => 'required|date',
+        ]);
+
+        $request->merge(['expire_at' => $expireAt->format('Y-m-d')]);
+
 
         return $this->traitStore();
     }
 
-    protected function update(PremiumRequest $request)
+    protected function update(Request $request)
     {
 
         $planId = $request->input('plan_id');
         $consumedAt = $request->input('consumed_at');
-
         $plan = Plan::find($planId);
 
         $periodInMonths = $plan->periode;
         $expireAt = Carbon::parse($consumedAt)->addMonths($periodInMonths);
-        $request['expire_at'] = $expireAt;
+
+        $request->validate([
+            'plan_id' => 'required|exists:plans,id',
+            'societie_id' => 'required|exists:societies,id',
+            'consumed_at' => 'required|date',
+        ]);
+
+        $request->merge(['expire_at' => $expireAt->format('Y-m-d')]);
 
         return $this->traitUpdate();
     }

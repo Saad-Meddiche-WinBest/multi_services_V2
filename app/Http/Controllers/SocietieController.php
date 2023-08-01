@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\emailMailable;
-use App\Models\Categorie;
 use App\Models\Citie;
-use App\Models\Premium;
 use App\Models\Review;
+use App\Models\Premium;
 use App\Models\Societie;
+use App\Models\Categorie;
+use App\Mail\emailMailable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class SocietieController extends Controller
@@ -18,8 +19,19 @@ class SocietieController extends Controller
 
         $societies = Societie::with(['tags', 'cities', 'categorie', 'services'])
             ->leftJoin('premiums', 'societies.id', '=', 'premiums.societie_id')
+            ->where(function ($query) {
+                $query->whereNull('premiums.expire_at')
+                    ->orWhere('premiums.expire_at', '>=', DB::raw('CURDATE()'));
+            })
             ->orderBy('premiums.id', 'DESC')
             ->get();
+
+
+        // $today = now()->format('Y-m-d');
+
+        // $societies = array_filter($societies, function ($societie) use ($today) {
+        //     return $societie['expire_at'] >= $today;
+        // });
 
         return response()->json(['societies' => $societies]);
     }

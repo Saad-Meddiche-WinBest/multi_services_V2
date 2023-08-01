@@ -23,7 +23,7 @@ class PlanRequest extends FormRequest
     {
         $rules = [
             'name' => 'required|string|max:255|unique:plans,name',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif',
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
             'periode' => 'required|string',
