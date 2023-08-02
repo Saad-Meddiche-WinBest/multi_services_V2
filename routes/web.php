@@ -9,8 +9,7 @@ use App\Http\Controllers\SocietieController;
 use App\Http\Controllers\Admin\ScheduleCrudController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PlanController;
-
-
+use App\Models\Societie;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +36,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 |--------------------------------------------------------------------------
 */
 Route::get('/societies', function () {
-
+  
     return view('societies.index');
 })->name('societies.index');
 
@@ -85,7 +84,7 @@ Route::get('/test', [AuthController::class, 'loginCallback']);
 |--------------------------------------------------------------------------
 */
 
-Route::post('/mail/{societie}',[MailController::class,'sendMail'])->name("mail");
+Route::post('/mail/{societie}', [MailController::class, 'sendMail'])->name("mail");
 
 /*
 |--------------------------------------------------------------------------
@@ -93,16 +92,15 @@ Route::post('/mail/{societie}',[MailController::class,'sendMail'])->name("mail")
 |--------------------------------------------------------------------------
 */
 
-Route::get('/contact',[ContactController::class,'index'])->name("contact");
-Route::post('/contact',[MailController::class,'sendMail'])->name("sendMail");
+Route::get('/contact', [ContactController::class, 'index'])->name("contact");
+Route::post('/contact', [MailController::class, 'sendMail'])->name("sendMail");
 
 /*
 |--------------------------------------------------------------------------
 | Plans
 |--------------------------------------------------------------------------
 */
-Route::get('/plans',[PlanController::class,'index'])->name("plan");
+Route::get('/plans', [PlanController::class, 'index'])->name("plan");
 
-Route::get('/plans/contact/{plan}',[PlanController::class,'contact'])->name("plan.contact");
-Route::post('/plans/contact/{plan}',[MailController::class,'sendMail'])->name("plan.contact");
-
+Route::get('/plans/contact/{plan}', [PlanController::class, 'contact'])->name("plan.contact");
+Route::post('/plans/contact/{plan}', [MailController::class, 'sendMail'])->name("plan.contact");

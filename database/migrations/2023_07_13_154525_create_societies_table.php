@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('telephone');
             $table->string('fax')->nullable();
-            $table->string('web_link');
+            $table->string('web_link')->nullable();
             $table->unsignedBigInteger('categorie_id')->nullable();
             $table->timestamps();
 

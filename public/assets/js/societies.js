@@ -19,7 +19,7 @@ Vue.component('societie-list', {
         axios.get(this.get_url())
           .then(response => {
             this.societies = response.data.societies;
-            // console.log(this.societies)
+            console.log(this.societies)
 
           })
           .catch(error => {
@@ -54,22 +54,23 @@ Vue.component('societie-list', {
           const searchValue = this.looking_for.toLowerCase() || this.hidden_search.toLowerCase();
         
           const matches = [
-            item.title.toLowerCase().includes(searchValue),
-            item.telephone.toLowerCase().includes(searchValue),
-            item.ice.toLowerCase().includes(searchValue),
-            item.adress.toLowerCase().includes(searchValue),
-            item.cities.some(city => city.name.toLowerCase().includes(searchValue)),
-            item.services.some(service => service.name.toLowerCase().includes(searchValue)),
-            item.tags.some(tag => tag.name.toLowerCase().includes(searchValue)),
-            item.web_link.toLowerCase().includes(searchValue),
-            item.description.toLowerCase().includes(searchValue),
-            item.facebook.toLowerCase().includes(searchValue),
-            item.twitter.toLowerCase().includes(searchValue),
-            item.instagram.toLowerCase().includes(searchValue),
-            item.linkdin.toLowerCase().includes(searchValue),
-            item.email.toLowerCase().includes(searchValue),
-            item.coordinations.toLowerCase().includes(searchValue),
-            item.video.toLowerCase().includes(searchValue),
+            item.title?.toLowerCase().includes(searchValue),
+            item.telephone?.toLowerCase().includes(searchValue),
+            item.ice?.toLowerCase().includes(searchValue),
+            item.adress?.toLowerCase().includes(searchValue),
+            item.cities?.some(city => city.name.toLowerCase().includes(searchValue)),
+            item.services?.some(service => service.name.toLowerCase().includes(searchValue)),
+            item.tags?.some(tag => tag.name.toLowerCase().includes(searchValue)),
+            item.web_link?.toLowerCase().includes(searchValue),
+            item.description?.toLowerCase().includes(searchValue),
+            item.facebook?.toLowerCase().includes(searchValue),
+            item.twitter?.toLowerCase().includes(searchValue),
+            item.instagram?.toLowerCase().includes(searchValue),
+            item.linkdin?.toLowerCase().includes(searchValue),
+            item.email?.toLowerCase().includes(searchValue),
+            item.coordinations?.toLowerCase().includes(searchValue),
+            item.video?.toLowerCase().includes(searchValue),
+            
           ];
           
           if (item.fax != null) {

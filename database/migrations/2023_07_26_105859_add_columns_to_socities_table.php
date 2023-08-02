@@ -13,19 +13,19 @@ return new class extends Migration
     {
         Schema::table('societies', function (Blueprint $table) {
             /* Socials*/
-            $table->string('facebook');
-            $table->string('twitter');
-            $table->string('instagram');
-            $table->string('linkdin');
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('linkdin')->nullable();
 
             /* Email*/
             $table->string('email');
 
             /* Coordinations */
-            $table->string('coordinations', 5000);
+            $table->string('coordinations', 5000)->nullable();
 
             /* Video */
-            $table->string('video');
+            $table->string('video')->nullable();
         });
     }
 
