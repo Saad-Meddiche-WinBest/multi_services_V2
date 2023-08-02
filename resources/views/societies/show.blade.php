@@ -494,6 +494,7 @@
                 </div>
                 @endforeach
             </div>
+
             {{-- Extra Info --}}
             <div class="description-details">
                 <div class="description-title-extra">
@@ -542,7 +543,7 @@
                                         </svg>
                                     </div>
                                     <div class="icon-box-text">
-                                        noreply@smartdatasoft.com
+                                        {{ $societie->email }}
                                     </div>
                                 </a>
                             </div>
