@@ -142,7 +142,7 @@ class UserCrudController extends CrudController
         ]);
     }
 
-    public function store()
+    public function store(UserRequest $request)
     {
         $this->crud->setRequest($this->crud->validateRequest());
         $this->crud->setRequest($this->handlePasswordInput($this->crud->getRequest()));
@@ -151,7 +151,7 @@ class UserCrudController extends CrudController
         return $this->traitStore();
     }
 
-    public function update()
+    public function update(UserRequest $request)
     {
         $this->crud->setRequest($this->crud->validateRequest());
         $this->crud->setRequest($this->handlePasswordInput($this->crud->getRequest()));
