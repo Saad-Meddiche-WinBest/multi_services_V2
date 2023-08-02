@@ -26,6 +26,10 @@ class SocietieController extends Controller
             ->orderBy('premiums.id', 'DESC')
             ->get();
 
+        foreach ($societies as $societie) {
+            $societie->rating = Societie::getRatingOfSocitie($societie->id);
+        }
+
         return response()->json(['societies' => $societies]);
     }
 

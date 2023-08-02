@@ -115,7 +115,7 @@ Vue.component('societie-list', {
               <a href="#" class="listing-thumb">
                   <img decoding="async" v-if="societie.image" :src="societie.image" class="img-responsive" alt="">
               </a>
-              <span class="list-rate">3.8</span> 
+              <span class="list-rate">{{societie.rating.ratingOfSocietie == 0 ? 'No Reviews Yet' : societie.rating.ratingOfSocietie}}</span> 
           </div>
           <div class="society_content">
               <div class="proerty_text">
