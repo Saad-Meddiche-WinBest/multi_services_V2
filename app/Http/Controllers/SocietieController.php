@@ -52,12 +52,20 @@ class SocietieController extends Controller
     {
         $societies = $citie->societies->load('tags', 'cities', 'Categorie', 'services');
 
+        foreach ($societies as $societie) {
+            $societie->rating = Societie::getRatingOfSocitie($societie->id);
+        }
+
         return response()->json(['societies' => $societies]);
     }
 
-    public function fetchSocietiesByCategorie(Categorie $categorie)
+    public static function fetchSocietiesByCategorie(Categorie $categorie)
     {
         $societies = $categorie->societies->load('tags', 'cities', 'Categorie', 'services');
+
+        foreach ($societies as $societie) {
+            $societie->rating = Societie::getRatingOfSocitie($societie->id);
+        }
 
         return response()->json(['societies' => $societies]);
     }
@@ -66,6 +74,11 @@ class SocietieController extends Controller
     {
         $societies = Societie::fetchPremiumSocieties();
         $societies->load('tags', 'cities', 'Categorie', 'services');
+
+        foreach ($societies as $societie) {
+            $societie->rating = Societie::getRatingOfSocitie($societie->id);
+        }
+
         return response()->json(['societies' => $societies]);
     }
 }

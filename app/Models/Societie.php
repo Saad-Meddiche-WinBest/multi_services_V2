@@ -61,11 +61,10 @@ class Societie extends Model
         return $societies;
     }
 
-    static public function fetchPremiumSocieties()
+    static public function fetchPremiumSocieties($limit = null)
     {
         $idsSocieties = Premium::all()->pluck('societie_id');
-        $premiumSocieties = Societie::whereIn('id', $idsSocieties)->get();
-
+        $premiumSocieties = Societie::whereIn('id', $idsSocieties)->limit($limit)->get();
         return $premiumSocieties;
     }
 

@@ -119,10 +119,10 @@ Vue.component('societie-list', {
           </div>
           <div class="society_content">
               <div class="proerty_text">
-                  <h3 class="captlize"><a :href="'societie/'+societie.id+'/show'">{{societie.title}}</a>
+                  <h3 class="captlize"><a :href="'societie/'+societie.id+'/show'">{{limit_text(societie.title , 30)}}</a>
                   <span class="veryfied-author"></span> </h3>
               </div>
-              <p>{{limit_text(societie.description , 30)}}</p>
+              <p>{{limit_text(societie.description , 35)}}</p>
               <div class="property_detail">
                   <div class="property-list">
                       <div class="listing-card-info-icon">
