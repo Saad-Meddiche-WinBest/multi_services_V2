@@ -19,7 +19,7 @@
                       <li style="height:160px">{{$p->description}}</li>
                       <li>{{$p->periode}} /mo</li>
                   </ul>
-                  <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
+                  <a href="/plans/contact/{{$p->id}}"><button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button></a>
               </div>
           </div>
         @endforeach

@@ -11,49 +11,50 @@ use Illuminate\Support\Facades\Redirect;
 class MailController extends Controller
 {
     public function sendMail(Request $request){
+
         $request->validate([
             'name'=>'required',
             'email'=>'required|email',
+            'plan',
             'subject',
             'tel',
             'message'=>'required'
         ]);
-        $mails = Cache::get('emailOfReception');
-        //checking connection with internet
-        if($this->isOnline()){
-            $mail_data = [
-                'recepient'=>$mails,
-                'fromEmail'=>$request->email,
-                'fromNom'=>$request->name,
-                'body'=>$request->message,
-                'tel'=>$request->tel,
-                'subject'=>$request->subject
-            ];
-            Mail::send("mail.email-template",$mail_data,function($message) use($mail_data)
-            {   
-                if($mail_data["subject"] ||$mail_data["tel"]){
-                    $message->to($mail_data['recepient'])
-                    ->from($mail_data['fromEmail'],$mail_data['fromNom'],$mail_data['tel'])
-                    ->subject($mail_data["subject"]);
-                }else{
-                    $message->to($mail_data['recepient'])
-                    ->from($mail_data['fromEmail'],$mail_data['fromNom']);
-                }
-            });
-            return redirect()->back();
-        }else{
-            return redirect()->back()->with('error','Message Error');
-        }   
+
+        if(Cache::has('planSelectionner')) {
+            $plan = Cache::get('planSelectionner');
+        } 
+
+        Cache::forget('planSelectionner');
+        
+        //Checking if there is no connection
+        if(!$this->isOnline()) return redirect()->back()->with('error','Message Error');
+
+        $mail_data = [
+            'recepient'=>Cache::get('emailOfReception'),
+            'fromEmail'=>$request->email,
+            'fromNom'=>$request->name,
+            'plan'=> $plan->name ?? null,
+            'body'=>$request->message,
+            'tel'=>$request->tel,
+            'subject'=>$request->subject
+        ];
+
+        Mail::send("mail.email-template",$mail_data,function($message) use($mail_data)
+        {   
+            
+            $message->to($mail_data['recepient'])
+            ->from($mail_data['fromEmail'],$mail_data['fromNom'],$mail_data['tel'],$mail_data['plan']);
+
+            if($mail_data["subject"] )  $message->subject($mail_data["subject"]);
+            
+        });
+        return redirect()->back()->with('success','Message sent');
+      
     }
 
     public function isOnline($site ="https://youtube.com/")
     {
-        if(@fopen($site,'r'))
-        {
-            return 'true';
-        }
-        else{
-            return 'false';
-        }
+        return @fopen($site,'r') ? true : false;
     }
 }

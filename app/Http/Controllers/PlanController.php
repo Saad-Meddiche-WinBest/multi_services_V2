@@ -13,6 +13,6 @@ class PlanController extends Controller
     }
     public function contact($id){
         $plan = Plan::findOrFail($id);
-        return view('plan.contact',['plan'=>$plan->id]);
-    }
+        return view('plan.contact',['plan'=>$plan]);
+    } 
 }

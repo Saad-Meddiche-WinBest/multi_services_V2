@@ -17,7 +17,7 @@
                                 <form method="POST" action="{{route('contact')}}" id="contactForm" name="contactForm" class="contactForm">
                                     @csrf
                                     <div class="row">
-                                        @php
+                                        @php    
                                             $mail = Cache::put('emailOfReception',env('MAIL_ADMIN_RECEIVER'));
                                         @endphp
                                         <div class="col-md-6">
@@ -38,17 +38,7 @@
                                                 <input type="tel" class="form-control" name="tel" pattern="[0-9]{10}" id="tel" placeholder="Phone" required>
                                             </div>
                                         </div>
-                                        <div class="dropdown">
-                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                              Dropdown link
-                                            </a>
-                                          
-                                            <ul class="dropdown-menu">
-                                              <li><a class="dropdown-item" href="#">Action</a></li>
-                                              <li><a class="dropdown-item" href="#">Another action</a></li>
-                                              <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                            </ul>
-                                          </div>
+                                        
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="label" for="subject">Subject</label>
