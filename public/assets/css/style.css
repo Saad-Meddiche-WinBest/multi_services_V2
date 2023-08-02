@@ -882,7 +882,7 @@
 .card-ville-info .icon-info a{
   position: relative;
   padding: 10px;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 700;
   text-align: center;
   color: #ffffff ;
@@ -1357,7 +1357,7 @@ footer .container ul{
 }
 .left-details{
   display: block;
-  width:120%;
+  width:100%;
   padding-right:20px ;
 }
 .right-details{
@@ -1474,6 +1474,12 @@ footer .container ul{
   font-family: 'Times New Roman', Times, serif;
   font-weight: 600;
 }
+.days-schedule .description-title{
+  display: flex;
+  justify-content: space-between;
+  padding:10px;
+}
+
 /*RATING SECTION*/
 .rating-overview {
   display: flex;
@@ -1911,7 +1917,7 @@ footer .container ul{
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  width:50%;
+  width:100%; 
 }
 .google-sign-up svg{
   padding-top: 12px;

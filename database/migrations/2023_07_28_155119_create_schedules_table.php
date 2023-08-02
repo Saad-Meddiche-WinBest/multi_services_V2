@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('societie_id');
             $table->unsignedBigInteger('day_id');
-            $table->time('from');
-            $table->time('until');
+            $table->time('from')->nullable();
+            $table->time('until')->nullable();
             $table->timestamps();
 
             // Foreign key constraints

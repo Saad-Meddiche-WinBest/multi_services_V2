@@ -19,10 +19,6 @@
                     </div>
                     <div class="listing-detail_right">
                         <div class="listing-detail-item">
-                            <a href="#" data-toggle="modal" data-target="#login" class="btn btn-list"><i
-                                    class="fa fa-heart" style="padding-right:5px"></i>Favorite</a>
-                        </div>
-                        <div class="listing-detail-item">
                             <div class="share-opt-wrap">
                                 <button type="button" class="btn btn-list" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false">
@@ -54,10 +50,20 @@
                     <div class="rixel-bar">
                         <div class="rixel-bar-left">
                             <div class="rate-overall rate-high">
-                                <div class="overrate-box">3.8 </div>
-                                <div class="overrate-box-caption">
-                                    <span>Good</span>
-                                    <a href="#comments-wrap" class="rating-link">1 reviewers rated</a>
+                                {{-- Conditions sur le rating --}}
+                                    @if($rating['ratingOfSocietie']>=2.5)
+                                    <div class="overrate-box">{{ $rating['ratingOfSocietie'] }}</div>
+                                    <div class="overrate-box-caption">
+                                    <span style="text-align: center">Good</span>
+                                    @elseif($rating['ratingOfSocietie']==0)
+                                    <div class="overrate-box" style="color: blue;border:1px dashed blue">{{ $rating['ratingOfSocietie'] }}</div>
+                                    <div class="overrate-box-caption">
+                                    <span style="color:blue">No reviews</span>
+                                    @else
+                                    <div class="overrate-box" style="color:red;border:1px dashed red">{{ $rating['ratingOfSocietie'] }}</div>
+                                    <div class="overrate-box-caption">
+                                    <span style="color:red">Mauvais</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -412,9 +418,11 @@
                                             {{Session::get('success')}}
                                         </div>
                                     @endif
-                                    <div class="form-group">
-                                        <input type="hidden" name="created_for" class="form-control" value="{{$societie->email}}">
-                                    </div>
+                                    @php
+                                        $mail = Cache::put('emailOfReception',$societie->email);
+                                        
+                                    @endphp
+                                  
                                     <div class="form-group">
                                         <input type="text" name="name" required="" class="form-control"
                                             placeholder="Your Name" value="{{old('name')}}"> 
@@ -438,17 +446,38 @@
                         <div class="time-horaire">
                             <div class="description-title">
                                 <div class="description-title-left">
-                                    <i class="fa fa-clock" style="color:#17bd62;padding:5px;"></i><span><b>Day</b></span>
-                                    <div class="society-status">
-                                        <span>open</span>
-                                    </div>
-                                    <span><b>Country</b></span>
+                                    <i class="fa fa-clock" style="color:#17bd62;padding:5px;"></i><span><b>SCHEDULE</b></span>
                                 </div>
                                 <div class="description-title-right">
                                     <span>horaire</span>
                                 </div>
                             </div>
                         </div>
+                        @foreach($societie->schedules as $schedule)
+                        <div class="days-schedule">
+                            <div class="description-title">
+                                <div class="description-title-left">
+                                    @if($schedule->from === null)
+                                        <div class="society-status" style="border:1px solid #df1010;">
+                                            <span style="color:#df1010"><b>{{$schedule->day->day}}</b></span>
+                                        </div>
+                                        </div>
+                                        <div class="description-title-right">
+                                            <span style="color:#df1010">Closed</span>
+                                        </div>
+                                    @else
+                                        <div class="society-status">
+                                            <span><b>{{$schedule->day->day}}</b></span>
+                                        </div>
+                                        </div>
+                                        <div class="description-title-right">
+                                            <span>{{$schedule->from}} | {{$schedule->until}}</span>
+                                        </div>
+                                    @endif
+                                
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
                     {{-- Extra Info --}}
                     <div class="description-details">
