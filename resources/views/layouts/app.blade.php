@@ -25,10 +25,12 @@
     {{-- Bootstrap Css --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        
     {{-- Css Style --}}
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
     <!-- Bootstrap CSS V4 -->
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- RateYo CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
@@ -68,12 +70,6 @@
 
 {{-- Function of slider --}}
 <script src="{{asset('assets/js/slider.js')}}" type="module"></script>
-
-{{-- Function of stars --}}
-<script src="{{asset('assets/js/stars.js')}}" type="module"></script>
-
-{{-- Function of maps --}}
-<script src="{{asset('assets/js/maps.js')}}" type="module"></script>
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

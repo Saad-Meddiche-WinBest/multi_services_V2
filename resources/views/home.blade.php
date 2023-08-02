@@ -9,4 +9,5 @@
     @include('layouts.includes.categories.index')
     @include('layouts.includes.societies.index')
 
+
 @endsection

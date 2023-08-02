@@ -26,13 +26,6 @@ class SocietieController extends Controller
             ->orderBy('premiums.id', 'DESC')
             ->get();
 
-
-        // $today = now()->format('Y-m-d');
-
-        // $societies = array_filter($societies, function ($societie) use ($today) {
-        //     return $societie['expire_at'] >= $today;
-        // });
-
         return response()->json(['societies' => $societies]);
     }
 
