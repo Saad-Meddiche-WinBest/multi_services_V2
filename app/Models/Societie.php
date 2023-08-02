@@ -65,6 +65,7 @@ class Societie extends Model
     {
         $idsSocieties = Premium::all()->pluck('societie_id');
         $premiumSocieties = Societie::whereIn('id', $idsSocieties)->limit($limit)->get();
+        
         return $premiumSocieties;
     }
 

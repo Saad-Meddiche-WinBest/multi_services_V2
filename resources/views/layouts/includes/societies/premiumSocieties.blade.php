@@ -14,7 +14,7 @@
         </div>
         <div class="wrapper">
             <ul class="carousel">
-                @foreach ($newsocieties as $society)
+                @foreach ($premiumSocieties as $society)
                     <li class="card h-100">
                         <div class="img">
                             <img src="{{ $society->image }}" alt="img" draggable="false">
@@ -58,5 +58,3 @@
         </div>
     </div>
 </div>
-
-
