@@ -10,51 +10,57 @@ use Illuminate\Support\Facades\Redirect;
 
 class MailController extends Controller
 {
-    public function sendMail(Request $request){
+    public function sendMail(Request $request)
+    {
 
         $request->validate([
-            'name'=>'required',
-            'email'=>'required|email',
+            'name' => 'required',
+            'email' => 'required|email',
             'plan',
             'subject',
             'tel',
-            'message'=>'required'
+            'message' => 'required'
         ]);
 
-        if(Cache::has('planSelectionner')) {
-            $plan = Cache::get('planSelectionner');
-        } 
 
-        Cache::forget('planSelectionner');
-        
+        if (Cache::has('planSelectionner')) {
+            $plan = Cache::get('planSelectionner');
+            Cache::forget('planSelectionner');
+        }
+
+
         //Checking if there is no connection
-        if(!$this->isOnline()) return redirect()->back()->with('error','Message Error');
+        if (!$this->isOnline()) return redirect()->back()->with('error', 'Message Error');
 
         $mail_data = [
-            'recepient'=>Cache::get('emailOfReception'),
-            'fromEmail'=>$request->email,
-            'fromNom'=>$request->name,
-            'plan'=> $plan->name ?? null,
-            'body'=>$request->message,
-            'tel'=>$request->tel,
-            'subject'=>$request->subject
+            'recepient' => Cache::get('emailOfReception'),
+            'fromEmail' => $request->email,
+            'fromNom' => $request->name,
+            'body' => $request->message,
+            'tel' => $request->tel,
+            'subject' => $request->subject
         ];
 
-        Mail::send("mail.email-template",$mail_data,function($message) use($mail_data)
-        {   
-            
-            $message->to($mail_data['recepient'])
-            ->from($mail_data['fromEmail'],$mail_data['fromNom'],$mail_data['tel'],$mail_data['plan']);
+        /* We couldn't found the reason of why the plan is keeping registred in the cache even that we delete it from it*/
+        if (Cache::get('emailOfReception') == env('MAIL_ADMIN_RECEIVER') && isset($plan)) {
+            $mail_data['plan'] = $plan->name;
+        } else {
+            $mail_data['plan'] = null;
+        }
 
-            if($mail_data["subject"] )  $message->subject($mail_data["subject"]);
-            
+
+        Mail::send("mail.email-template", $mail_data, function ($message) use ($mail_data) {
+
+            $message->to($mail_data['recepient'])
+                ->from($mail_data['fromEmail'], $mail_data['fromNom'], $mail_data['tel'], $mail_data['plan']);
+
+            if ($mail_data["subject"])  $message->subject($mail_data["subject"]);
         });
-        return redirect()->back()->with('success','Message sent');
-      
+        return redirect()->back()->with('success', 'Message sent');
     }
 
-    public function isOnline($site ="https://youtube.com/")
+    public function isOnline($site = "https://youtube.com/")
     {
-        return @fopen($site,'r') ? true : false;
+        return @fopen($site, 'r') ? true : false;
     }
 }

@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Plan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PlanController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $plan = Plan::all();
-        return view('plan.index',['plan'=>$plan]);
+        return view('plan.index', ['plan' => $plan]);
     }
-    public function contact($id){
+    public function contact($id)
+    {
         $plan = Plan::findOrFail($id);
-        return view('plan.contact',['plan'=>$plan]);
-    } 
+        return view('plan.contact', ['plan' => $plan]);
+    }
 }
