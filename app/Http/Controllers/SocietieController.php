@@ -14,24 +14,34 @@ use Illuminate\Support\Facades\Mail;
 
 class SocietieController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
 
-        $societies = Societie::with(['tags', 'cities', 'categorie', 'services'])
-            ->leftJoin('premiums', 'societies.id', '=', 'premiums.societie_id')
-            ->where(function ($query) {
-                $query->whereNull('premiums.expire_at')
-                    ->orWhere('premiums.expire_at', '>=', DB::raw('CURDATE()'));
-            })
-            ->orderBy('premiums.id', 'DESC')
-            ->get();
+        /* Yean I know , me too i don't like this part of code ,
+        i really didn't know how to fix the problem,
+        so when the premiums table is empty,
+        the id of all societies is null,
+        but when there is at least one row in premiums table,
+        the problem is fixed :D
+        */
+        if (Premium::count() === 0) {
+            $societies = Societie::with(['tags', 'cities', 'categorie', 'services'])
+                ->get();
+        } else {
+            $societies = Societie::with(['tags', 'cities', 'categorie', 'services'])
+                ->leftJoin('premiums', 'societies.id', '=', 'premiums.societie_id')
+                ->where(function ($query) {
+                    $query->whereNull('premiums.expire_at')
+                        ->orWhere('premiums.expire_at', '>=', DB::raw('CURDATE()'));
+                })
+                ->orderBy('premiums.id', 'DESC')
+                ->get();
+        }
 
 
-        // $today = now()->format('Y-m-d');
-
-        // $societies = array_filter($societies, function ($societie) use ($today) {
-        //     return $societie['expire_at'] >= $today;
-        // });
+        foreach ($societies as $societie) {
+            $societie->rating = Societie::getRatingOfSocitie($societie->id);
+        }
 
         return response()->json(['societies' => $societies]);
     }
@@ -55,12 +65,20 @@ class SocietieController extends Controller
     {
         $societies = $citie->societies->load('tags', 'cities', 'Categorie', 'services');
 
+        foreach ($societies as $societie) {
+            $societie->rating = Societie::getRatingOfSocitie($societie->id);
+        }
+
         return response()->json(['societies' => $societies]);
     }
 
-    public function fetchSocietiesByCategorie(Categorie $categorie)
+    public static function fetchSocietiesByCategorie(Categorie $categorie)
     {
         $societies = $categorie->societies->load('tags', 'cities', 'Categorie', 'services');
+
+        foreach ($societies as $societie) {
+            $societie->rating = Societie::getRatingOfSocitie($societie->id);
+        }
 
         return response()->json(['societies' => $societies]);
     }
@@ -69,6 +87,11 @@ class SocietieController extends Controller
     {
         $societies = Societie::fetchPremiumSocieties();
         $societies->load('tags', 'cities', 'Categorie', 'services');
+
+        foreach ($societies as $societie) {
+            $societie->rating = Societie::getRatingOfSocitie($societie->id);
+        }
+
         return response()->json(['societies' => $societies]);
     }
 }

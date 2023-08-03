@@ -23,19 +23,26 @@
 </svg>
 <footer>
     @php
-        $newSocities = App\Models\Societie::fetchNewSocities(5);
+        $limitSocieties = 20;
+        
+        $topCities = App\Models\Citie::topCitiesBySocieties($limitSocieties);
+        
+        $newSocieties = App\Models\Societie::fetchNewSocities($limitSocieties);
+        
+        $premiumSocieties = App\Models\Societie::fetchPremiumSocieties($limitSocieties);
+        
     @endphp
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                 <div class="block">
                     <div class="title">
-                        <p style="font-size:20px;margin-top:20px;">Société professionnelle</p>
+                        <p style="font-size:20px;margin-top:20px;">Societies</p>
                     </div>
                     <div class="opening-hours">
-                        @foreach ($newSocities as $society)
+                        @foreach ($newSocieties as $society)
                             <div class="choose-footer">
-                                <a href="/societies/{{ $society->id }}">{{ $society->title }}</a>
+                                <a href="{{ route('societie.show', $society->id) }}">{{ $society->title }}</a>
                             </div>
                         @endforeach
 
@@ -45,12 +52,12 @@
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                 <div class="block">
                     <div class="title">
-                        <p style="font-size:20px;margin-top:20px;">Société particulier</p>
+                        <p style="font-size:20px;margin-top:20px;">Premium Societies</p>
                     </div>
                     <div class="opening-hours">
-                        @foreach ($newSocities as $society)
+                        @foreach ($premiumSocieties as $society)
                             <div class="choose-footer">
-                                <a href="/societies/{{ $society->id }}">{{ $society->title }}</a>
+                                <a href="{{ route('societie.show', $society->id) }}">{{ $society->title }}</a>
                             </div>
                         @endforeach
                     </div>
@@ -62,9 +69,9 @@
                         <p style="font-size:20px;margin-top:20px;">villes</p>
                     </div>
                     <div class="opening-hours">
-                        @foreach ($newSocities as $city)
+                        @foreach ($topCities as $city)
                             <div class="choose-footer">
-                                <a href="/cities/{{ $city->id }}">{{ $city->title }}</a>
+                                <a href="{{ route('societiesByCitie.index', $city->id) }}">{{ $city->name }}</a>
                             </div>
                         @endforeach
                     </div>
@@ -117,27 +124,3 @@
             </li>
         </ul>
     </div>
-    {{-- <div class="container">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <div class="col-md-4 d-flex align-items-center">
-            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-                <svg class="bi" width="30" height="24">
-                    <use xlink:href="#bootstrap"></use>
-                </svg>
-            </a>
-            <span class="text-muted">© 2021 Company, Inc</span>
-        </div>
-
-        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24">
-                        <use xlink:href="#twitter"></use>
-                    </svg></a></li>
-            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24">
-                        <use xlink:href="#instagram"></use>
-                    </svg></a></li>
-            <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24">
-                        <use xlink:href="#facebook"></use>
-                    </svg></a></li>
-        </ul>
-    </footer>
-</div> --}}

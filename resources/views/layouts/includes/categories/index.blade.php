@@ -11,23 +11,25 @@
                 <div class="row g-3">
                     <div class="col-md-6">
                         <div class="blog-entry">
-                            <a href="#" class="img-link">
+                            <a href="{{ route('societiesByCategory.index', 1) }}" class="img-link">
                                 <img src="{{ $topCities[0]->image }}" alt="Image" class="img-fluid">
                             </a>
                             <span class="date">Apr. 14th, 2022</span>
                             <h2><a href="#">Thought you loved Python? Wait until you meet Rust</a></h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, nobis ea quis inventore vel voluptas.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, nobis ea quis inventore
+                                vel voluptas.</p>
                             <p><a href="#" class="btn btn-sm btn-outline-primary">Read More</a></p>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="blog-entry">
-                            <a href="#" class="img-link">
+                            <a href="{{ route('societiesByCategory.index', 2) }}" class="img-link">
                                 <img src="{{ $topCities[1]->image }}" alt="Image" class="img-fluid">
                             </a>
                             <span class="date">Apr. 14th, 2022</span>
                             <h2><a href="#">Startup vs corporate: What job suits you best?</a></h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, nobis ea quis inventore vel voluptas.</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, nobis ea quis inventore
+                                vel voluptas.</p>
                             <p><a href="#" class="btn btn-sm btn-outline-primary">Read More</a></p>
                         </div>
                     </div>
@@ -38,14 +40,16 @@
                     <li>
                         <span class="date">Apr. 14th, 2022</span>
                         <h3><a href="#">Don’t assume your user data in the cloud is safe</a></h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, nobis ea quis inventore vel voluptas.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, nobis ea quis inventore vel
+                            voluptas.</p>
                         <p><a href="#" class="read-more">Continue Reading</a></p>
                     </li>
 
                     <li>
                         <span class="date">Apr. 14th, 2022</span>
                         <h3><a href="#">Meta unveils fees on metaverse sales</a></h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, nobis ea quis inventore vel voluptas.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, nobis ea quis inventore vel
+                            voluptas.</p>
                         <p><a href="#" class="read-more">Continue Reading</a></p>
                     </li>
                 </ul>
