@@ -443,6 +443,7 @@
                         </div>
                     </div>
                     {{-- Horaire --}}
+                    @if(isset($societie->schedule))
                     <div class="description-details">
                         <div class="time-horaire">
                             <div class="description-title">
@@ -457,29 +458,30 @@
                         @foreach($societie->schedules as $schedule)
                         <div class="days-schedule">
                             <div class="description-title">
-                                <div class="description-title-left">
-                                    @if($schedule->from === null)
+                                @if($schedule->from === null)
+                                    <div class="description-title-left">
                                         <div class="society-status" style="border:1px solid #df1010;">
                                             <span style="color:#df1010"><b>{{$schedule->day->day}}</b></span>
                                         </div>
-                                        </div>
-                                        <div class="description-title-right">
-                                            <span style="color:#df1010">Closed</span>
-                                        </div>
+                                    </div>
+                                    <div class="description-title-right">
+                                        <span style="color:#df1010">Closed</span>
+                                    </div>
                                     @else
+                                    <div class="description-title-left">
                                         <div class="society-status">
                                             <span><b>{{$schedule->day->day}}</b></span>
                                         </div>
-                                        </div>
-                                        <div class="description-title-right">
-                                            <span>{{$schedule->from}} | {{$schedule->until}}</span>
-                                        </div>
+                                    </div>
+                                    <div class="description-title-right">
+                                        <span>{{$schedule->from}} | {{$schedule->until}}</span>
+                                    </div>
                                     @endif
-                                
                             </div>
                         </div>
                         @endforeach
                     </div>
+                    @endif
                     {{-- Extra Info --}}
                     <div class="description-details">
                         <div class="description-title-extra">

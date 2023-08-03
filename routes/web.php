@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
@@ -8,9 +9,9 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SocietieController;
 use App\Http\Controllers\Admin\ScheduleCrudController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\PlanController;
-
-
+use App\Http\Controllers\SolutionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,3 +100,25 @@ Route::get('/plans',[PlanController::class,'index'])->name("plan");
 
 Route::get('/plans/contact/{plan}',[PlanController::class,'contact'])->name("plan.contact");
 Route::post('/plans/contact/{plan}',[MailController::class,'sendMail'])->name("plan.contact");
+
+/*
+|--------------------------------------------------------------------------
+| solutions
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/solutions',[SolutionController::class,'index'])->name("solution");
+
+/*
+|--------------------------------------------------------------------------
+| inscription
+|--------------------------------------------------------------------------
+*/
+Route::get('/inscription',[InscriptionController::class,'index'])->name("inscription");
+
+/*
+|--------------------------------------------------------------------------
+| A propos
+|--------------------------------------------------------------------------
+*/
+Route::get('/about',[AboutController::class,'index'])->name("about");

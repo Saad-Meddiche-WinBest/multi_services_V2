@@ -1,0 +1,67 @@
+.card-inscription{
+    background-color: rgb(255, 227, 17);
+    border-radius: 10px;
+    display: block;
+    text-align: center;
+    width:100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px 0;
+    box-shadow: 2px 2px 2px 2px rgb(133, 132, 132);
+}
+.card-inscription-text span{
+    font-size: x-large;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 700;
+    text-decoration: underline;
+}
+.card-all-category a{
+    text-decoration: none;
+    color:black;
+    margin:0 auto;
+}
+.card-all-category a:hover{
+    text-decoration: none;
+    color:rgb(113, 113, 113);
+}
+.card-all-category{
+    display: flex;
+    justify-content: space-between;
+}
+.card-category{
+    background-color: aliceblue;
+    margin: 0 auto;
+    padding:20px;
+}
+.card-inscription-text,
+.card-category-icon{
+    padding:0 10px 10px 10px;
+}
+.card-category-icon i{
+    font-size: 35px;
+}
+.card-category-titre span{
+    font-weight: 500;
+}
+@media((max-width:991px)){
+    .card-all-category{
+        display: block;
+    }
+    .card-all-category a{
+        margin: 20px;
+    }
+    .card-category{
+        margin: 0 auto;
+    }
+}
+@media((max-width:676px)){
+    .card-all-category{
+        display: block;
+    }
+    .card-all-category a{
+        margin: 20px;
+    }
+    .card-category{
+        margin: 10px 30px;
+    }
+}
