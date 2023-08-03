@@ -40,7 +40,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 |--------------------------------------------------------------------------
 */
 Route::get('/societies', function () {
-  
+
     return view('societies.index');
 })->name('societies.index');
 
@@ -116,15 +116,15 @@ Route::post('/plans/contact/{plan}', [MailController::class, 'sendMail'])->name(
 |--------------------------------------------------------------------------
 */
 
-Route::get('/solutions',[SolutionController::class,'index'])->name("solution");
+Route::get('/solutions', [SolutionController::class, 'index'])->name("solution");
 
 /*
 |--------------------------------------------------------------------------
 | inscription
 |--------------------------------------------------------------------------
 */
-Route::get('/inscription',[InscriptionController::class,'index'])->name("inscription");
-Route::get('/inscription/contact',[InscriptionController::class,'contact'])->name("inscription.contact");
+Route::get('/inscription', [InscriptionController::class, 'index'])->name("inscription");
+Route::get('/inscription/contact/{categorie}', [InscriptionController::class, 'contact'])->name("inscription.contact");
 Route::post('/inscription/contact/{categorie}', [MailController::class, 'sendMail'])->name("inscription.contact");
 
 /*
@@ -132,5 +132,4 @@ Route::post('/inscription/contact/{categorie}', [MailController::class, 'sendMai
 | A propos
 |--------------------------------------------------------------------------
 */
-Route::get('/about',[AboutController::class,'index'])->name("about");
-
+Route::get('/about', [AboutController::class, 'index'])->name("about");

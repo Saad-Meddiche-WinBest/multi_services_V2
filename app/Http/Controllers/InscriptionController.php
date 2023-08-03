@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 
 class InscriptionController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('inscription.index');
     }
-    public function contact(){
-        $categorie = Categorie::findOrFail($_GET['categorie']);
-        return view('inscription.contact',['categorie'=>$categorie]);
-    } 
+    public function contact(Categorie $categorie)
+    {
+
+        return view('inscription.contact', ['categorie' => $categorie]);
+    }
 }
