@@ -58,6 +58,11 @@ class Societie extends Model
     static public function fetchNewSocities($limit)
     {
         $societies = Societie::orderby('id', 'desc')->limit($limit)->get();
+
+        foreach ($societies as $societie) {
+            $societie->rating = Societie::getRatingOfSocitie($societie->id);
+        }
+
         return $societies;
     }
 
@@ -65,7 +70,7 @@ class Societie extends Model
     {
         $idsSocieties = Premium::all()->pluck('societie_id');
         $premiumSocieties = Societie::whereIn('id', $idsSocieties)->limit($limit)->get();
-        
+
         return $premiumSocieties;
     }
 

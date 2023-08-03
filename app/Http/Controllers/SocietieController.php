@@ -22,12 +22,12 @@ class SocietieController extends Controller
         so when the premiums table is empty,
         the id of all societies is null,
         but when there is at least one row in premiums table,
-        the problem is fixed
+        the problem is fixed :D
         */
-        // if (Premium::count() === 0) {
-        //     $societies = Societie::with(['tags', 'cities', 'categorie', 'services'])
-        //         ->get();
-        // } else {
+        if (Premium::count() === 0) {
+            $societies = Societie::with(['tags', 'cities', 'categorie', 'services'])
+                ->get();
+        } else {
             $societies = Societie::with(['tags', 'cities', 'categorie', 'services'])
                 ->leftJoin('premiums', 'societies.id', '=', 'premiums.societie_id')
                 ->where(function ($query) {
@@ -36,7 +36,7 @@ class SocietieController extends Controller
                 })
                 ->orderBy('premiums.id', 'DESC')
                 ->get();
-        // }
+        }
 
 
         foreach ($societies as $societie) {

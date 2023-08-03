@@ -101,7 +101,6 @@ Vue.component('societie-list', {
                   
                 <input type="text" v-model="looking_for" class="form-control w-100" placeholder="Search ..." >                        <ul class="autocomplete"></ul>
               </div>
-          
 
           </div>
         </div>

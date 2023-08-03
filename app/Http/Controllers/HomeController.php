@@ -32,7 +32,7 @@ class HomeController extends Controller
         $newsocieties = Societie::fetchNewSocities(9);
 
         $premiumSocieties = Societie::fetchPremiumSocieties();
-
+        
         return view('home', compact('topCities', 'categories', 'newsocieties', 'premiumSocieties'));
     }
 }
