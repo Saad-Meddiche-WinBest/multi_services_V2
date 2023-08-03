@@ -124,6 +124,8 @@ Route::get('/solutions',[SolutionController::class,'index'])->name("solution");
 |--------------------------------------------------------------------------
 */
 Route::get('/inscription',[InscriptionController::class,'index'])->name("inscription");
+Route::get('/inscription/contact',[InscriptionController::class,'contact'])->name("inscription.contact");
+Route::post('/inscription/contact/{categorie}', [MailController::class, 'sendMail'])->name("inscription.contact");
 
 /*
 |--------------------------------------------------------------------------

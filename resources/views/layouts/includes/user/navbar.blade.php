@@ -42,16 +42,6 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="color:white;text-decoration:underline;" href="{{ route('inscription') }}">{{ __('Inscription Etablissement') }}</a>
-                    <a class="nav-link" style="color:white;text-decoration:underline;"
-                        href="{{ route('societies.index') }}">{{ __('A propos') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color:white;text-decoration:underline;"
-                        href="{{ route('societies.index') }}">{{ __('Découvrir nos solutions') }}</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color:white;text-decoration:underline;"
-                        href="{{ route('societies.index') }}">{{ __('Inscription Etablissement') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" style="color:white;text-decoration:underline;"

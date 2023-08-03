@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 
-class MailController extends Controller
+class   MailController extends Controller
 {
     public function sendMail(Request $request)
     {
@@ -17,6 +17,7 @@ class MailController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'plan',
+            'categorie',
             'subject',
             'tel',
             'message' => 'required'
@@ -29,6 +30,15 @@ class MailController extends Controller
         }
 
 
+
+        
+        if(Cache::has('categorySelectionner')) {
+            $categorie = Cache::get('categorySelectionner');
+        } 
+
+        Cache::forget('categorySelectionner');
+        
+
         //Checking if there is no connection
         if (!$this->isOnline()) return redirect()->back()->with('error', 'Message Error');
 
@@ -38,6 +48,7 @@ class MailController extends Controller
             'fromNom' => $request->name,
             'body' => $request->message,
             'tel' => $request->tel,
+            'categorie'=> $categorie->name ?? null,
             'subject' => $request->subject
         ];
 
@@ -52,7 +63,8 @@ class MailController extends Controller
         Mail::send("mail.email-template", $mail_data, function ($message) use ($mail_data) {
 
             $message->to($mail_data['recepient'])
-                ->from($mail_data['fromEmail'], $mail_data['fromNom'], $mail_data['tel'], $mail_data['plan']);
+              ->from($mail_data['fromEmail'],$mail_data['fromNom'],$mail_data['tel'],$mail_data['plan'],$mail_data['categorie']);
+
 
             if ($mail_data["subject"])  $message->subject($mail_data["subject"]);
         });

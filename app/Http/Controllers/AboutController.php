@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -10,4 +11,8 @@ class AboutController extends Controller
     {
         return view("about.index");
     }
+    public function contact($id){
+        $plan = Categorie::findOrFail($id);
+        return view('inscription.contact',['plan'=>$plan]);
+    } 
 }

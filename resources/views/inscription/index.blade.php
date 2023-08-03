@@ -24,7 +24,7 @@
                 <span>Quel type d'établissement êtes-vous ?</span>
             </div>
             <div class="card-all-category">
-                <a href="">
+                <a href="/inscription/contact?categorie=1">
                     <div class="card-category">
                         <div class="card-category-icon">
                             <i class="fa fa-user"></i>
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="">
+                <a href="/inscription/contact?categorie=2">
                     <div class="card-category">
                         <div class="card-category-icon">
                             <i class="fa fa-user"></i>
