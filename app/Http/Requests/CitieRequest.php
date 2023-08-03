@@ -23,7 +23,7 @@ class CitieRequest extends FormRequest
     {
         $rules = [
             'name' => 'required|string|max:255|unique:cities,name',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ];
 
         if ($this->method() === 'PUT' || $this->method() === 'PATCH') {
