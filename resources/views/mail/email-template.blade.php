@@ -11,6 +11,9 @@
     @if(isset($plan))
         <p>Plan choisis: {{$plan}}</p>
     @endif  
+    @if(isset($categorie))
+        <p>Category choisis: {{$categorie}}</p>
+    @endif  
     <p>The message contains:</p>
     <p><strong>{{ $body }}</strong></p>
 </body>
