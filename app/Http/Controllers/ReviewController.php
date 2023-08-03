@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use Illuminate\Http\Request;
+use App\Http\Requests\ReviewRequest;
 use Illuminate\Support\Facades\Redirect;
 
 class ReviewController extends Controller
 {
 
-    public function store(Request $request)
+    public function store(ReviewRequest $request)
     {
         $user = $request->session()->get('user');
 

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\SocietieRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use GuzzleHttp\Psr7\Request;
 
 /**
  * Class SocietieCrudController
@@ -15,16 +16,15 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 class SocietieCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation {
+        store as traitStore;
+    }
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation {
+        update as traitUpdate;
+    }
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
-    /**
-     * Configure the CrudPanel object. Apply settings to all operations.
-     * 
-     * @return void
-     */
     public function setup()
     {
         CRUD::setModel(\App\Models\Societie::class);
@@ -37,12 +37,6 @@ class SocietieCrudController extends CrudController
         }
     }
 
-    /**
-     * Define what happens when the List operation is loaded.
-     * 
-     * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
-     * @return void
-     */
     protected function setupListOperation()
     {
         CRUD::column('title');
@@ -74,6 +68,7 @@ class SocietieCrudController extends CrudController
 
         $this->crud->addButtonFromView('line', 'schedule', 'schedule', 'beginning');
     }
+
     protected function setupShowOperation()
     {
 
@@ -113,13 +108,6 @@ class SocietieCrudController extends CrudController
         CRUD::column('email');
     }
 
-
-    /**
-     * Define what happens when the Create operation is loaded.
-     * 
-     * @see https://backpackforlaravel.com/docs/crud-operation-create
-     * @return void
-     */
     protected function setupCreateOperation()
     {
 
@@ -147,6 +135,8 @@ class SocietieCrudController extends CrudController
         CRUD::field('linkdin');
 
         CRUD::field('coordinations');
+        CRUD::field('video');
+
         CRUD::field('email');
 
 
@@ -183,79 +173,18 @@ class SocietieCrudController extends CrudController
         ]);
     }
 
-    /**
-     * Define what happens when the Update operation is loaded.
-     * 
-     * @see https://backpackforlaravel.com/docs/crud-operation-update
-     * @return void
-     */
     protected function setupUpdateOperation()
     {
-        CRUD::field('title');
-        CRUD::field('ice');
-        CRUD::field('adress');
-        CRUD::field('description')->type('summernote');
-
-
-        CRUD::field([
-            'name'      => 'image',
-            'label'     => 'Image',
-            'type'      => 'upload',
-            'withFiles' => true
-        ]);
-
-        CRUD::field('telephone');
-        CRUD::field('fax');
-        CRUD::field('web_link');
-
-        CRUD::field('facebook');
-        CRUD::field('instagram');
-        CRUD::field('twitter');
-        CRUD::field('linkdin');
-
-        CRUD::field('coordinations');
-        CRUD::field('email');
-
-        CRUD::field('categorie_id')->type('select')
-            ->label('Categorie')
-            ->entity('Categorie');
-
-        $this->crud->addField([
-            'label' => 'Services (Press ctrl for multiple selection)',
-            'type' => 'select_multiple',
-            'name' => 'services',
-            'entity' => 'services',
-            'attribute' => 'name',
-            'model' => "App\Models\Service",
-        ]);
-
-
-        $this->crud->addField([
-            'label' => 'cities',
-            'type' => 'select_multiple',
-            'name' => 'cities',
-            'entity' => 'cities',
-            'attribute' => 'name',
-            'model' => "App\Models\Citie",
-        ]);
-
-        $this->crud->addField([
-            'label' => 'Tags',
-            'type' => 'select_multiple',
-            'name' => 'tags',
-            'entity' => 'tags',
-            'attribute' => 'name',
-            'model' => "App\Models\Tag",
-        ]);
+        $this->setupCreateOperation();
     }
 
-    /**
-     * Define what happens when the Delete operation is loaded.
-     * 
-     * @see https://backpackforlaravel.com/docs/crud-operation-delete
-     * @return void
-     */
-    protected function setupDeleteOperation()
+    protected function store(SocietieRequest $request)
     {
+        return $this->traitStore();
+    }
+
+    protected function update(SocietieRequest $request)
+    {
+        return $this->traitUpdate();
     }
 }

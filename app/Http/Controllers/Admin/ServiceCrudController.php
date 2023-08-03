@@ -14,8 +14,12 @@ use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 class ServiceCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation {
+        store as traitStore;
+    }
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation {
+        update as traitUpdate;
+    }
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
@@ -24,6 +28,11 @@ class ServiceCrudController extends CrudController
         CRUD::setModel(\App\Models\Service::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/service');
         CRUD::setEntityNameStrings('service', 'services');
+
+        $user = backpack_user();
+        if (!$user->hasRole('Super Admin')) {
+            $this->crud->denyAccess('delete');
+        }
     }
 
     protected function setupListOperation()
@@ -69,16 +78,27 @@ class ServiceCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::field('name');
-        CRUD::column('description')->type('summernote');
-        CRUD::field('image');
-
-       
+        CRUD::field('description')->type('summernote');
+        CRUD::field([   // Upload
+            'name'      => 'image',
+            'label'     => 'Image',
+            'type'      => 'upload',
+            'withFiles' => true
+        ]);
     }
 
     protected function setupUpdateOperation()
     {
-        CRUD::field('name');
-        CRUD::column('description')->type('summernote');
-        CRUD::field('image');
+        $this->setupCreateOperation();
+    }
+
+    protected function store(ServiceRequest $request)
+    {
+        return $this->traitStore();
+    }
+
+    protected function update(ServiceRequest $request)
+    {
+        return $this->traitUpdate();
     }
 }
