@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Plan;
 use App\Models\Citie;
 use App\Models\Societie;
 use App\Models\Categorie;
@@ -32,7 +33,9 @@ class HomeController extends Controller
         $newsocieties = Societie::fetchNewSocities(9);
 
         $premiumSocieties = Societie::fetchPremiumSocieties();
+
+        $plans = Plan::all();
         
-        return view('home', compact('topCities', 'categories', 'newsocieties', 'premiumSocieties'));
+        return view('home', compact('topCities', 'categories', 'newsocieties', 'premiumSocieties', 'plans'));
     }
 }

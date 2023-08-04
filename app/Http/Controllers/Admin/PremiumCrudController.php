@@ -55,7 +55,7 @@ class PremiumCrudController extends CrudController
 
         CRUD::column('societie')->wrapper([
             'href' => function ($crud, $column, $entry) {
-                return backpack_url('societie/' . $entry->id . '/show');
+                return backpack_url('societie/' . $entry->societie_id . '/show');
             }
         ]);
         CRUD::column('plan');

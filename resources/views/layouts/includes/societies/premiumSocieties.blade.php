@@ -23,7 +23,7 @@
                             <h2>{{ $society->title }}</h2>
                         </div>
                         <i class="fa fa-map-pin"></i>
-                        <span>{{ $society->adress }}</span>
+                        <span>{!! strlen($society->adress) > 20 ? substr($society->adress, 0, 20) . '...' : $society->adress !!}</span>
                         <div class="contact">
                             <div class="tel">
                                 <i class="fa fa-phone"></i>

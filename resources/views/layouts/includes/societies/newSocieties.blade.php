@@ -21,7 +21,7 @@
                                     <span class="veryfied-author"></span>
                                 </h3>
                             </div>
-                            <p>
+                            <p class="sous-inf">
                                 {!! strlen(strip_tags($society->description)) > 50
                                     ? substr(strip_tags($society->description), 0, 50) . '...'
                                     : $society->description !!}

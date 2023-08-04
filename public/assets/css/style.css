@@ -438,6 +438,7 @@
 .society-card {
   padding-bottom: 20px;
   padding-top: 20px;
+  color:black !important;
 }
 
 .society-card .image-card {
@@ -567,7 +568,7 @@
 
 .society-card .society_content p {
   text-align: center;
-  color: #797d8a;
+  color: #000000;
 }
 
 .society-card .society_content .property_detail .property-list {
@@ -582,8 +583,7 @@
 }
 
 .sous-inf {
-  color: #797d8a;
-
+  color:black;
 }
 
 .listing-card-info-icon a {
