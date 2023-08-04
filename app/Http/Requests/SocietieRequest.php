@@ -35,7 +35,10 @@ class SocietieRequest extends FormRequest
             'twitter' => 'nullable|url|unique:societies,twitter',
             'linkdin' => 'nullable|url|unique:societies,linkdin',
             'coordinations' => 'nullable|unique:societies,coordinations',
-            'video' => 'nullable',
+            'video' => [
+                'nullable',
+                'regex:/^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/'
+            ],
             'email' => 'required|email|unique:societies,email',
             'categorie_id' => 'required|exists:categories,id',
             'services' => 'required',
@@ -60,5 +63,12 @@ class SocietieRequest extends FormRequest
         }
 
         return $rules;
+    }
+
+    public function messages(): array
+    {
+        return [
+            'video.regex' => 'You Need To Respect This Format \' https://www.youtube.com/watch?v=fLaXh1KzIFM \'.',
+        ];
     }
 }
