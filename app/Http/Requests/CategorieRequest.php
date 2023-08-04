@@ -23,11 +23,13 @@ class CategorieRequest extends FormRequest
     {
         $rules = [
             'name' => 'required|unique:categories,name',
+            'image' => 'required|image',
         ];
 
         if ($this->method() === 'PUT' || $this->method() === 'PATCH') {
             $id = $this->route('id');
             $rules['name'] .= ',' . $id;
+            $rules['image'] =  'nullable|image';
         }
 
         return $rules;

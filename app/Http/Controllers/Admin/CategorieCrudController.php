@@ -49,6 +49,36 @@ class CategorieCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('name');
+        CRUD::column('image')
+            ->type('image')
+            ->value(function ($value) {
+
+                if (filter_var($value->image, FILTER_VALIDATE_URL)) {
+                    return $value->image;
+                }
+
+                $imageUrl = '/storage/' . $value->image;
+                return $imageUrl;
+            })
+            ->sanitize(false);
+    }
+
+    protected function setupShowOperation()
+    {
+
+        CRUD::column('name');
+        CRUD::column('image')
+            ->type('image')
+            ->value(function ($value) {
+
+                if (filter_var($value->image, FILTER_VALIDATE_URL)) {
+                    return $value->image;
+                }
+
+                $imageUrl = '/storage/' . $value->image;
+                return $imageUrl;
+            })
+            ->sanitize(false);
     }
 
     /**
@@ -60,6 +90,12 @@ class CategorieCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::field('name');
+        CRUD::field([   // Upload
+            'name'      => 'image',
+            'label'     => 'Image',
+            'type'      => 'upload',
+            'withFiles' => true
+        ]);
     }
 
     /**

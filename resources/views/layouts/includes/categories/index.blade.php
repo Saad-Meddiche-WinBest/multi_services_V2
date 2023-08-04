@@ -11,8 +11,8 @@
                 <div class="row g-3">
                     <div class="col-md-6">
                         <div class="blog-entry">
-                            <a href="{{ route('societiesByCategory.index', 1) }}" class="img-link">
-                                <img src="{{ $topCities[0]->image }}" alt="Image" class="img-fluid">
+                            <a href="{{ route('societiesByCategory.index', $categories[0]->id) }}" class="img-link">
+                                <img src="/storage/{{ $categories[0]->image }}" alt="Image" class="img-fluid">
                             </a>
                             <span class="date">Apr. 14th, 2022</span>
                             <h2><a href="#">Thought you loved Python? Wait until you meet Rust</a></h2>
@@ -23,8 +23,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="blog-entry">
-                            <a href="{{ route('societiesByCategory.index', 2) }}" class="img-link">
-                                <img src="{{ $topCities[1]->image }}" alt="Image" class="img-fluid">
+                            <a href="{{ route('societiesByCategory.index', $categories[1]->id) }}" class="img-link">
+                                <img src="/storage/{{ $categories[1]->image }}" alt="Image" class="img-fluid">
                             </a>
                             <span class="date">Apr. 14th, 2022</span>
                             <h2><a href="#">Startup vs corporate: What job suits you best?</a></h2>
