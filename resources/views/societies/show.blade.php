@@ -98,7 +98,7 @@
                             <h1>Description</h1>
                         </div>
                         <div class="description-content">
-                            <p>{!! $societie->description !!}</p>
+                            {!! $societie->description !!}
                         </div>
                     </div>
                     {{-- services --}}
@@ -416,7 +416,7 @@
                                 </div>
                                 <div class="agent-details">
                                     <h4>
-                                        <a href="{{ $societie->id }}">{{ $societie->title }}</a>
+                                        {{ $societie->title }}
                                     </h4>
                                 </div>
                                 <div class="clearfix"></div>

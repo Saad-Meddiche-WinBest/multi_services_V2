@@ -1649,6 +1649,9 @@ footer .container ul{
       margin:0 !important;
       width: 100%;
     }
+    .description-content p{
+      word-wrap:break-word;
+    }
     .description-content .right-details{
       width: 100%;
     }
