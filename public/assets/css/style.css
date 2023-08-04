@@ -447,7 +447,7 @@
   overflow: hidden;
   height: fit-content;
   box-shadow: rgb(187, 186, 180) 10px;
-  background-color: black;
+  background-color: rgb(255, 252, 252);
   z-index: 1;
   transition-property: opacity;
 
