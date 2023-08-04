@@ -37,7 +37,8 @@ Vue.component('societie-list', {
       },
       limit_text(text , limit){
         return text.length > limit ? text.substring(0,limit)+"..." : text; 
-      }
+      },
+     
     },
     mounted() {
       this.fetch_societies();
@@ -83,6 +84,7 @@ Vue.component('societie-list', {
         
       },
      
+     
     },
     template: `
     <section>
@@ -119,7 +121,7 @@ Vue.component('societie-list', {
           </div>
           <div class="society_content">
               <div class="proerty_text">
-                  <h3 class="captlize"><a :href="'/societie/'+societie.societie_id+'/show'">{{limit_text(societie.title , 30)}}</a>
+                  <h3 class="captlize"><a :href="'/societie/'+ societie.sid +'/show'">{{limit_text(societie.title , 30)}}</a>
                   <span class="veryfied-author"></span> </h3>
               </div>
               <p v-html="limit_text(societie.description , 40)"></p>

@@ -17,14 +17,26 @@ class SocietieController extends Controller
     public function index()
     {
 
-        $societies = Societie::with(['tags', 'cities', 'categorie', 'services'])
-            ->leftJoin('premiums', 'societies.id', '=', 'premiums.societie_id')
-            ->where(function ($query) {
-                $query->whereNull('premiums.expire_at')
-                    ->orWhere('premiums.expire_at', '>=', DB::raw('CURDATE()'));
-            })
-            ->orderBy('premiums.id', 'DESC')
-            ->get();
+        /* Yean I know , me too i don't like this part of code ,
+        i really didn't know how to fix the problem,
+        so when the premiums table is empty,
+        the id of all societies is null,
+        but when there is at least one row in premiums table,
+        the problem is fixed :D
+        */
+        // if (Premium::count() === 0) {
+        //     $societies = Societie::select('societies.id as sid', 'societies.*')->with(['tags', 'cities', 'categorie', 'services'])
+        //         ->get();
+        // } else {
+            $societies = Societie::select('societies.id as sid', 'societies.*')->with(['tags', 'cities', 'categorie', 'services'])
+                ->leftJoin('premiums', 'societies.id', '=', 'premiums.societie_id')
+                ->where(function ($query) {
+                    $query->whereNull('premiums.expire_at')
+                        ->orWhere('premiums.expire_at', '>=', DB::raw('CURDATE()'));
+                })
+                ->orderBy('premiums.id', 'DESC')
+                ->get();
+        // }
 
 
         foreach ($societies as $societie) {
