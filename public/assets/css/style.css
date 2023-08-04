@@ -442,6 +442,8 @@
 
 .society-card .image-card {
   border-radius: 10px 10px 0 0;
+  border:1px solid gray;
+  border-bottom: 0 !important;
   position: relative;
   flex: 1;
   overflow: hidden;
