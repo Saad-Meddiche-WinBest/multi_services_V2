@@ -6,18 +6,20 @@
     <div class="container">
         <div class="card-deck mb-3 text-center">
             @foreach ($plans as $plan)
-                <div class="card mb-4 box-shadow">
+                <div class="card mb-4 box-shadow bg-dark">
                     <div class="card-header bg-primary">
                         <h4 class="my-0 font-weight-normal">{{ $plan->name }}</h4>
                     </div>
                     <div class="card-body">
-                        <h1 class="card-title pricing-card-title">{{ $plan->price }} <small class="text-muted"> Dh</small></h1>
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li style="height:160px">{!! $plan->description !!}</li>
+                        <h1 class="card-title pricing-card-title text-white">{{ $plan->price }} <small
+                                class="text-muted">
+                                Dh</small></h1>
+                        <ul class="list-unstyled mt-3 mb-4 text-white">
+                            <li class="sqdsqdqsdsq">{!! $plan->description !!}</li>
                             <li>{{ $plan->periode }} months</li>
                         </ul>
                         <a href="/plans/contact/{{ $plan->id }}"><button type="button"
-                                class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button></a>
+                                class="btn btn-lg btn-block btn-primary">Sign up for free</button></a>
                     </div>
                 </div>
             @endforeach
