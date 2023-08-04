@@ -40,7 +40,7 @@
                             </div>
                             <div class="button-section">
                                 <a href="{{ route('societie.show', $society->id) }}"><button class="btn btn-primary">
-                                        Test</button></a>
+                                        Voir Plus</button></a>
                             </div>
                         </div>
                     </li>
