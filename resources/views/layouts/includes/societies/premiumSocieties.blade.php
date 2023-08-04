@@ -17,7 +17,7 @@
                 @foreach ($premiumSocieties as $society)
                     <li class="card h-100">
                         <div class="img">
-                            <img src="{{ $society->image }}" alt="img" draggable="false">
+                            <img src="/storage/{{ $society->image }}" alt="img" draggable="false">
                         </div>
                         <div class="card-title">
                             <h2>{{ $society->title }}</h2>

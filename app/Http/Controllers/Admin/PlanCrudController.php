@@ -66,8 +66,8 @@ class PlanCrudController extends CrudController
             'withFiles' => true
         ]);
         CRUD::field('description')->type('summernote');
-        CRUD::field('price');
-        CRUD::field('periode');
+        CRUD::field('price')->hint('In Dh');
+        CRUD::field('periode')->hint('In Months');
     }
 
     protected function setupUpdateOperation()
