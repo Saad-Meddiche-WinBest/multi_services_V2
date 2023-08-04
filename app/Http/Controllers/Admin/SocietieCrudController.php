@@ -134,7 +134,7 @@ class SocietieCrudController extends CrudController
         CRUD::field('twitter');
         CRUD::field('linkdin');
 
-        CRUD::field('coordinations');
+        CRUD::field('coordinations')->label('Localisation');
         CRUD::field('video');
 
         CRUD::field('email');
