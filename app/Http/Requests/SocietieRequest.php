@@ -26,7 +26,7 @@ class SocietieRequest extends FormRequest
             'ice' => 'required|numeric|unique:societies,ice',
             'adress' => 'required|max:255',
             'description' => 'required',
-            'image' => 'sometimes|image',
+            'image' => 'required|image',
             'telephone' => 'required|unique:societies,telephone',
             'fax' => 'nullable|unique:societies,fax',
             'web_link' => 'nullable|url|unique:societies,web_link',
@@ -56,6 +56,7 @@ class SocietieRequest extends FormRequest
             $rules['linkdin'] .= ',' . $id;
             $rules['coordinations'] .= ',' . $id;
             $rules['email'] .= ',' . $id;
+            $rules['image'] = 'nullable|image';
         }
 
         return $rules;

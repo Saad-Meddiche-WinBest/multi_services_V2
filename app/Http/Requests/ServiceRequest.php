@@ -22,8 +22,6 @@ class ServiceRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'description' => 'required',
-            'image' => 'sometimes|image',
             'name' => 'required|unique:services,name', 
         ];
 

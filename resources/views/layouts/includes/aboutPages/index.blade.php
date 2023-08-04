@@ -2,13 +2,15 @@
     <div class="container">
         <div class="about-items">
             <div class="left-about">
-                <img src="{{asset('assets/images/about-image.jpg')}}"/>
+                <img src="{{ asset('assets/images/about-image.jpg') }}" />
             </div>
             <div class="right-about">
                 <div class="about-header">
                     <span class="sous-titre">Explore-Now</span>
                     <h1 class="titre-about">We Offer Top Listings For The City</h1>
-                    <p class="p-about">Kulla quis velit vel nunc commodo ullamcorper. Pellentesque tincidunt et nisl eget porta. Vestibulum vel viverra sapien. Nullam a iaculis purus. Duis aliquam lorem at arcu iaculis venenatis.</p>
+                    <p class="p-about">Kulla quis velit vel nunc commodo ullamcorper. Pellentesque tincidunt et nisl eget
+                        porta. Vestibulum vel viverra sapien. Nullam a iaculis purus. Duis aliquam lorem at arcu iaculis
+                        venenatis.</p>
                 </div>
                 <div class="check-items">
                     <div class="left-items">
@@ -17,7 +19,8 @@
                             <h3 class="titre-items">100% genuine & verified places</h3>
                         </div>
                         <div class="description-items">
-                            <p class="sous-desc">Platea dictumst quisque sagittis purus sit amet volutpat consequat arcu vitae</p>
+                            <p class="sous-desc">Platea dictumst quisque sagittis purus sit amet volutpat consequat arcu
+                                vitae</p>
                         </div>
                     </div>
                     <div class="right-items">
@@ -25,7 +28,8 @@
                             <h3 class="titre-items">Most widely recognized</h3>
                         </div>
                         <div class="description-items">
-                            <p class="sous-desc">Platea dictumst quisque sagittis purus sit amet volutpat consequat arcu vitae</p>
+                            <p class="sous-desc">Platea dictumst quisque sagittis purus sit amet volutpat consequat arcu
+                                vitae</p>
                         </div>
                     </div>
                 </div>
@@ -69,10 +73,10 @@
                             </div>
                         </div>
                     </div>
-                
+
                 </div>
                 <div class="btn-view-more">
-                    <button src="" class="btn btn-primary">View more About Us</button>
+                    <a href="/plans"> <button class="btn btn-primary">Our Packages</button></a>
                 </div>
             </div>
         </div>

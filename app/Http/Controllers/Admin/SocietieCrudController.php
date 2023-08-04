@@ -63,7 +63,7 @@ class SocietieCrudController extends CrudController
         CRUD::column('services');
 
         CRUD::column('tags');
-        CRUD::column('description');
+        CRUD::column('description')->type('summernote');
         CRUD::column('fax');
 
         $this->crud->addButtonFromView('line', 'schedule', 'schedule', 'beginning');

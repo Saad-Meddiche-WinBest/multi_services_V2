@@ -8,7 +8,7 @@
                 <div class="tr-list-wrap">
                     <div class="tr-list-detail">
                         <div class="tr-list-thumb">
-                            <img src="{{ $societie->image }}" class="author-avater-img" width="90" height="90"
+                            <img src="/storage/{{ $societie->image }}" class="author-avater-img" width="90" height="90"
                                 alt="img">
                         </div>
                         <div class="tr-list-info">
@@ -411,7 +411,7 @@
                         <div class="agent-widget">
                             <div class="agent-title">
                                 <div class="agent-photo">
-                                    <img src="{{ $societie->image }}" class="author-avater-img" width="60"
+                                    <img src="/storage/{{ $societie->image }}" class="author-avater-img" width="60"
                                         height="60" alt="img">
                                 </div>
                                 <div class="agent-details">

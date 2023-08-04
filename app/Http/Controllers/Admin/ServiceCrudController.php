@@ -38,39 +38,11 @@ class ServiceCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('name');
-        CRUD::column('image')
-            ->type('image')
-            ->value(function ($value) {
-
-                if (filter_var($value->image, FILTER_VALIDATE_URL)) {
-                    return $value->image;
-                }
-
-                $imageUrl = '/storage/' . $value->image;
-                return $imageUrl;
-            })
-            ->sanitize(false);
-        CRUD::column('description');
     }
 
     protected function setupShowOperation()
     {
-
-
         CRUD::column('name');
-        CRUD::column('description')->type('summernote');
-        CRUD::column('image')
-            ->type('image')
-            ->value(function ($value) {
-
-                if (filter_var($value->image, FILTER_VALIDATE_URL)) {
-                    return $value->image;
-                }
-
-                $imageUrl = '/storage/' . $value->image;
-                return $imageUrl;
-            })
-            ->sanitize(false);
         CRUD::column('created_at');
         CRUD::column('updated_at');
     }
@@ -78,13 +50,6 @@ class ServiceCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::field('name');
-        CRUD::field('description')->type('summernote');
-        CRUD::field([   // Upload
-            'name'      => 'image',
-            'label'     => 'Image',
-            'type'      => 'upload',
-            'withFiles' => true
-        ]);
     }
 
     protected function setupUpdateOperation()

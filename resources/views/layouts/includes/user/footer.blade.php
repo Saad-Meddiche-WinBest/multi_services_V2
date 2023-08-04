@@ -84,16 +84,19 @@
                     </div>
                     <div class="opening-hours">
                         <div class="choose-footer">
-                            <a href="https://www.moteur.ma/fr/voiture/">Accueil</a>
+                            <a href="/">Accueil</a>
                         </div>
                         <div class="choose-footer">
-                            <a href="https://www.moteur.ma/fr/a-propos/">Qui sommes-nous?</a>
+                            <a href="/about">Qui sommes-nous?</a>
                         </div>
                         <div class="choose-footer">
-                            <a href="https://www.moteur.ma/fr/offre/?from=footer&amp;carrier=link">Offres Premium</a>
+                            <a href="/societies/premiums">Premium Societies</a>
                         </div>
                         <div class="choose-footer">
-                            <a href="https://www.moteur.ma/fr/offre/premium_pro/?from=footer_pro">Offres Premium Pro</a>
+                            <a href="/societies">Societies</a>
+                        </div>
+                        <div class="choose-footer">
+                            <a href="/plans">Notre Packages</a>
                         </div>
 
                     </div>

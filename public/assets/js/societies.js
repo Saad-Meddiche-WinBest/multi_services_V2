@@ -106,14 +106,14 @@ Vue.component('societie-list', {
         </div>
     </div>
 </div>
-      <div class="container">
+      <div class="container" v-if="filtred_societies.length">
       <div class="row">
       
       <div class="col-lg-4 col-md-6 col-sm-12" v-for="societie in filtred_societies" :key="'societie_' + societie.title">  
       <div class="society-card">
           <div class="image-card">
               <a href="#" class="listing-thumb">
-                  <img decoding="async" v-if="societie.image" :src="societie.image" class="img-responsive" alt="">
+                  <img decoding="async" v-if="societie.image" :src="'/storage/'+societie.image" class="img-responsive" alt="">
               </a>
               <span class="list-rate">{{societie.rating.ratingOfSocietie == 0 ? 'No Reviews Yet' : societie.rating.ratingOfSocietie}}</span> 
           </div>
@@ -122,7 +122,7 @@ Vue.component('societie-list', {
                   <h3 class="captlize"><a :href="'societie/'+societie.id+'/show'">{{limit_text(societie.title , 30)}}</a>
                   <span class="veryfied-author"></span> </h3>
               </div>
-              <p>{{limit_text(societie.description , 35)}}</p>
+              <p v-html="limit_text(societie.description , 40)"></p>
               <div class="property_detail">
                   <div class="property-list">
                       <div class="listing-card-info-icon">
@@ -144,6 +144,9 @@ Vue.component('societie-list', {
       </div>
       </div>
           </div>
+      </div>
+      <div class="text-center w-100" v-else>
+        ...
       </div>
     </section>
     `
