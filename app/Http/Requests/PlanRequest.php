@@ -23,7 +23,7 @@ class PlanRequest extends FormRequest
     {
         $rules = [
             'name' => 'required|string|max:255|unique:plans,name',
-            'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif',
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
             'periode' => 'required|string',
@@ -32,6 +32,7 @@ class PlanRequest extends FormRequest
         if ($this->method() === 'PUT' || $this->method() === 'PATCH') {
             $id = $this->route('id');
             $rules['name'] .= ',' . $id;
+            $rules['imgae'] = 'nullable|image|mimes:jpeg,png,jpg,gif';
         }
 
         return $rules;
