@@ -454,7 +454,6 @@
 }
 
 .society-card .image-card:hover {
-  background-color: #f78da7;
   position: relative;
   opacity: 1;
   z-index: 3;
