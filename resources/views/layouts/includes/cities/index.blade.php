@@ -18,7 +18,7 @@
                                 <div class="a-card">
                                     <div class="card-image">
                                         <a href="{{ route('societiesByCitie.index', $topCities[0]->id) }}">
-                                            <img src="{{ $topCities[0]->image }}" alt="" />
+                                            <img src="/storage/{{ $topCities[0]->image }}" alt="" />
                                         </a>
                                     </div>
                                     <div class="card-ville-info">
@@ -39,7 +39,7 @@
                                             <div class="a-card">
                                                 <div class="card-image">
                                                     <a href="{{ route('societiesByCitie.index', $topCities[1]->id) }}">
-                                                        <img src="{{ $topCities[1]->image }}" alt="" />
+                                                        <img src="/storage/{{ $topCities[1]->image }}" alt="" />
                                                     </a>
                                                 </div>
                                                 <div class="card-ville-info">
@@ -60,7 +60,7 @@
                                             <div class="a-card">
                                                 <div class="card-image">
                                                     <a href="{{ route('societiesByCitie.index', $topCities[2]->id) }}">
-                                                        <img src="{{ $topCities[2]->image }}" alt="" />
+                                                        <img src="/storage/{{ $topCities[2]->image }}" alt="" />
                                                     </a>
                                                 </div>
                                                 <div class="card-ville-info">
@@ -83,7 +83,7 @@
                                             <div class="a-card">
                                                 <div class="card-image">
                                                     <a href="{{ route('societiesByCitie.index', $topCities[3]->id) }}">
-                                                        <img src="{{ $topCities[3]->image }}" alt="" />
+                                                        <img src="/storage/{{ $topCities[3]->image }}" alt="" />
                                                     </a>
                                                 </div>
                                                 <div class="card-ville-info">
@@ -104,7 +104,7 @@
                                             <div class="a-card">
                                                 <div class="card-image">
                                                     <a href="{{ route('societiesByCitie.index', $topCities[4]->id) }}">
-                                                        <img src="{{ $topCities[4]->image }}" alt="" />
+                                                        <img src="/storage/{{ $topCities[4]->image }}" alt="" />
                                                     </a>
                                                 </div>
                                                 <div class="card-ville-info">
