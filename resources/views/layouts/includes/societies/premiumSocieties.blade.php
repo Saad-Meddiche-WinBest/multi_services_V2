@@ -20,7 +20,7 @@
                             <img src="/storage/{{ $society->image }}" alt="img" draggable="false">
                         </div>
                         <div class="card-title">
-                            <h2>{{ $society->title }}</h2>
+                            <h2>{!! strlen($society->title) > 20 ? substr($society->title, 0, 20) . '...' : $society->title !!}</h2>
                         </div>
                         <i class="fa fa-map-pin"></i>
                         <span>{!! strlen($society->adress) > 20 ? substr($society->adress, 0, 20) . '...' : $society->adress !!}</span>
