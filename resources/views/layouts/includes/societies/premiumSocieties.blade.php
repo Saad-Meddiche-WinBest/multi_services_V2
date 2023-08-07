@@ -48,13 +48,9 @@
             </ul>
 
         </div>
-        <div class="swipe">
-            <div>
-                <span>Swipe for more</span>
-            </div>
-            <div>
-                <i class="fa fa-arrow-right"></i>
-            </div>
+        <div class="premium-header-button2">
+            <i id="left" class="fa fa-angle-left"></i>
+            <i id="right" class="fa fa-angle-right"></i>
         </div>
     </div>
 </div>
