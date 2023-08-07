@@ -41,7 +41,7 @@
 }
 
 .main-header-box-search {
-  background-color: #ffffff69;
+  
   padding: 30px 50px;
   border-radius: 10px;
 }
@@ -1995,5 +1995,15 @@ footer .container ul{
     .gray .container .row .col-lg-4 {
       width: 100%;
     }
-
+    .main-header-box-search {
+      padding: 20px 5px !important;
+    }
+    .main-header-box-search form .row .col-md-2{
+      display: flex;
+    justify-content: center;
+    }
+    .main-header-box-search form .row .col-md-10 input{
+      height: 55px;
+      padding-left:10px ;
+    }
   }

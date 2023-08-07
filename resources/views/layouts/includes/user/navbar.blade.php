@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light fixed-top bg-black shadow-sm" style="background-color: rgb(22, 22, 22);">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-black shadow-sm" style="background-color: rgb(22, 22, 22);">
     <div class="d-md-flex justify-content-between m-md-auto">
         <a class="navbar-brand" style="color: white" href="{{ url('/') }}">
             <b>Multi</b>Serivces
